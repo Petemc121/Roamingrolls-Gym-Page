@@ -24,11 +24,8 @@ get_header();
 </style>
 
 <body>
+  
 <div class="headContain">
-  <script type="text/javascript">
-
-
-</script>
 
 <div class="mySlideD">
 <i id="cameraOverlay" class="fas fa-camera"></i>
@@ -47,7 +44,7 @@ get_header();
 
 <div id="picPlusCon">
 <div id="picSlidePlus">
-<button type="button" id="plusSlidePicture" class="plusPic"><i class="fas fa-plus-circle fa-lg"></i></button>
+<button type="button" id="plusSlidePicture" class="plusPic"><i class="fas fa-edit"></i></button>
 </div>
     </div>
 
@@ -62,29 +59,28 @@ get_header();
   <div class="menuContainer">
   <a class ="pageSecLinks" href = "#gymDescription">
   <button id="pageTab1" class="pageSecTab">
+    Instructors
+</button>
+    </a>
+  <a class ="pageSecLinks" href = "#visitt">
+  <button id="pageTab2" class="pageSecTab">
     Prices
 </button>
+    </a>
 <a class ="pageSecLinks" href = "#plink">
-<button id="pageTab2" class="pageSecTab">
+<button id="pageTab3" class="pageSecTab">
 Schedule
 </button>
     </a>
 <a class ="pageSecLinks" href = "#slink">
-<button id="pageTab3" class="pageSecTab">
+<button id="pageTab4" class="pageSecTab">
 Facilities
 </button>
 </a>
 <div class="pageSecLinks">
-<button id="pageTab4" onclick="showMap()" class="pageSecTab">
+<button id="pageTab5" onclick="showMap()" class="pageSecTab">
 Map
 </button>
-    </div>
-    <div class="pageSecLinks">
-    <a class ="pageSecLinks" href = "#gymDescription">
-<button id="pageTab5" class="pageSecTab">
-Events
-</button>
-</a>
     </div>
 </div>
 </div>
@@ -94,8 +90,14 @@ Events
   <div class="center">
 <div class="menuContainer">
   <h2 id = "gymDes">Gym Description</h2>
+ <button class="plusPic" id="editDes"><i class="fas fa-edit"></i></button>
 </div>
 </div>
+
+<div class="center">
+<textarea id="gymDesIn">
+    </textarea>
+    </div>
 
 <div class="container">
 <div class="center">
@@ -123,19 +125,35 @@ Events
 </div>
 </div>
 
+<script>
+
+window.onload = function() {
+$("#imageUpload1").change(function(){
+    fasterPreview( this, "#InImage1" )
+    });
+
+  }
+
+
+
+  </script>
+
 <div class="center">
 <div id="instructorCards" class="center">
   <div class="inAccord" id="instructors2">
     <div class="inCard2">
       <div class="instruct-card" id="inPic1" data-toggle="collapse" data-target="#inCollapse2" aria-expanded="true" aria-controls="collapseOne">
-        <img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
+        <img id = "InImage1" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif">
+        <button onclick="$('#imageUpload1').click()" id ="inup1"><i class="fas fa-file-upload"></i></button>
+        <input id="imageUpload1" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
       <div class="candTContainer">
         <input class="titIn" placeholder="Instructor Name"></input>
         <div class=tAndDropCon">
           <div class="drop">
             <form>
-            <label id="beltLabel" for="belts">Belt:</label>
-            <select id="beltLevel" name="belts">
+            <label class="beltLabel" for="belts">Belt:</label>
+            <select id="beltLevel1" class="beltLevel" name="belts">
               <option value="Black">Black</option>
               <option value="Brown">Brown</option>
               <option value="Purple">Purple</option>
@@ -182,7 +200,7 @@ Events
 </div>
 
 
-<div id="gi" class="center">
+ <!-- <div id="gi" class="center">
 
             <label class="price-check-label" for="exampleCheck1">Do you offer gi rental?</label>
           </div>
@@ -199,26 +217,32 @@ Events
     <label  class="price-check-label" for="exampleCheck2">No</label>
     
   </div>
-    
+     -->
   
 
-  <p>
+  <!-- <p>
     </p>
 
   <div id="giPrice" class="center">
 
 <input placeholder="Gi Price" id="giPriceIn"></input>
 </div>
-    </div>
-    </div>
+    </div>-->
+    </div> 
     
 
-
+<div class="center">
+  <h6>Add a link to your full pricing page below</h6>
+</div>
 
 <div class="center">
 <div id="plink">
-  <button class="porspagebtn"><h5><a class="porslink" href="">Full pricing page</a></h5></button>
+  <input id="priceLink"></input>
 </div>
+</div>
+
+<div class="center">
+  <button>Update</button>
 </div>
 
 
@@ -228,7 +252,7 @@ Events
 </div>
 </div>
 
-<div id="schedule-container">
+<!-- <div id="schedule-container">
 <div id="schedulein">
 <h3>Weekly Schedule</h3>
 <div id = "Rowin1" class="Rowin">
@@ -238,12 +262,25 @@ Events
 <button type="button" id="plusevent1" class="plusevent"><i class="fas fa-plus-circle fa-lg"></i></button>
 <button type="button" id="minusevent" class="plusevent"><i class="fas fa-minus-circle fa-lg"></i></button>
 </div>
+</div> -->
+
+<div> 
+  <img>
+</div>
+
+<div class="center">
+  <h6>Add a link to your schedule page below</h6>
 </div>
 
 <div class="center">
 <div id="slink">
-  <button class="porspagebtn"><h5><a class="porslink" href="">Schedule Page</a></h5></button>
+  <input type="text" id="Schedulelink"> 
+</input>
 </div>
+</div>
+
+<div class="center">
+  <button>Update</button>
 </div>
 
 
@@ -254,9 +291,33 @@ Events
   <h2 id="desTitle">Facilities</h2>
 </div>
 </div>
+</div>
 
+
+<div class="right">
+<div class="checkbox-grid">
+  <div><input type="checkbox" name="text1" value="value1" /><label for="text1">Locker Room</label></div>
+  <div><input type="checkbox" name="text2" value="value2" /><label for="text2">Showers</label></div>
+  <div><input type="checkbox" name="text3" value="value3" /><label for="text3">Weight room</label></div>
+  <div><input type="checkbox" name="text4" value="value4" /><label for="text4">Water dispenser</label></div>
+  <div><input type="checkbox" name="text5" value="value5" /><label for="text5">Gi rental</label></div>
+  <div><input type="checkbox" name="text6" value="value6" /><label for="text6">Food and drinks</label></div>
+  <div><input type="checkbox" name="text7" value="value7" /><label for="text7">Free Wifi</label></div>
+  <div><input id="otherCheck" type="checkbox" name="text8" value="value8" /><label for="text8">Other (specify)</label></div>
+</div>
+</div>
 
 <div class="center">
+<textarea id="other">
+
+</textarea>
+</div>
+
+
+
+
+
+<!-- <div class="center">
 <h6 id="facDes">Add a facility with its description</h6>
 </div>
     </div>
@@ -285,8 +346,8 @@ Events
       </div>
     </div>
   </div>
-</div>
-    </div>
+</div>-->
+    
     
     
 
@@ -373,8 +434,15 @@ Events
 
 <script>
 
-  
+  var editDes = document.getElementById("editDes")
+  var desIn = document.getElementById("gymDesIn")
+  var desOut =document.getElementById("descriptionContain")
 
+      editDes.addEventListener("click", function() {
+        desIn.style.display = "block";
+        desOut.style.display = "none";
+
+      });
 
       let map;
 
@@ -409,47 +477,47 @@ Events
 
     <script>
 
-var yesCheck = document.getElementById("exampleCheck1")
-      var nocheck = document.getElementById("exampleCheck2")
-      var giPrice = document.getElementById("giPrice")
-      var giPriceIn = document.getElementById("giPriceIn")
+// var yesCheck = document.getElementById("exampleCheck1")
+//       var nocheck = document.getElementById("exampleCheck2")
+//       var giPrice = document.getElementById("giPrice")
+//       var giPriceIn = document.getElementById("giPriceIn")
  
        
-      nocheck.addEventListener("change", function() {
+//       nocheck.addEventListener("change", function() {
 
-        if (this.checked) {
+//         if (this.checked) {
         
-        giPrice.style.display = "none";
-        giPriceIn.style.display = "none";
-        yesCheck.checked = false;
+//         giPrice.style.display = "none";
+//         giPriceIn.style.display = "none";
+//         yesCheck.checked = false;
 
-        } else {
+//         } else {
 
-          giPrice.style.display = "block";
-          giPriceIn.style.display = "block";
+//           giPrice.style.display = "block";
+//           giPriceIn.style.display = "block";
       
-        }
+//         }
 
-      });
+//       });
 
   
 
 
       
-      yesCheck.addEventListener("change", function() {
+//       yesCheck.addEventListener("change", function() {
 
 
-        if (this.checked) {
+//         if (this.checked) {
 
-      giPrice.style.display = "block";
-      giPriceIn.style.display = "block";
-      nocheck.checked = false;
+//       giPrice.style.display = "block";
+//       giPriceIn.style.display = "block";
+//       nocheck.checked = false;
 
-        }
+//         }
 
         
 
-        });
+//         });
 
 
 var slideIndex = 1;
@@ -630,140 +698,209 @@ function showLess() {
 }
 
 
-var plusevent = document.getElementById("plusevent1");
+// var plusevent = document.getElementById("plusevent1");
 
-       let appendArr = [
+//        let appendArr = [
      
-        function()  {
+//         function()  {
 
-         $("#contain").append('<div id="event1" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(this)"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes1"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//          $("#contain").append('<div id="event1" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(this)"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes1"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-        },
+//         },
 
-        function() {
+//         function() {
 
-          $("#contain").append('<div id="event2" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes2()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes2"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event2" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes2()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes2"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          },
+//           },
 
-          function() {
+//           function() {
 
-          $("#contain").append('<div id="event3" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes3()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes3"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event3" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes3()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes3"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          },
+//           },
 
-          function() {
+//           function() {
 
-          $("#contain").append('<div id="event4" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes4()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes4"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event4" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes4()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes4"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          },
+//           },
 
-          function() {
+//           function() {
 
-          $("#contain").append('<div id="event5" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes5()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes5"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event5" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes5()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes5"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          }
+//           }
 
-        ];
+//         ];
 
-        let i=0;
+//         let i=0;
 
 
-        plusevent.onclick = function() {
+//         plusevent.onclick = function() {
 
           
 
-          appendArr[i++ % appendArr.length]();
+//           appendArr[i++ % appendArr.length]();
 
           
-                  };
+//                   };
 
-    var eventCopy = document.getElementsByClassName("eventcopy")
+//     var eventCopy = document.getElementsByClassName("eventcopy")
 
-document.getElementById('minusevent').addEventListener("click", function() {
+// document.getElementById('minusevent').addEventListener("click", function() {
 
-$(eventCopy[eventCopy.length - 1]).remove();
+// $(eventCopy[eventCopy.length - 1]).remove();
 
-});
+// });
 
 
 
-          var plusFacility = document.getElementById("plusFacility") 
+//           var plusFacility = document.getElementById("plusFacility") 
 
-          let appendFac = [
+//           let appendFac = [
      
-     function()  {
+//      function()  {
 
-      $("#facilityCards").append(' <div class="FacAccord" id="Facility3"><div class="FacCard2"><div class="instruct-card" id="FacPic1" data-toggle="collapse" data-target="#FacCollapse1" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse1" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-     },
+//       $("#facilityCards").append(' <div class="FacAccord" id="Facility3"><div class="FacCard2"><div class="instruct-card" id="FacPic1" data-toggle="collapse" data-target="#FacCollapse1" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse1" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-     function()  {
+//      function()  {
 
-      $("#facilityCards").append(' <div class="FacAccord" id="Facility4"><div class="FacCard2"><div class="instruct-card" id="FacPic2" data-toggle="collapse" data-target="#FacCollapse2" aria-expanded="true" aria-controls="collapseTwo"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse2" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard3"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-     },
+//       $("#facilityCards").append(' <div class="FacAccord" id="Facility4"><div class="FacCard2"><div class="instruct-card" id="FacPic2" data-toggle="collapse" data-target="#FacCollapse2" aria-expanded="true" aria-controls="collapseTwo"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse2" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard3"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-      function()  {
+//       function()  {
 
-        $("#facilityCards").append(' <div class="FacAccord" id="Facility5"><div class="FacCard2"><div class="instruct-card" id="FacPic3" data-toggle="collapse" data-target="#FacCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse3" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-     },
+//         $("#facilityCards").append(' <div class="FacAccord" id="Facility5"><div class="FacCard2"><div class="instruct-card" id="FacPic3" data-toggle="collapse" data-target="#FacCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse3" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-function()  {
+// function()  {
 
-        $("#facilityCards").append(' <div class="FacAccord" id="Facility6"><div class="FacCard2"><div class="instruct-card" id="FacPic4" data-toggle="collapse" data-target="#FacCollapse4" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse4" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin5" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-     },
+//         $("#facilityCards").append(' <div class="FacAccord" id="Facility6"><div class="FacCard2"><div class="instruct-card" id="FacPic4" data-toggle="collapse" data-target="#FacCollapse4" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse4" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin5" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-     ]
+//      ]
 
-     plusFacility.onclick = function() {
+//      plusFacility.onclick = function() {
 
-      appendFac[i++ % appendFac.length]();
+//       appendFac[i++ % appendFac.length]();
 
-     }
+//      }
 
-     var minusFacility = document.getElementById("minusFacility")
-     var card = document.getElementsByClassName("FacCard2")
+//      var minusFacility = document.getElementById("minusFacility")
+//      var card = document.getElementsByClassName("FacCard2")
             
         
-         minusFacility.addEventListener("click", function() {
+//          minusFacility.addEventListener("click", function() {
 
-        card[card.length-1].remove();
+//         card[card.length-1].remove();
 
-        })
+//         })
 
 
+ var other = document.getElementById("other")
+ var otherCheck = document.getElementById("otherCheck")
 
+  otherCheck.addEventListener("change", function() {
+
+    if (this.checked) {
       
+      other.style.display = "block";
+
+  } else  {
+    other.style.display = "none";
+  }
+})
+      
+
 
           let appendIn = [
      
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button id ="inup2"><i class="fas fa-file-upload"></i></button><input id="imageUpload2" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button id ="inup3"><i class="fas fa-file-upload"></i></button><input id="imageUpload3" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
       function()  {
 
-        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button id ="inup4"><i class="fas fa-file-upload"></i></button><input id="imageUpload4" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
 function()  {
 
-  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button id ="inup5"><i class="fas fa-file-upload"></i></button><input id="imageUpload5" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      }
      ]
 
+   
      var plusInstructor = document.getElementById("plusInstructor")
 
-     plusInstructor.onclick = function() {
+     var i = 0;
+
+     plusInstructor.addEventListener("click", function() {
+
+       
 
       appendIn[i++ % appendIn.length]();
 
-     }
+    
+     
+
+        $("#inup2").click(function(e) {
+          $("#imageUpload2").click();
+          });
+
+          $("#inup3").click(function(e) {
+          $("#imageUpload3").click();
+          });
+
+          $("#inup4").click(function(e) {
+          $("#imageUpload4").click();
+          });
+
+          $("#inup5").click(function(e) {
+          $("#imageUpload5").click();
+          });
+
+         
+         
+    $("#imageUpload2").change(function(){
+    fasterPreview( this, "#InImage2" );
+    });
+
+    $("#imageUpload3").change(function(){
+    fasterPreview( this, "#InImage3" );
+    });
+
+    $("#imageUpload4").change(function(){
+    fasterPreview( this, "#InImage4" );
+    });
+
+
+    $("#imageUpload5").change(function(){
+    fasterPreview( this,"#InImage5" );
+    });
+     });
+
+     
+function fasterPreview( uploader, image ) {
+    if ( uploader.files && uploader.files[0] ){
+          $(image).attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+  }
+
+
+    
+
+
+
 
      var minusInstructor = document.getElementById("minusInstructor")
      var inCard = document.getElementsByClassName("inAccord")
@@ -773,7 +910,7 @@ function()  {
 
         inCard[inCard.length-1].remove();
 
-        })
+        });
 
 
 
