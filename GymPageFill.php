@@ -32,6 +32,10 @@ get_header();
     <img onclick="showslide()" id="displayImg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
   </div>
 
+  <form id="_imagesForm" action="" method="post">
+  <input change="handleFileSelect(event)" id="_imagesInput" accept="image/*" type="file" style="display:none" multiple>
+</form>
+
   <div class="flex-container">
 
   <div class="flex-item1">
@@ -44,7 +48,7 @@ get_header();
 
 <div id="picPlusCon">
 <div id="picSlidePlus">
-<button type="button" id="plusSlidePicture" class="plusPic"><i class="fas fa-edit"></i></button>
+<button onclick="$('#_imagesInput').click()" type="button" id="plusSlidePicture" class="plusPic"><i class="fas fa-edit"></i></button>
 </div>
     </div>
 
@@ -360,62 +364,15 @@ $("#imageUpload1").change(function(){
 
 <div id="slideshow-container">
 <div onclick="hideslide()" id = "block2" class = "blocker"></div>
-<div id="slideBlock">
+<div class="slider">
+<ul id="slideBlock">
 
-<div class="mySlides fade">
+<li class="mySlides fade">
     <div class="numbertext">1 / 10</div>
     <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
-  </div>
+</li>
 
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/searchbackground4.png" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">4 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">5 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">6 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">7 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-
-  <div class="mySlides fade">
-    <div class="numbertext">8 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">9 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">10 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</ul>
 </div>
 </div>
 
@@ -520,16 +477,6 @@ $("#imageUpload1").change(function(){
 //         });
 
 
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
 
 function showSlides(n) {
   var i;
@@ -542,6 +489,104 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";  
 }
+
+var idx = -1, re = /(.*)(?=\.)/;
+
+ 
+
+window.onload = function() {
+    $(document).on("click", ".slider .slide nav a, .nav a", function(e) {
+      e.preventDefault();
+        $(".slide").hide()
+        .filter(":has(img[title^="+e.target.title.match(re)[0]+"])").show();
+    });
+
+  }
+
+    function handleFileSelect(event) {
+      //Check File API support
+      if (window.File && window.FileList && window.FileReader) {
+
+        var files = event.target.files; //FileList object
+        var output = document.getElementById("slideBlock");
+
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+
+          var picReader = new FileReader();
+          picReader.onload = function(index, event) {
+            ++idx;
+            var picFile = event.target;
+            var slides = $(".slider li[id^=slide]");
+            // TODO: Enter Title
+            $(output)
+              .append('<li id="slide-' 
+                + idx 
+                + '" class="mySlides">' 
+                + "<img src='" 
+                + picFile.result
+                // set `title`
+                + "'title="
+                //`index` : `i`
+                + files[index].name 
+                + "/>" 
+                + '<nav>' 
+                + '<a class="prev">&larr;</a>' 
+                + '<a class="next">&rarr;</a>' 
+                + '</nav>' 
+                + '</li>');
+            // add title to `nav a` elements
+            if (file.name === files[files.length - 1].name) {
+              $(".nav").empty();
+              $("nav a").each(function(i, el) {
+                if ($(el).closest("[id^=slide]").prev("[id^=slide]").length 
+                    && $(el).is("nav a:nth-of-type(1)")) {
+                      $(el).attr("title", 
+                        $(el).closest("[id^=slide]")
+                        .prev("[id^=slide]").find("img").attr("title")
+                      )
+                }
+
+                if ($(el).closest("[id^=slide]").next("[id^=slide]").length 
+                    && $(el).is("nav a:nth-of-type(2)")) {
+                      $(el).attr("title", 
+                        $(el).closest("[id^=slide]")
+                        .next("[id^=slide]").find("img").attr("title")
+                      )
+                }
+
+                if ($(el).is(".slider [id^=slide]:first a:first")) {
+                  $(el).attr("title", 
+                    $("[id^=slide]:last").find("img").attr("title")
+                  )
+                }
+
+                if ($(el).is(".slider [id^=slide]:last a:last")) {
+                  $(el).attr("title", 
+                    $("[id^=slide]:first").find("img").attr("title")
+                  )
+                };
+              });
+              
+              $(".slider img").each(function(i, el) {
+                 $(".nav").append(
+                   $("nav a[title^="
+                     +$(el).attr("title").match(re)[0]
+                     +"]:first")
+                     .clone().html(el.outerHTML)
+                 )
+              })
+            }
+          }.bind(picReader, i);
+
+          //Read the image
+          picReader.readAsDataURL(file);
+        };
+
+      } else {
+        console.log("Your browser does not support File API");
+      }
+    }
 
 const slideContain = document.getElementById('slideshow-container');
 var displayImg = document.getElementById("displayImg")
