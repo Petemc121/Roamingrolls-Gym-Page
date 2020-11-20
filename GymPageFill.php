@@ -1,4 +1,13 @@
-<?php
+if ($("#carousel-inner").find('li')) {
+         
+         var slide1 = document.getElementById("slide-0");
+         
+
+         slide1.classList.add("active");
+         
+
+         
+         <?php
 /* Template Name:Gym Page fill*/
 get_header();
 
@@ -33,7 +42,7 @@ get_header();
   </div>
 
   <form id="_imagesForm" action="" method="post">
-  <input change="handleFileSelect(event)" id="_imagesInput" accept="image/*" type="file" style="display:none" multiple>
+    <input id="_imagesInput" type="file" style="display:none" multiple>
 </form>
 
   <div class="flex-container">
@@ -48,7 +57,7 @@ get_header();
 
 <div id="picPlusCon">
 <div id="picSlidePlus">
-<button onclick="$('#_imagesInput').click()" type="button" id="plusSlidePicture" class="plusPic"><i class="fas fa-edit"></i></button>
+<button type="button" onclick="$('#_imagesInput').click()" id="#_uploadImages" class="plusPic"><i class="fas fa-edit"></i></button>
 </div>
     </div>
 
@@ -364,17 +373,21 @@ $("#imageUpload1").change(function(){
 
 <div id="slideshow-container">
 <div onclick="hideslide()" id = "block2" class = "blocker"></div>
-<div class="slider">
-<ul id="slideBlock">
-
-<li class="mySlides fade">
-    <div class="numbertext">1 / 10</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
-</li>
-
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-inner" id ="carousel-inner">
+ 
 </ul>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 </div>
+    
 
 
 <div id="mapContain">
@@ -382,6 +395,8 @@ $("#imageUpload1").change(function(){
 <div id="map">
     </div>
     </div>
+
+   
     
 
 <br>
@@ -477,116 +492,129 @@ $("#imageUpload1").change(function(){
 //         });
 
 
+window.onload = function() {
+$('#_uploadImages').click(function () {
+    $('#_imagesInput').click();
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  slides[slideIndex-1].style.display = "block";  
+    setTimeout(activeness(), 5000)
+});
+
+$('#_imagesInput').on('change', function () {
+    handleFileSelect();
+});
 }
 
-var idx = -1, re = /(.*)(?=\.)/;
 
- 
+// <div id="slideshow-container">
+// <div onclick="hideslide()" id = "block2" class = "blocker"></div>
+// <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+//   <div class="carousel-inner">
+//     <div class="carousel-item active">
+//       <img class="d-block w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png" alt="First slide">
+//     </div>
+//     <div class="carousel-item">
+//       <img class="d-block w-100" src="..." alt="Second slide">
+//     </div>
+//     <div class="carousel-item">
+//       <img class="d-block w-100" src="..." alt="Third slide">
+//     </div>
+//     <div class="carousel-item">
+//       <img class="d-block w-100" src="..." alt="4th slide">
+//     </div>
+//   </div>
+//   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+//     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+//     <span class="sr-only">Previous</span>
+//   </a>
+//   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+//     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+//     <span class="sr-only">Next</span>
+//   </a>
+// </div>
+// </div> 
 
-window.onload = function() {
-    $(document).on("click", ".slider .slide nav a, .nav a", function(e) {
-      e.preventDefault();
-        $(".slide").hide()
-        .filter(":has(img[title^="+e.target.title.match(re)[0]+"])").show();
-    });
 
-  }
 
-    function handleFileSelect(event) {
-      //Check File API support
-      if (window.File && window.FileList && window.FileReader) {
+
+
+
+
+function handleFileSelect() {
+    //Check File API support
+    if (window.File && window.FileList && window.FileReader) {
 
         var files = event.target.files; //FileList object
-        var output = document.getElementById("slideBlock");
+        var output = document.getElementById("carousel-inner");
+        var arrFilesCount = [];
+        var start = $(output).find('li').length;
+        var display =  document.getElementById("displayImg");
+        var end = start+ files.length;
+        var nonImgCount = 0;
+        for (var i = start; i < end; i++) {
+            arrFilesCount.push(i); // push to array
+        }
+        
+        if(start !== 0){
+            $(output).find('li > nav > a.prev').first().attr('href','#slide-' + (end-1));
+            $(output).find('li > nav > a.next').last().attr('href','#slide-'+start);
 
+            
+        }
+
+
+        
         for (var i = 0; i < files.length; i++) {
-          var file = files[i];
 
-          var picReader = new FileReader();
-          picReader.onload = function(index, event) {
-            ++idx;
-            var picFile = event.target;
-            var slides = $(".slider li[id^=slide]");
-            // TODO: Enter Title
-            $(output)
-              .append('<li id="slide-' 
-                + idx 
-                + '" class="mySlides">' 
-                + "<img src='" 
-                + picFile.result
-                // set `title`
-                + "'title="
-                //`index` : `i`
-                + files[index].name 
-                + "/>" 
-                + '<nav>' 
-                + '<a class="prev">&larr;</a>' 
-                + '<a class="next">&rarr;</a>' 
-                + '</nav>' 
-                + '</li>');
-            // add title to `nav a` elements
-            if (file.name === files[files.length - 1].name) {
-              $(".nav").empty();
-              $("nav a").each(function(i, el) {
-                if ($(el).closest("[id^=slide]").prev("[id^=slide]").length 
-                    && $(el).is("nav a:nth-of-type(1)")) {
-                      $(el).attr("title", 
-                        $(el).closest("[id^=slide]")
-                        .prev("[id^=slide]").find("img").attr("title")
-                      )
+            var file = files[i];
+
+           
+
+            //Only pics
+            if (!file.type.match('image')) {nonImgCount++; continue;}
+
+            var picReader = new FileReader();
+            picReader.addEventListener("load", function (event) {
+                var picFile = event.target;
+
+                current_i = arrFilesCount.shift();
+                if (current_i === 0) {
+                    prev_i = files.length - 1; //This is for the first element. The previous slide will be the last image. (i=length-1)
+                } else {
+                    prev_i = current_i - 1;
                 }
-
-                if ($(el).closest("[id^=slide]").next("[id^=slide]").length 
-                    && $(el).is("nav a:nth-of-type(2)")) {
-                      $(el).attr("title", 
-                        $(el).closest("[id^=slide]")
-                        .next("[id^=slide]").find("img").attr("title")
-                      )
+                if (arrFilesCount.length - nonImgCount === 0) {
+                    next_i = 0;
+                } else {
+                    next_i = current_i + 1; //This is for the last element. The next slide will be the first image (i=0)
                 }
+                
 
-                if ($(el).is(".slider [id^=slide]:first a:first")) {
-                  $(el).attr("title", 
-                    $("[id^=slide]:last").find("img").attr("title")
-                  )
-                }
+                
 
-                if ($(el).is(".slider [id^=slide]:last a:last")) {
-                  $(el).attr("title", 
-                    $("[id^=slide]:first").find("img").attr("title")
-                  )
-                };
-              });
-              
-              $(".slider img").each(function(i, el) {
-                 $(".nav").append(
-                   $("nav a[title^="
-                     +$(el).attr("title").match(re)[0]
-                     +"]:first")
-                     .clone().html(el.outerHTML)
-                 )
-              })
-            }
-          }.bind(picReader, i);
-
-          //Read the image
-          picReader.readAsDataURL(file);
-        };
-
-      } else {
+                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; // TODO: Enter Title
+                
+             if (current_i == 0) {
+                display.src = picFile.result
+             }
+               
+                
+            });
+            //Read the image
+            picReader.readAsDataURL(file);
+           
+        }
+       
+      
+    } else {
         console.log("Your browser does not support File API");
-      }
     }
+}
+
+
+
+
+
+
 
 const slideContain = document.getElementById('slideshow-container');
 var displayImg = document.getElementById("displayImg")
@@ -601,18 +629,14 @@ var readMore = document.getElementById("readMore")
 var readLess =  document.getElementById("readLess")
 var instructCon = document.getElementById("instructcon");
 var prices =  document.getElementById("prices")
-var scheduleIn = document.getElementById("schedulein")
 var pagesecmenu = document.getElementById("pageSecContain")
 var visitT = document.getElementById("visitt")
-var gi = document.getElementById("gi")
 var plink = document.getElementById("plink")
 var schedulet = document.getElementById("schedulet")
 var slink = document.getElementById("slink")
-var Facility = document.getElementById("Facility2");
-var accordion =  document.getElementById("accordionExample")
 var bigCon = document.getElementById("BigContain")
-var facDes = document.getElementById("facDes")
-var facpm = document.getElementById("facpm")
+
+
 
 
 
@@ -627,18 +651,26 @@ function showslide() {
     desTitle.style.display = "none";
     instructCon.style.display = "none";
     prices.style.display = "none";
-    scheduleIn.style.display = "none";
     pagesecmenu.style.display = "none";
     visitT.style.display = "none";
-    gi.style.display = "none";
     plink.style.display = "none";
     slink.style.display = "none";
     schedulet.style.display = "none";
     bigCon.style.display = "none";
-    Facility.style.display = "none";
-    facDes.style.display = "none";
-    facpm.style.display = "none";
-    
+
+    if ($("#carousel-inner").find('li')) {
+         
+         var slide1 = document.getElementById("slide-0");
+         
+
+         slide1.classList.add("active");
+         
+
+         
+           }
+  
+
+          
  
 
 
@@ -654,20 +686,21 @@ function hideslide() {
     desTitle.style.display = "block";
     instructCon.style.display = "block";
     prices.style.display = "block";
-    gi.style.display = "block";
-    scheduleIn.style.display = "block";
     pagesecmenu.style.display = "block";
     visitT.style.display = "block";
-    gi.style.display = "none";
     plink.style.display = "block";
     slink.style.display = "block";
     schedulet.style.display = "block";
     bigCon.style.display = "block";
-    Facility.style.display = "block";
-    facDes.style.display = "block";
-    facpm.style.display = "block";
     
+    if ($("#carousel-inner").find('li')) {
+         
+         
+      $("#carousel-inner").find(".carousel-item").removeClass("active");
+         
 
+         
+           }
     
 
 }
@@ -681,18 +714,12 @@ function showMap() {
     instructCon.style.display = "none";
     desTitle.style.display = "none";
     prices.style.display = "none";
-    gi.style.display = "none";
-    scheduleIn.style.display = "none";
     pagesecmenu.style.display = "none";
     visitT.style.display = "none";
-    gi.style.display = "block";
     plink.style.display = "none";
     slink.style.display = "none";
     schedulet.style.display = "none";
     bigCon.style.display = "none";
-    Facility.style.display = "none";
-    facDes.style.display = "none";
-    facpm.style.display = "none";
     
     
 }
@@ -707,18 +734,13 @@ function hideMap() {
     desTitle.style.display = "block";
     instructCon.style.display = "block";
     prices.style.display = "block";
-    gi.style.display = "block";
-    scheduleIn.style.display = "block";
     pagesecmenu.style.display = "block";
-    gi.style.display = "block";
     visitT.style.display = "block";
     plink.style.display = "block";
     slink.style.display = "block";
     schedulet.style.display = "block";
     bigCon.style.display = "block";
-    Facility.style.display = "block";
-    facDes.style.display = "block";
-    facpm.style.display = "block";
+
     
 
 }
