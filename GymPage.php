@@ -1,10 +1,20 @@
 <?php
-/* Template Name:Gym Page*/
-get_header();
 
+global $current_user;
+wp_get_current_user();
+
+$kv_author =get_the_author_meta('ID'); 	
+
+ if($current_user->ID == $kv_author){
+    echo "<style>#uploadImages{display:none !important;}</style>";
+    echo "<style>#editDes{display:none !important;}</style>";
+    echo "<style>#plusInstructor{display:none !important;}</style>";
+    echo "<style>#minusInstructor{display:none !important;}</style>";
+    echo "<style>.inup{display:none !important;}</style>";
+ } 
+
+$id = get_the_ID();
 ?>
-
-
 <style type="text/css">
 
 
@@ -24,26 +34,61 @@ get_header();
 </style>
 
 <body>
+  
 <div class="headContain">
-  <script type="text/javascript">
-
-
-</script>
 
 <div class="mySlideD">
 <i id="cameraOverlay" class="fas fa-camera"></i>
     <img onclick="showslide()" id="displayImg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
   </div>
 
+  <form id="_imagesForm" action="" method="post">
+    <input id="_imagesInput" type="file" style="display:none" multiple>
+</form>
+
   <div class="flex-container">
 
   <div class="flex-item1">
-  <h1 id="gymTitle">Gym Title</h1>
+  <h1 id="gymTitle"><?php the_title()?></h1>
   <div id="gymLocation">
   <i class="fas fa-map-marker-alt"></i> 
-  <h6 id="street">Street, City, Country.</h6>
+  <h6 id="street"><?php 
+  $address = get_post_meta($id,'address_1',true);
+  echo $address;?>,
+  <?php
+  $taxonomy = wp_get_object_terms($id, 'country_state_city');
+  $value = ""; 
+  if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
+  
+      $value = $taxonomy[0]->name; 
+      print_r($value);
+ 
+}?>
+  , <?php
+  $taxonomy = wp_get_object_terms($id, 'country_state_city');
+  $value = ""; 
+  if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
+  
+      $value = $taxonomy[1]->name; 
+      print_r($value);
+ 
+}?>, <?php
+$taxonomy = wp_get_object_terms($id, 'country_state_city');
+$value = ""; 
+if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
+
+    $value = $taxonomy[2]->name; 
+    print_r($value);
+
+}?></h6>
 </div>
 </div>
+
+<div id="picPlusCon">
+<div id="picSlidePlus">
+<button type="button" onclick="$('#_imagesInput').click()" id="uploadImages" class="plusPic"><i class="fas fa-edit"></i></button>
+</div>
+    </div>
 
 <div class="flex-item2">
   <h1>Icons</h1>
@@ -56,29 +101,28 @@ get_header();
   <div class="menuContainer">
   <a class ="pageSecLinks" href = "#gymDescription">
   <button id="pageTab1" class="pageSecTab">
+    Instructors
+</button>
+    </a>
+  <a class ="pageSecLinks" href = "#visitt">
+  <button id="pageTab2" class="pageSecTab">
     Prices
 </button>
+    </a>
 <a class ="pageSecLinks" href = "#plink">
-<button id="pageTab2" class="pageSecTab">
+<button id="pageTab3" class="pageSecTab">
 Schedule
 </button>
     </a>
 <a class ="pageSecLinks" href = "#slink">
-<button id="pageTab3" class="pageSecTab">
+<button id="pageTab4" class="pageSecTab">
 Facilities
 </button>
 </a>
 <div class="pageSecLinks">
-<button id="pageTab4" onclick="showMap()" class="pageSecTab">
+<button id="pageTab5" onclick="showMap()" class="pageSecTab">
 Map
 </button>
-    </div>
-    <div class="pageSecLinks">
-    <a class ="pageSecLinks" href = "#gymDescription">
-<button id="pageTab5" class="pageSecTab">
-Events
-</button>
-</a>
     </div>
 </div>
 </div>
@@ -87,9 +131,15 @@ Events
 
   <div class="center">
 <div class="menuContainer">
-  <h2 id="desTitle">Gym Description</h2>
+  <h2 id = "gymDes">Gym Description</h2>
+ <button class="plusPic" id="editDes"><i class="fas fa-edit"></i></button>
 </div>
 </div>
+
+<div class="center">
+<textarea id="gymDesIn">
+    </textarea>
+    </div>
 
 <div class="container">
 <div class="center">
@@ -103,9 +153,10 @@ Events
 <div class="bodyContain">
     
 <div id="BigContain">
+  <div id ="instructcon">
 <div class="center">
 <div class="menuContainer">
-  <h2 id="desTitle">Instructors</h2>
+  <h2>Instructors</h2>
 </div>
 </div>
 
@@ -116,19 +167,27 @@ Events
 </div>
 </div>
 
+<script>
 
+
+  </script>
+
+<div class="center">
 <div id="instructorCards" class="center">
   <div class="inAccord" id="instructors2">
     <div class="inCard2">
       <div class="instruct-card" id="inPic1" data-toggle="collapse" data-target="#inCollapse2" aria-expanded="true" aria-controls="collapseOne">
-        <img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
+        <img id = "InImage1" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif">
+        <button onclick="$('#imageUpload1').click()" id ="inup1" class="inup"><i class="fas fa-file-upload"></i></button>
+        <input id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
       <div class="candTContainer">
         <input class="titIn" placeholder="Instructor Name"></input>
         <div class=tAndDropCon">
           <div class="drop">
             <form>
-            <label id="beltLabel" for="belts">Belt:</label>
-            <select id="beltLevel" name="belts">
+            <label class="beltLabel" for="belts">Belt:</label>
+            <select id="beltLevel1" class="beltLevel" name="belts">
               <option value="Black">Black</option>
               <option value="Brown">Brown</option>
               <option value="Purple">Purple</option>
@@ -147,8 +206,9 @@ Events
     </div>
   </div>
 </div>
+    </div>
 
-
+    </div>
 
 <div class="menuContainer">
 <div id="visitt">
@@ -173,7 +233,8 @@ Events
 </div>
 </div>
 
-<div class="center">
+
+ <!-- <div id="gi" class="center">
 
             <label class="price-check-label" for="exampleCheck1">Do you offer gi rental?</label>
           </div>
@@ -188,35 +249,44 @@ Events
     <div id="nogi">
       <input type="checkbox" class="form-check-input" id="exampleCheck2">
     <label  class="price-check-label" for="exampleCheck2">No</label>
-    </div>
-  </div>
-
-  <p>
     
+  </div>
+     -->
+  
+
+  <!-- <p>
+    </p>
 
   <div id="giPrice" class="center">
 
 <input placeholder="Gi Price" id="giPriceIn"></input>
 </div>
+    </div>-->
+    </div> 
+    
 
-    </div>
-
-
+<div class="center">
+  <h6 id="fullPrice">Add a link to your full pricing page below</h6>
+</div>
 
 <div class="center">
 <div id="plink">
-  <button class="porspagebtn"><h5 id="desTitle"><a class="porslink" href="">Full pricing page</a></h5></button>
+  <input id="priceLink"></input>
 </div>
+</div>
+
+<div class="center">
+  <button id="update1">Update</button>
 </div>
 
 
 <div class="center">
-<div id="schedulet" class="menuContainer">
-  <h2 id="desTitle">Schedule</h2>
+<div  class="menuContainer">
+  <h2 id="schedulet" >Schedule</h2>
 </div>
 </div>
 
-<div id="schedule-container">
+<!-- <div id="schedule-container">
 <div id="schedulein">
 <h3>Weekly Schedule</h3>
 <div id = "Rowin1" class="Rowin">
@@ -226,64 +296,65 @@ Events
 <button type="button" id="plusevent1" class="plusevent"><i class="fas fa-plus-circle fa-lg"></i></button>
 <button type="button" id="minusevent" class="plusevent"><i class="fas fa-minus-circle fa-lg"></i></button>
 </div>
+</div> -->
+
+<div> 
+  <img>
 </div>
+
+      <div class="center">
+  <h6 id="scheduleP">Add a link to your schedule page below</h6>
+    </div>
 
 <div class="center">
 <div id="slink">
-  <button class="porspagebtn"><h5 id="desTitle"><a class="porslink" href="">Schedule Page</a></h5></button>
+  <input type="text" id="Schedulelink"> 
+</input>
 </div>
 </div>
-
-
 
 <div class="center">
-<div id="facilitiest" class="menuContainer">
+  <button id="update2">Update</button>
+</div>
+
+
+<div id="fac">
+<div id="facCon" class="center">
+
+<div  id="facilitiest" class="menuContainer">
   <h2 id="desTitle">Facilities</h2>
 </div>
 </div>
-
-<div class="center">
-<div id="facDes">
-<h6>Add pictures of your facilities.</h6>
-</div>
 </div>
 
-<div id = "carousel" class="container">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="fImage d-block w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="fImage d-block w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="fImage d-block w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png" alt="Third slide">
-    </div>
-  </div>
-  
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
 
+<div id="checkB" class="right">
+<div  class="checkbox-grid">
+  <div><input type="checkbox" name="text1" value="value1" /><label for="text1">Locker Room</label></div>
+  <div><input type="checkbox" name="text2" value="value2" /><label for="text2">Showers</label></div>
+  <div><input type="checkbox" name="text3" value="value3" /><label for="text3">Weight room</label></div>
+  <div><input type="checkbox" name="text4" value="value4" /><label for="text4">Water dispenser</label></div>
+  <div><input type="checkbox" name="text5" value="value5" /><label for="text5">Gi rental</label></div>
+  <div><input type="checkbox" name="text6" value="value6" /><label for="text6">Food and drinks</label></div>
+  <div><input type="checkbox" name="text7" value="value7" /><label for="text7">Free Wifi</label></div>
+  <div><input id="otherCheck" type="checkbox" name="text8" value="value8" /><label for="text8">Other (specify)</label></div>
+</div>
+</div>
 
 <div class="center">
-<div id="facDes">
-<h6>Add a facility with its description</h6>
+<textarea id="other">
+
+</textarea>
 </div>
+
+
+
+
+
+<!-- <div class="center">
+<h6 id="facDes">Add a facility with its description</h6>
 </div>
+    </div>
 
 <div class="center">
 <div id="facpm">
@@ -293,47 +364,51 @@ Events
 </div>
 
 <div class="center">
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        <input class="titIn" placeholder="e.g. Weight room"></input>
+<div id="facilityCards" class="center">
+  <div class="FacAccord" id="Facility2">
+    <div class="FacCard2">
+      <div class="instruct-card" id="FacPic1" data-toggle="collapse" data-target="#FacCollapse1" aria-expanded="true" aria-controls="collapseOne">
+        <img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
+      <div class="TContainer">
+        <input class="titIn" placeholder="Facility Name"></input>
+      </div>
     </div>
-    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-      <textarea class="desIn" placeholder="Include a short description of your facility here"></textarea>
+      <div id="FacCollapse1" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2">
+        <div class="card-body">
+        <textarea class="desIn" name="desin1" placeholder="Describe your facility here."></textarea>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
+</div>-->
+    
+    
+    
+
+
+
+
 
 
 
 
 <div id="slideshow-container">
 <div onclick="hideslide()" id = "block2" class = "blocker"></div>
-<div id="slideBlock">
-<div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-inner" id ="carousel-inner">
+ 
+  </ul>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
     
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/searchbackground4.png" style="width:100%">
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <img class="slideimg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/taiwan.jpg" style="width:100%">
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-</div>
 
 
 <div id="mapContain">
@@ -341,6 +416,8 @@ Events
 <div id="map">
     </div>
     </div>
+
+   
     
 
 <br>
@@ -349,6 +426,17 @@ Events
     </div>
 
 <script>
+
+  var editDes = document.getElementById("editDes")
+  var desIn = document.getElementById("gymDesIn")
+  var desOut =document.getElementById("descriptionContain")
+
+      editDes.addEventListener("click", function() {
+        desIn.style.display = "block";
+        desOut.style.display = "none";
+
+      });
+
       let map;
 
       function initMap() {
@@ -382,71 +470,172 @@ Events
 
     <script>
 
-var yesCheck = document.getElementById("exampleCheck1")
-      var nocheck = document.getElementById("exampleCheck2")
-      var giPrice = document.getElementById("giPrice")
-      var giPriceIn = document.getElementById("giPriceIn")
+// var yesCheck = document.getElementById("exampleCheck1")
+//       var nocheck = document.getElementById("exampleCheck2")
+//       var giPrice = document.getElementById("giPrice")
+//       var giPriceIn = document.getElementById("giPriceIn")
  
        
-      nocheck.addEventListener("change", function() {
+//       nocheck.addEventListener("change", function() {
 
-        if (this.checked) {
+//         if (this.checked) {
         
-        giPrice.style.display = "none";
-        giPriceIn.style.display = "none";
-        yesCheck.checked = false;
+//         giPrice.style.display = "none";
+//         giPriceIn.style.display = "none";
+//         yesCheck.checked = false;
 
-        } else {
+//         } else {
 
-          giPrice.style.display = "block";
-          giPriceIn.style.display = "block";
+//           giPrice.style.display = "block";
+//           giPriceIn.style.display = "block";
       
-        }
+//         }
 
-      });
+//       });
 
   
 
 
       
-      yesCheck.addEventListener("change", function() {
+//       yesCheck.addEventListener("change", function() {
 
 
-        if (this.checked) {
+//         if (this.checked) {
 
-      giPrice.style.display = "block";
-      giPriceIn.style.display = "block";
-      nocheck.checked = false;
+//       giPrice.style.display = "block";
+//       giPriceIn.style.display = "block";
+//       nocheck.checked = false;
 
-        }
+//         }
 
         
 
-        });
+//         });
 
 
-var slideIndex = 1;
-showSlides(slideIndex);
+window.onload = function() {
+$('#_uploadImages').click(function () {
+    $('#_imagesInput').click();
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+    setTimeout(activeness(), 5000)
+});
+
+$('#_imagesInput').on('change', function () {
+    handleFileSelect();
+});
 }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+
+// <div id="slideshow-container">
+// <div onclick="hideslide()" id = "block2" class = "blocker"></div>
+// <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+//   <div class="carousel-inner">
+//     <div class="carousel-item active">
+//       <img class="d-block w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png" alt="First slide">
+//     </div>
+//     <div class="carousel-item">
+//       <img class="d-block w-100" src="..." alt="Second slide">
+//     </div>
+//     <div class="carousel-item">
+//       <img class="d-block w-100" src="..." alt="Third slide">
+//     </div>
+//     <div class="carousel-item">
+//       <img class="d-block w-100" src="..." alt="4th slide">
+//     </div>
+//   </div>
+//   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+//     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+//     <span class="sr-only">Previous</span>
+//   </a>
+//   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+//     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+//     <span class="sr-only">Next</span>
+//   </a>
+// </div>
+// </div> 
+
+
+
+
+
+
+
+function handleFileSelect() {
+    //Check File API support
+    if (window.File && window.FileList && window.FileReader) {
+
+        var files = event.target.files; //FileList object
+        var output = document.getElementById("carousel-inner");
+        var arrFilesCount = [];
+        var start = $(output).find('li').length;
+        var display =  document.getElementById("displayImg");
+        var end = start+ files.length;
+        var nonImgCount = 0;
+        for (var i = start; i < end; i++) {
+            arrFilesCount.push(i); // push to array
+        }
+        
+        if(start !== 0){
+            $(output).find('li > nav > a.prev').first().attr('href','#slide-' + (end-1));
+            $(output).find('li > nav > a.next').last().attr('href','#slide-'+start);
+
+            
+        }
+
+
+        
+        for (var i = 0; i < files.length; i++) {
+
+            var file = files[i];
+
+           
+
+            //Only pics
+            if (!file.type.match('image')) {nonImgCount++; continue;}
+
+            var picReader = new FileReader();
+            picReader.addEventListener("load", function (event) {
+                var picFile = event.target;
+
+                current_i = arrFilesCount.shift();
+                if (current_i === 0) {
+                    prev_i = files.length - 1; //This is for the first element. The previous slide will be the last image. (i=length-1)
+                } else {
+                    prev_i = current_i - 1;
+                }
+                if (arrFilesCount.length - nonImgCount === 0) {
+                    next_i = 0;
+                } else {
+                    next_i = current_i + 1; //This is for the last element. The next slide will be the first image (i=0)
+                }
+                
+
+                
+
+                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; // TODO: Enter Title
+                
+             if (current_i == 0) {
+                display.src = picFile.result
+             }
+               
+                
+            });
+            //Read the image
+            picReader.readAsDataURL(file);
+           
+        }
+       
+      
+    } else {
+        console.log("Your browser does not support File API");
+    }
 }
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  slides[slideIndex-1].style.display = "block";  
-}
+
+
+
+
+
 
 const slideContain = document.getElementById('slideshow-container');
 var displayImg = document.getElementById("displayImg")
@@ -454,35 +643,31 @@ var displayImg = document.getElementById("displayImg")
 var showmap = document.getElementById("mapContain")
 var title = document.getElementById("gymTitle")
 var description = document.getElementById("gymDescription")
+var gymDes = document.getElementById("gymDes")
+var editDes = document.getElementById("editDes")
 var desTitle = document.getElementById("desTitle")
-var dots =  document.getElementById("dots")
 var more =  document.getElementById("more")
 var readMore = document.getElementById("readMore")
 var readLess =  document.getElementById("readLess")
+var instructCon = document.getElementById("instructcon");
 var prices =  document.getElementById("prices")
-var scheduleIn = document.getElementById("schedulein")
+var fullPrice = document.getElementById("fullPrice")
 var pagesecmenu = document.getElementById("pageSecContain")
 var visitT = document.getElementById("visitt")
 var plink = document.getElementById("plink")
 var schedulet = document.getElementById("schedulet")
 var slink = document.getElementById("slink")
-var carousel = document.getElementById("carousel")
-var facilitiest = document.getElementById("facilitiest")
-var accordion =  document.getElementById("accordionExample")
-var facpm = document.getElementById("facpm")
-var facDes = document.getElementById("facDes")
 var bigCon = document.getElementById("BigContain")
+var update1 = document.getElementById("update1")
+var update2 = document.getElementById("update2")
+var scheduleP = document.getElementById("scheduleP")
+var checkB = document.getElementById("checkB")
 
 
 
 
-function scrollto(element) {
-        // get the element on the page related to the button
-        var scrollToId = element.getAttribute("data-scroll");
-        var scrollToElement = document.getElementById(scrollToId);
-        // make the page scroll down to where you want
-        // ...
-    }
+
+
 
 
 
@@ -492,21 +677,39 @@ function showslide() {
     displayImg.style.display ="none";
     title.style.marginTop = "80px";
     description.style.display = "none";
+    gymDes.style.display = "none";
     desTitle.style.display = "none";
+    instructCon.style.display = "none";
     prices.style.display = "none";
-    scheduleIn.style.display = "none";
     pagesecmenu.style.display = "none";
     visitT.style.display = "none";
     plink.style.display = "none";
     slink.style.display = "none";
     schedulet.style.display = "none";
-    carousel.style.display = "none";
-    facilitiest.style.display = "none";
-    accordion.style.display = "none";
-    facpm.style.display = "none";
-    facDes.style.display = "none";
     bigCon.style.display = "none";
+    editDes.style.display = "none";
+    fullPrice.style.display = "none";
+    update1.style.display = "none";
+    update2.style.display = "none";
+    checkB.style.display = "none";
+    scheduleP.style.display = "none";
+
     
+
+    if ($("#carousel-inner").find('li')) {
+         
+         var slide1 = document.getElementById("slide-0");
+         
+
+         slide1.classList.add("active");
+
+      
+    }
+
+   
+  
+
+          
  
 
 
@@ -518,21 +721,32 @@ function hideslide() {
   displayImg.style.display ="block";
   title.style.marginTop = "0px";
   description.style.display = "block";
+  gymDes.style.display = "block";
     desTitle.style.display = "block";
+    instructCon.style.display = "block";
     prices.style.display = "block";
-    scheduleIn.style.display = "block";
     pagesecmenu.style.display = "block";
     visitT.style.display = "block";
     plink.style.display = "block";
     slink.style.display = "block";
     schedulet.style.display = "block";
-    carousel.style.display = "block";
-    facilitiest.style.display = "block";
-    accordion.style.display = "block";
-    facpm.style.display = "block";
-    facDes.style.display = "block";
     bigCon.style.display = "block";
+    editDes.style.display = "block";
+    fullPrice.style.display = "block";
+    update1.style.display = "block";
+    update2.style.display = "block";
+    checkB.style.display = "block";
+    scheduleP.style.display = "block";
 
+    
+    if ($("#carousel-inner").find('li')) {
+         
+
+      $("#carousel-inner").find(".carousel-item").removeClass("active");
+         
+
+         
+           }
     
 
 }
@@ -541,21 +755,25 @@ function showMap() {
     showmap.style.display = "block";
     displayImg.style.display ="none";
     title.style.marginTop = "80px";
-    description.style.display = "none";
+  description.style.display = "block";
+    gymDes.style.display = "none";
+    instructCon.style.display = "none";
     desTitle.style.display = "none";
     prices.style.display = "none";
-    scheduleIn.style.display = "none";
     pagesecmenu.style.display = "none";
     visitT.style.display = "none";
     plink.style.display = "none";
     slink.style.display = "none";
     schedulet.style.display = "none";
-    carousel.style.display = "none";
-    facilitiest.style.display = "none";
-    accordion.style.display = "none";
-    facpm.style.display = "none";
-    facDes.style.display = "none";
     bigCon.style.display = "none";
+    editDes.style.display = "none";
+    fullPrice.style.display = "none";
+    update1.style.display = "none";
+    update2.style.display = "none";
+    checkB.style.display = "none";
+    scheduleP.style.display = "none";
+
+    
     
 }
 
@@ -565,20 +783,25 @@ function hideMap() {
   displayImg.style.display ="block";
   title.style.marginTop = "0px";
   description.style.display = "block";
+  gymDes.style.display = "block";
     desTitle.style.display = "block";
+    instructCon.style.display = "block";
     prices.style.display = "block";
-    scheduleIn.style.display = "block";
     pagesecmenu.style.display = "block";
     visitT.style.display = "block";
     plink.style.display = "block";
     slink.style.display = "block";
     schedulet.style.display = "block";
-    carousel.style.display = "block";
-    facilitiest.style.display = "block";
-    accordion.style.display = "block";
-    facpm.style.display = "block";
-    facDes.style.display = "block";
     bigCon.style.display = "block";
+    editDes.style.display = "block";
+    fullPrice.style.display = "block";
+    update1.style.display = "block";
+    update2.style.display = "block";
+    checkB.style.display = "block";
+    scheduleP.style.display = "block";
+
+
+    
 
 }
 
@@ -601,140 +824,218 @@ function showLess() {
 
 }
 
-var plusevent = document.getElementById("plusevent1");
 
-       let appendArr = [
+// var plusevent = document.getElementById("plusevent1");
+
+//        let appendArr = [
      
-        function()  {
+//         function()  {
 
-         $("#contain").append('<div id="event1" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(this)"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes1"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//          $("#contain").append('<div id="event1" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(this)"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes1"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-        },
+//         },
 
-        function() {
+//         function() {
 
-          $("#contain").append('<div id="event2" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes2()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes2"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event2" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes2()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes2"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          },
+//           },
 
-          function() {
+//           function() {
 
-          $("#contain").append('<div id="event3" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes3()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes3"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event3" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes3()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes3"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          },
+//           },
 
-          function() {
+//           function() {
 
-          $("#contain").append('<div id="event4" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes4()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes4"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event4" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes4()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes4"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          },
+//           },
 
-          function() {
+//           function() {
 
-          $("#contain").append('<div id="event5" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes5()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes5"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
+//           $("#contain").append('<div id="event5" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes5()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes5"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
 
-          }
+//           }
 
-        ];
+//         ];
 
-        let i=0;
+//         let i=0;
 
 
-        plusevent.onclick = function() {
+//         plusevent.onclick = function() {
 
           
 
-          appendArr[i++ % appendArr.length]();
+//           appendArr[i++ % appendArr.length]();
 
           
-                  };
+//                   };
 
-    var eventCopy = document.getElementsByClassName("eventcopy")
+//     var eventCopy = document.getElementsByClassName("eventcopy")
 
-document.getElementById('minusevent').addEventListener("click", function() {
+// document.getElementById('minusevent').addEventListener("click", function() {
 
-$(eventCopy[eventCopy.length - 1]).remove();
+// $(eventCopy[eventCopy.length - 1]).remove();
 
-});
+// });
 
 
 
-          var plusFacility = document.getElementById("plusFacility") 
+//           var plusFacility = document.getElementById("plusFacility") 
 
-          let appendFac = [
+//           let appendFac = [
      
-     function()  {
+//      function()  {
 
-      $("#accordionExample").append(' <div class="card"><div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><input placeholder= "Facility name" class="titIn"></input></div><div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordionExample"><div class="card-body"><textarea class="desIn" placeholder="Include a short description of your facility"></textarea></div></div></div>');
-     },
+//       $("#facilityCards").append(' <div class="FacAccord" id="Facility3"><div class="FacCard2"><div class="instruct-card" id="FacPic1" data-toggle="collapse" data-target="#FacCollapse1" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse1" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-     function()  {
+//      function()  {
 
-      $("#accordionExample").append(' <div class="card"><div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><input  placeholder= "Facility name"  class="titIn"></input></div><div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordionExample"><div class="card-body"><textarea class="desIn" placeholder="Include a short description of your facility"></textarea></div></div></div>');
-      },
+//       $("#facilityCards").append(' <div class="FacAccord" id="Facility4"><div class="FacCard2"><div class="instruct-card" id="FacPic2" data-toggle="collapse" data-target="#FacCollapse2" aria-expanded="true" aria-controls="collapseTwo"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse2" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard3"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-      function()  {
+//       function()  {
 
-$("#accordionExample").append(' <div class="card"><div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><Input  placeholder= "Facility name"  class="titIn"></input></div><div id="collapseFour" class="collapse hide" aria-labelledby="headingFour" data-parent="#accordionExample"><div class="card-body"><textarea class="desIn" placeholder="Include a short description of your facility"></textarea></div></div></div>');
-},
+//         $("#facilityCards").append(' <div class="FacAccord" id="Facility5"><div class="FacCard2"><div class="instruct-card" id="FacPic3" data-toggle="collapse" data-target="#FacCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse3" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-function()  {
+// function()  {
 
-$("#accordionExample").append(' <div class="card"><div class="card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"><Input  placeholder= "Facility name"  class="titIn"></input></div><div id="collapseFive" class="collapse hide" aria-labelledby="headingFive" data-parent="#accordionExample"><div class="card-body"><textarea class="desIn" placeholder="Include a short description of your facility"></textarea></div></div></div>');
-},
+//         $("#facilityCards").append(' <div class="FacAccord" id="Facility6"><div class="FacCard2"><div class="instruct-card" id="FacPic4" data-toggle="collapse" data-target="#FacCollapse4" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse4" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin5" placeholder="Describe your facility here."></textarea></div></div></div></div>');
+//      },
 
-     ]
+//      ]
 
-     plusFacility.onclick = function() {
+//      plusFacility.onclick = function() {
 
-      appendFac[i++ % appendFac.length]();
+//       appendFac[i++ % appendFac.length]();
 
-     }
+//      }
 
-     var minusFacility = document.getElementById("minusFacility")
-     var card = document.getElementsByClassName("card")
+//      var minusFacility = document.getElementById("minusFacility")
+//      var card = document.getElementsByClassName("FacCard2")
             
         
-         minusFacility.addEventListener("click", function() {
+//          minusFacility.addEventListener("click", function() {
 
-        card[card.length-1].remove();
+//         card[card.length-1].remove();
 
-        })
+//         })
 
 
+ var other = document.getElementById("other")
+ var otherCheck = document.getElementById("otherCheck")
 
+  otherCheck.addEventListener("change", function() {
+
+    if (this.checked) {
       
+      other.style.display = "block";
+
+  } else  {
+    other.style.display = "none";
+  }
+})
+      
+
 
           let appendIn = [
      
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup2"><i class="fas fa-file-upload"></i></button><input id="imageUpload2" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup3"><i class="fas fa-file-upload"></i></button><input id="imageUpload3" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
       function()  {
 
-        $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup4"><i class="fas fa-file-upload"></i></button><input id="imageUpload4" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
 function()  {
 
-  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label id="beltLabel" for="belts">Belt:</label><select id="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup5"><i class="fas fa-file-upload"></i></button><input id="imageUpload5" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select id="beltLevel5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      }
      ]
 
+   
      var plusInstructor = document.getElementById("plusInstructor")
 
-     plusInstructor.onclick = function() {
+     var i = 0;
+
+     plusInstructor.addEventListener("click", function() {
+
+       
 
       appendIn[i++ % appendIn.length]();
 
-     }
+    
+      
+
+        $("#inup2").click(function(e) {
+          $("#imageUpload2").click();
+          });
+
+          $("#inup3").click(function(e) {
+          $("#imageUpload3").click();
+          });
+
+          $("#inup4").click(function(e) {
+          $("#imageUpload4").click();
+          });
+
+          $("#inup5").click(function(e) {
+          $("#imageUpload5").click();
+          });
+
+         
+          
+
+    $("#imageUpload2").change(function(){
+    fasterPreview( this, "#InImage2" );
+    });
+
+    $("#imageUpload3").change(function(){
+    fasterPreview( this, "#InImage3" );
+    });
+
+    $("#imageUpload4").change(function(){
+    fasterPreview( this, "#InImage4" );
+    });
+
+
+    $("#imageUpload5").change(function(){
+    fasterPreview( this,"#InImage5" );
+    });
+     });
+
+     
+
+  
+
+  function fasterPreview( uploader, image ) {
+    if ( uploader.files && uploader.files[0] ){
+          $(image).attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+  }
+
+
+  
+
+
+
+    
+
+
+
 
      var minusInstructor = document.getElementById("minusInstructor")
      var inCard = document.getElementsByClassName("inAccord")
@@ -744,7 +1045,7 @@ function()  {
 
         inCard[inCard.length-1].remove();
 
-        })
+        });
 
 
 
