@@ -1,11 +1,13 @@
 <?php
-
+global $wpdb;
 global $current_user;
 wp_get_current_user();
 
+
+
 $kv_author =get_the_author_meta('ID'); 	
 
- if($current_user->ID == $kv_author){
+ if($current_user->ID != $kv_author){
     echo "<style>#uploadImages{display:none !important;}</style>";
     echo "<style>#editDes{display:none !important;}</style>";
     echo "<style>#plusInstructor{display:none !important;}</style>";
@@ -14,6 +16,107 @@ $kv_author =get_the_author_meta('ID');
  } 
 
 $id = get_the_ID();
+
+function GymDesSub() {
+if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahlds'], 'create_gym_des' )) {
+
+  $gymDes = sanitize_text_field($_POST['gymDesIn']);
+
+  $uploaded = 0;
+
+  if ($gymDes =='') {
+      echo "<style>#desAlert{display:block !important;}</style>";
+      return false;
+  }else {
+    return true;
+  }
+
+
+}else {
+  return false;
+}
+}
+
+if(isset($_POST['ncskfnalvkbahlds'])) {
+  if(is_user_logged_in()) {
+    if(GymDesSub()) {
+     if (metadata_exists('post',$id,'gymDes')) {
+      $gymDes = sanitize_text_field($_POST['gymDesIn']);
+        update_post_meta($id, 'gymDes', $gymDes);
+     } else {
+      add_post_meta($id, 'gymDes', $gymDes);
+    }
+
+  }
+}
+}
+
+if (isset($_POST['njvkdsnvklsvlnvdf'])) {
+
+
+        
+  $uploadsDir = wp_upload_dir();
+  $allowedFileType = array('JPG','jpg','png','jpeg');
+  
+  // Velidate if files exist
+  if ($_FILES) {
+  
+      $files = $_FILES['SlideImageInput'];
+
+      
+      // Loop through file items
+      foreach($files['name'] as $id=>$val){
+          // Get files upload path
+          if ($files['name'][$id]) {
+
+              $file = array (
+                              'name' => $files['name'][$id],
+                              'type' => $files['type'][$id],
+                              'tmp_name' => $files['tmp_name'][$id],
+                              'error' => $files['error'][$id],
+                              'size' => $files['size'][$id]
+              );
+
+         print_r($file);
+          
+    $filename = $file['name'];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+      //     // $filepath = $uploadsDir.$filename;
+
+      //    echo "<script>alert('".$filename."')</script>";
+
+          $_FILES = array("SlideImageInput" => $file);
+
+          foreach ($_FILES as $file => $array) {
+
+              if(!in_array($ext, $allowedFileType)){
+                  
+              
+          } else {
+      
+          // Add into MySQL databas
+ 
+            $insert = insert_attachment($file,$id, true);
+                  
+
+
+              if($insert) {
+                  echo "<script>alert('success!')</script>";
+              } else {
+                  echo "<script>alert('Oh No!')</script>";
+                  
+                  
+              }
+          }
+      }
+
+  } else {
+      echo "<script>alert('Error!')</script>";
+      
+  }
+} 
+}
+}
 ?>
 <style type="text/css">
 
@@ -38,13 +141,10 @@ $id = get_the_ID();
 <div class="headContain">
 
 <div class="mySlideD">
-<i id="cameraOverlay" class="fas fa-camera"></i>
     <img onclick="showslide()" id="displayImg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
   </div>
 
-  <form id="_imagesForm" action="" method="post">
-    <input id="_imagesInput" type="file" style="display:none" multiple>
-</form>
+  
 
   <div class="flex-container">
 
@@ -137,16 +237,50 @@ Map
 </div>
 
 <div class="center">
-<textarea id="gymDesIn">
+<form method="post">
+<?php wp_nonce_field( 'create_gym_des', 'ncskfnalvkbahlds' ); ?>
+<textarea name="gymDesIn" id="gymDesIn">
+  <?php
+    if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahlds'], 'create_gym_des' )) {
+      echo sanitize_text_field($_POST['gymDesIn']);
+    }
+  ?>
     </textarea>
     </div>
+
+    <div id="desAlert" class="alert alert-danger" role="alert">
+  Don't leave your gym description empty please.
+</div>
+
+    <div class="center">
+<button type="submit" class="gymSubs" id="gymDesSub">submit</button>
+</form>
+<button class="cancels" id="cancel1">cancel</button>
+    </div>
+   
+
+
+
 
 <div class="container">
 <div class="center">
 <div id="descriptionContain" class="menuContainer">
-  <div id="gymDescription">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua<span id="dots">...</span><span><button class="readButtons" id="readMore" onclick="showMore()">Read more</button></span><span id="more">. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span><span><button id="readLess" class="readButtons" onclick="showLess()">Read less</button></span></div>
+  <div id="gymDesout">
+  <?php 
+    $gymDesOut = get_post_meta($id,'gymDes',true);
+    echo $gymDesOut;
+  ?>
+  
   </div>
+
+  
+ 
+  </div>
+  
 </div>
+
+<button class="readButtons" id="readMore" onclick="showMore()">Read more</button>
+<button class="readButtons" id="readLess" onclick="showLess()">Read less</button>
 </div>
   
     <div class="bodyPerim">
@@ -383,20 +517,49 @@ Map
 </div>-->
     
     
-    
+  
+    <?php 
+  
+  // if (isset($_POST['njvkdsnvklsvlnvdf']) || wp_verify_nonce($_POST['njvkdsnvklsvlnvdf'], 'gym_pic_upload' )) {
+
+
+
+  // }
+
+  
+  
+  ?>   
 
 
 
 
 
+<button id="cancelPics" class="plusPic" >Cancel</button>
+<form id="_imagesForm" action="" enctype="multipart/form-data" method="post">
+<?php wp_nonce_field( 'gym_pic_upload', 'njvkdsnvklsvlnvdf' ); ?>
 
-
+    <input id="_imagesInput" name="SlideImageInput[]" type="file" style="display:none" multiple>
+    <button id="savePics" class="plusPic" type="submit">Save</button>
 
 <div id="slideshow-container">
 <div onclick="hideslide()" id = "block2" class = "blocker"></div>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
   <ul class="carousel-inner" id ="carousel-inner">
- 
+
+  <?php
+
+  
+    if(metadata_exists( "file", $id, _thumbnail_id )) {
+
+      $photos = get_post_meta($id,'_thumbnail_id',true);
+
+  echo '<li id="slide-' + current_i + '" class="carousel-item" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='".$photos."'" + "title=''/>" + '</li>';
+    }
+  
+
+    
+ ?>
   </ul>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -408,6 +571,7 @@ Map
   </a>
 </div>
 </div>
+  </form>
     
 
 
@@ -427,15 +591,28 @@ Map
 
 <script>
 
-  var editDes = document.getElementById("editDes")
-  var desIn = document.getElementById("gymDesIn")
-  var desOut =document.getElementById("descriptionContain")
+  var editDes = document.getElementById("editDes");
+  var desIn = document.getElementById("gymDesIn");
+  var desOut =document.getElementById("gymDesout");
+  var desSub = document.getElementById("gymDesSub");
+  var cancel1 = document.getElementById("cancel1");
 
       editDes.addEventListener("click", function() {
         desIn.style.display = "block";
         desOut.style.display = "none";
+        desSub.style.display = "block";
+        cancel1.style.display = "block";
 
       });
+
+      cancel1.addEventListener("click", function() {
+
+        cancel1.style.display = "none";
+        desIn.style.display = "none";
+        desSub.style.display = "none";
+        desOut.style.display = "block";
+        desOut.style.margin = "0 auto";
+      })
 
       let map;
 
@@ -522,6 +699,7 @@ $('#_uploadImages').click(function () {
 
 $('#_imagesInput').on('change', function () {
     handleFileSelect();
+    console.log(this.value)
 });
 }
 
@@ -557,7 +735,7 @@ $('#_imagesInput').on('change', function () {
 
 
 
-
+let imageArray = []
 
 
 function handleFileSelect() {
@@ -569,7 +747,7 @@ function handleFileSelect() {
         var arrFilesCount = [];
         var start = $(output).find('li').length;
         var display =  document.getElementById("displayImg");
-        var end = start+ files.length;
+        var end = start + files.length;
         var nonImgCount = 0;
         for (var i = start; i < end; i++) {
             arrFilesCount.push(i); // push to array
@@ -586,16 +764,17 @@ function handleFileSelect() {
         
         for (var i = 0; i < files.length; i++) {
 
+
             var file = files[i];
+            var readFile = URL.createObjectURL(files[i]);
 
-           
-
+            
             //Only pics
             if (!file.type.match('image')) {nonImgCount++; continue;}
 
             var picReader = new FileReader();
             picReader.addEventListener("load", function (event) {
-                var picFile = event.target;
+              var picFile = event.target;
 
                 current_i = arrFilesCount.shift();
                 if (current_i === 0) {
@@ -608,17 +787,29 @@ function handleFileSelect() {
                 } else {
                     next_i = current_i + 1; //This is for the last element. The next slide will be the first image (i=0)
                 }
-                
 
                 
+          
+                
+               
 
-                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; // TODO: Enter Title
+                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; // TODO: Enter Title
+
+             
+                
+
+                var save = document.getElementById('savePics');
+                var cancel = document.getElementById('cancelPics');
+                var upload = document.getElementById('uploadImages')
+
+                save.style.display = "block";
+                cancel.style.display = "block";
+                upload.style.display = "none";
                 
              if (current_i == 0) {
-                display.src = picFile.result
+                display.src = picFile.result;
              }
                
-                
             });
             //Read the image
             picReader.readAsDataURL(file);
@@ -633,17 +824,17 @@ function handleFileSelect() {
 
 
 
+ 
 
 
 
 
-const slideContain = document.getElementById('slideshow-container');
+var slideContain = document.getElementById('slideshow-container');
 var displayImg = document.getElementById("displayImg")
 
 var showmap = document.getElementById("mapContain")
 var title = document.getElementById("gymTitle")
-var description = document.getElementById("gymDescription")
-var gymDes = document.getElementById("gymDes")
+var gymDes = document.getElementById("gymDesout")
 var editDes = document.getElementById("editDes")
 var desTitle = document.getElementById("desTitle")
 var more =  document.getElementById("more")
@@ -676,7 +867,6 @@ function showslide() {
     slideContain.style.display = "block";
     displayImg.style.display ="none";
     title.style.marginTop = "80px";
-    description.style.display = "none";
     gymDes.style.display = "none";
     desTitle.style.display = "none";
     instructCon.style.display = "none";
@@ -695,6 +885,9 @@ function showslide() {
     scheduleP.style.display = "none";
 
     
+    var display =  document.getElementById("displayImg");
+
+    display.addEventListener("change", function() {
 
     if ($("#carousel-inner").find('li')) {
          
@@ -705,6 +898,7 @@ function showslide() {
 
       
     }
+    })
 
    
   
@@ -720,7 +914,6 @@ function hideslide() {
   slideContain.style.display = "none"
   displayImg.style.display ="block";
   title.style.marginTop = "0px";
-  description.style.display = "block";
   gymDes.style.display = "block";
     desTitle.style.display = "block";
     instructCon.style.display = "block";
@@ -807,19 +1000,21 @@ function hideMap() {
 
 function showMore() {
 
-  dots.style.display = "none";
-  more.style.display = "block";
+ 
   readMore.style.display= "none";
   readLess.style.display = "inline-block";
-
+  gymDes.style.maxHeight = "400px";
 }
 
 function showLess() {
 
-  dots.style.display = "inline-block";
-  more.style.display = "none";
+  
   readMore.style.display= "inline-block";
   readLess.style.display = "none";
+  gymDes.style.maxHeight = "100px";
+
+
+
   
 
 }
