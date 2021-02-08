@@ -15,7 +15,7 @@ $kv_author =get_the_author_meta('ID');
     echo "<style>.inup{display:none !important;}</style>";
  } 
 
-$id = get_the_ID();
+$post_id = get_the_ID();
 
 function GymDesSub() {
 if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahlds'], 'create_gym_des' )) {
@@ -40,24 +40,25 @@ if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahld
 if(isset($_POST['ncskfnalvkbahlds'])) {
   if(is_user_logged_in()) {
     if(GymDesSub()) {
-     if (metadata_exists('post',$id,'gymDes')) {
+     if (metadata_exists('post',$post_id,'gymDes')) {
       $gymDes = sanitize_text_field($_POST['gymDesIn']);
-        update_post_meta($id, 'gymDes', $gymDes);
+        update_post_meta($post_id, 'gymDes', $gymDes);
      } else {
-      add_post_meta($id, 'gymDes', $gymDes);
+      add_post_meta($post_id, 'gymDes', $gymDes);
     }
 
   }
 }
 }
 
-if (isset($_POST['njvkdsnvklsvlnvdf'])) {
 
+
+if (isset($_POST['njvkdsnvklsvlnvdf'])) {
 
         
   $uploadsDir = wp_upload_dir();
   $allowedFileType = array('JPG','jpg','png','jpeg');
-  
+  $attachIdArray = array();
   // Velidate if files exist
   if ($_FILES) {
   
@@ -77,7 +78,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
                               'size' => $files['size'][$id]
               );
 
-         print_r($file);
+      
           
     $filename = $file['name'];
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -94,13 +95,14 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
               
           } else {
       
-          // Add into MySQL databas
- 
-            $insert = insert_attachment($file,$id, true);
-                  
+          // Add into MySQL database
+
+            $attach_id = insert_attachment($file, $post_id);
+            
 
 
-              if($insert) {
+              if($attach_id) {
+                update_post_meta($post_id, 'slide_img_array', $attach_id);
                   echo "<script>alert('success!')</script>";
               } else {
                   echo "<script>alert('Oh No!')</script>";
@@ -108,7 +110,13 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
                   
               }
           }
+          
       }
+      
+
+        
+
+      
 
   } else {
       echo "<script>alert('Error!')</script>";
@@ -141,8 +149,32 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
 <div class="headContain">
 
 <div class="mySlideD">
-    <img onclick="showslide()" id="displayImg" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png">
-  </div>
+    <img onclick="showslide()" id="displayImg" src= '<?php
+//    $query_images_args = array(
+//     'post_type'      => 'attachment',
+//     'post_mime_type' => 'image',
+//     'post_status'    => 'inherit',
+//     'posts_per_page' => - 1,
+// );
+
+// $query_images = new WP_Query( $query_images_args );
+
+// $images = array();
+// foreach ( $query_images->posts as $image ) {
+//     $images[] = wp_get_attachment_url( $image->ID );
+// }
+
+// echo "<script>console.log('".$images."')</script>";
+
+  $imgArray = get_post_meta($post_id, "slide_img_array", false);
+  $image = wp_get_attachment_url($imgArray[0]);
+   print_r($image);
+
+
+?>'>
+</div>
+
+
 
   
 
@@ -153,10 +185,10 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
   <div id="gymLocation">
   <i class="fas fa-map-marker-alt"></i> 
   <h6 id="street"><?php 
-  $address = get_post_meta($id,'address_1',true);
+  $address = get_post_meta($post_id,'address_1',true);
   echo $address;?>,
   <?php
-  $taxonomy = wp_get_object_terms($id, 'country_state_city');
+  $taxonomy = wp_get_object_terms($post_id, 'country_state_city');
   $value = ""; 
   if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
   
@@ -165,7 +197,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
  
 }?>
   , <?php
-  $taxonomy = wp_get_object_terms($id, 'country_state_city');
+  $taxonomy = wp_get_object_terms($post_id, 'country_state_city');
   $value = ""; 
   if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
   
@@ -173,7 +205,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       print_r($value);
  
 }?>, <?php
-$taxonomy = wp_get_object_terms($id, 'country_state_city');
+$taxonomy = wp_get_object_terms($post_id, 'country_state_city');
 $value = ""; 
 if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
 
@@ -549,16 +581,17 @@ Map
 
   <?php
 
-  
-    if(metadata_exists( "file", $id, _thumbnail_id )) {
+      $imgArray = get_post_meta($post_id, "slide_img_array", false);
+     echo "<script>console.log('".$imgArray."')</script>";
 
-      $photos = get_post_meta($id,'_thumbnail_id',true);
-
-  echo '<li id="slide-' + current_i + '" class="carousel-item" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='".$photos."'" + "title=''/>" + '</li>';
+      foreach($imgArray as $key => $img) {
+        if ($key == 0) {
+        $imageSrc = wp_get_attachment_url($imgArray[$key]);
+  echo "<li id='Pslide-".$key."' class='carousel-item active' name = 'Pslide-".$key."'><img class='d-block w-100' src='".$imageSrc."'> </li>";
+    } else {
+      echo "<li id='Pslide-".$key."' class='carousel-item' name = 'Pslide-".$key."'><img class='d-block w-100' src='".$imageSrc."'> </li>";
     }
-  
-
-    
+  }
  ?>
   </ul>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -590,6 +623,12 @@ Map
     </div>
 
 <script>
+
+
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+
 
   var editDes = document.getElementById("editDes");
   var desIn = document.getElementById("gymDesIn");
@@ -703,34 +742,6 @@ $('#_imagesInput').on('change', function () {
 });
 }
 
-
-// <div id="slideshow-container">
-// <div onclick="hideslide()" id = "block2" class = "blocker"></div>
-// <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-//   <div class="carousel-inner">
-//     <div class="carousel-item active">
-//       <img class="d-block w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png" alt="First slide">
-//     </div>
-//     <div class="carousel-item">
-//       <img class="d-block w-100" src="..." alt="Second slide">
-//     </div>
-//     <div class="carousel-item">
-//       <img class="d-block w-100" src="..." alt="Third slide">
-//     </div>
-//     <div class="carousel-item">
-//       <img class="d-block w-100" src="..." alt="4th slide">
-//     </div>
-//   </div>
-//   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-//     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-//     <span class="sr-only">Previous</span>
-//   </a>
-//   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-//     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-//     <span class="sr-only">Next</span>
-//   </a>
-// </div>
-// </div> 
 
 
 
