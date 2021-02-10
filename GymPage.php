@@ -102,7 +102,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
 
 
               if($attach_id) {
-                update_post_meta($post_id, 'slide_img_array', $attach_id);
+                array_push($attachIdArray, $attach_id);
                   echo "<script>alert('success!')</script>";
               } else {
                   echo "<script>alert('Oh No!')</script>";
@@ -114,7 +114,6 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       }
       
 
-        
 
       
 
@@ -123,6 +122,9 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       
   }
 } 
+
+update_post_meta($post_id, 'slide_img_array', $attachIdArray);
+
 }
 }
 ?>
@@ -166,7 +168,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
 
 // echo "<script>console.log('".$images."')</script>";
 
-  $imgArray = get_post_meta($post_id, "slide_img_array", false);
+  $imgArray = get_post_meta($post_id, "slide_img_array", true);
   $image = wp_get_attachment_url($imgArray[0]);
    print_r($image);
 
@@ -581,14 +583,13 @@ Map
 
   <?php
 
-      $imgArray = get_post_meta($post_id, "slide_img_array", false);
-     echo "<script>console.log('".$imgArray."')</script>";
-
+      $imgArray = get_post_meta($post_id, "slide_img_array", true);
       foreach($imgArray as $key => $img) {
         if ($key == 0) {
         $imageSrc = wp_get_attachment_url($imgArray[$key]);
   echo "<li id='Pslide-".$key."' class='carousel-item active' name = 'Pslide-".$key."'><img class='d-block w-100' src='".$imageSrc."'> </li>";
     } else {
+      $imageSrc = wp_get_attachment_url($imgArray[$key]);
       echo "<li id='Pslide-".$key."' class='carousel-item' name = 'Pslide-".$key."'><img class='d-block w-100' src='".$imageSrc."'> </li>";
     }
   }
@@ -896,20 +897,20 @@ function showslide() {
     scheduleP.style.display = "none";
 
     
-    var display =  document.getElementById("displayImg");
+    // var display =  document.getElementById("displayImg");
 
-    display.addEventListener("change", function() {
+    // display.addEventListener("change", function() {
 
-    if ($("#carousel-inner").find('li')) {
+    // if ($("#carousel-inner").find('li')) {
          
-         var slide1 = document.getElementById("slide-0");
+    //      var slide1 = document.getElementById("Pslide-0");
          
 
-         slide1.classList.add("active");
+    //      slide1.classList.add("active");
 
       
-    }
-    })
+    // }
+    // })
 
    
   
@@ -943,14 +944,14 @@ function hideslide() {
     scheduleP.style.display = "block";
 
     
-    if ($("#carousel-inner").find('li')) {
+    // if ($("#carousel-inner").find('li')) {
          
 
-      $("#carousel-inner").find(".carousel-item").removeClass("active");
+    //   $("#carousel-inner").find(".carousel-item").removeClass("active");
          
 
          
-           }
+    //        }
     
 
 }
