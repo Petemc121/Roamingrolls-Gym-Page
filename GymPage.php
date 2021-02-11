@@ -13,6 +13,7 @@ $kv_author =get_the_author_meta('ID');
     echo "<style>#plusInstructor{display:none !important;}</style>";
     echo "<style>#minusInstructor{display:none !important;}</style>";
     echo "<style>.inup{display:none !important;}</style>";
+    echo "<style>#imgRules{display:none !important;}</style>";
  } 
 
 $post_id = get_the_ID();
@@ -81,6 +82,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       
           
     $filename = $file['name'];
+    $filesize = $file['size'];
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
       //     // $filepath = $uploadsDir.$filename;
 
@@ -93,7 +95,13 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
               if(!in_array($ext, $allowedFileType)){
                   
               
+          } else if (
+            $filesize >= 1048576
+          ) {
+            echo "<script>alert('Your file size is too large! Please choose image files of less than 1MB')</script>";
+
           } else {
+            
       
           // Add into MySQL database
 
@@ -139,10 +147,21 @@ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
         height: 50%;
         width:50%;
       }
-
+/* 
       body {
-        
+        max-width:80%;
+        margin:auto;
       }
+
+      @media only screen and (max-width: 700px) {
+      body {
+        max-width:90%;
+        margin:auto;
+      } 
+    } */
+
+    
+     
      
 </style>
 
@@ -152,21 +171,6 @@ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
 
 <div class="mySlideD">
     <img onclick="showslide()" id="displayImg" src= '<?php
-//    $query_images_args = array(
-//     'post_type'      => 'attachment',
-//     'post_mime_type' => 'image',
-//     'post_status'    => 'inherit',
-//     'posts_per_page' => - 1,
-// );
-
-// $query_images = new WP_Query( $query_images_args );
-
-// $images = array();
-// foreach ( $query_images->posts as $image ) {
-//     $images[] = wp_get_attachment_url( $image->ID );
-// }
-
-// echo "<script>console.log('".$images."')</script>";
 
   $imgArray = get_post_meta($post_id, "slide_img_array", true);
   $image = wp_get_attachment_url($imgArray[0]);
@@ -229,7 +233,10 @@ if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
 </div>
 
 </div>
+<div id="imgRules"><p>Select your photo real </p>
+        <p>(the first image selected will be displayed at the top of your page)</p></div>
  
+
 <div id="pageSecContain">
 <div id="pageSectionMenu">
   <div class="menuContainer">
@@ -731,15 +738,29 @@ Map
 
 
 window.onload = function() {
-$('#_uploadImages').click(function () {
-    $('#_imagesInput').click();
+// $('#_uploadImages').click(function () {
+//     $('#_imagesInput').click();
 
-    setTimeout(activeness(), 5000)
-});
+//     setTimeout(activeness(), 5000)
+// });
+const imgUp = document.getElementById("uploadImages");
+const imgRules = document.getElementById("imgRules");
+
+
+imgUp.addEventListener('mouseover', function() {
+  imgRules.style.opacity = "100";
+})
+imgUp.addEventListener('mouseout', function() {
+  imgRules.style.opacity = "0";
+})
+
 
 $('#_imagesInput').on('change', function () {
+
+  var output = document.getElementById("carousel-inner");
+
+    output.innerHTML = "";
     handleFileSelect();
-    console.log(this.value)
 });
 }
 
@@ -761,6 +782,7 @@ function handleFileSelect() {
         var display =  document.getElementById("displayImg");
         var end = start + files.length;
         var nonImgCount = 0;
+      
         for (var i = start; i < end; i++) {
             arrFilesCount.push(i); // push to array
         }
@@ -772,7 +794,7 @@ function handleFileSelect() {
             
         }
 
-
+        
         
         for (var i = 0; i < files.length; i++) {
 
@@ -800,12 +822,18 @@ function handleFileSelect() {
                     next_i = current_i + 1; //This is for the last element. The next slide will be the first image (i=0)
                 }
 
-                
-          
-                
-               
 
-                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; // TODO: Enter Title
+
+          if(current_i == 0) {
+
+                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item active" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; 
+                
+                } else {
+
+                  output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; 
+
+                  }
+                
 
              
                 
@@ -895,22 +923,8 @@ function showslide() {
     update2.style.display = "none";
     checkB.style.display = "none";
     scheduleP.style.display = "none";
-
-    
-    // var display =  document.getElementById("displayImg");
-
-    // display.addEventListener("change", function() {
-
-    // if ($("#carousel-inner").find('li')) {
-         
-    //      var slide1 = document.getElementById("Pslide-0");
-         
-
-    //      slide1.classList.add("active");
-
-      
-    // }
-    // })
+     
+     }
 
    
   
@@ -919,7 +933,7 @@ function showslide() {
  
 
 
-}
+
 
 
 function hideslide() {
@@ -1316,7 +1330,6 @@ function showCheckboxes5() {
 
 
 </body>
-
 
 <div>
 
