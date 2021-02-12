@@ -228,7 +228,12 @@ if (instructorVal()) {
   $belt5 = sanitize_text_field($_POST['beltLevel5']);
   $instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
 
+  $uploadsDir = wp_upload_dir();
+  $allowedFileType = array('JPG','jpg','png','jpeg');
+
   if (isset($img1)) {
+
+    $file = $_FILES['imageUpload1'];
 
     if ($files['name'][$id]) {
 
@@ -288,6 +293,8 @@ echo "<script>alert('Error!')</script>";
 }
 
   }
+
+
 
 }
 
