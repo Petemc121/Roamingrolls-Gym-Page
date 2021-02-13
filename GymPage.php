@@ -96,7 +96,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
                   
               
           } else if (
-            $filesize >= 1048576
+            $filesize > 600000
           ) {
             echo "<script>alert('Your file size is too large! Please choose image files of less than 1MB')</script>";
 
@@ -136,29 +136,28 @@ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
 }
 }
 
-function instructorVal() {
-if (isset($_POST['njvkddsbhjdsbvhsdb']) || wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
+$img1 = sanitize_text_field($_POST['imageUpload1']);
+$instructor1 = sanitize_text_field($_POST['instructorName1']);
+$belt1 = sanitize_text_field($_POST['beltLevel1']);
+$instructorDes1 = sanitize_text_field($_POST['instructorDes1']);
+$img2 = sanitize_text_field($_POST['imageUpload2']);
+$instructor2 = sanitize_text_field($_POST['instructorName2']);
+$belt2 = sanitize_text_field($_POST['beltLevel2']);
+$instructorDes2 = sanitize_text_field($_POST['instructorDes2']);
+$img3 = sanitize_text_field($_POST['imageUpload3']);
+$instructor3 = sanitize_text_field($_POST['instructorName3']);
+$belt3 = sanitize_text_field($_POST['beltLevel3']);
+$instructorDes3 = sanitize_text_field($_POST['instructorDes3']);
+$img4 = sanitize_text_field($_POST['imageUpload4']);
+$instructor4 = sanitize_text_field($_POST['instructorName4']);
+$belt4 = sanitize_text_field($_POST['beltLevel4']);
+$instructorDes4 = sanitize_text_field($_POST['instructorDes4']);
+$img5 = sanitize_text_field($_POST['imageUpload5']);
+$instructor5 = sanitize_text_field($_POST['instructorName5']);
+$belt5 = sanitize_text_field($_POST['beltLevel5']);
+$instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
 
-  $img1 = sanitize_text_field($_POST['imageUpload1']);
-  $instructor1 = sanitize_text_field($_POST['instructorName1']);
-  $belt1 = sanitize_text_field($_POST['beltLevel1']);
-  $instructorDes1 = sanitize_text_field($_POST['instructorDes1']);
-  $img2 = sanitize_text_field($_POST['imageUpload2']);
-  $instructor2 = sanitize_text_field($_POST['instructorName2']);
-  $belt2 = sanitize_text_field($_POST['beltLevel2']);
-  $instructorDes2 = sanitize_text_field($_POST['instructorDes2']);
-  $img3 = sanitize_text_field($_POST['imageUpload3']);
-  $instructor3 = sanitize_text_field($_POST['instructorName3']);
-  $belt3 = sanitize_text_field($_POST['beltLevel3']);
-  $instructorDes3 = sanitize_text_field($_POST['instructorDes3']);
-  $img4 = sanitize_text_field($_POST['imageUpload4']);
-  $instructor4 = sanitize_text_field($_POST['instructorName4']);
-  $belt4 = sanitize_text_field($_POST['beltLevel4']);
-  $instructorDes4 = sanitize_text_field($_POST['instructorDes4']);
-  $img5 = sanitize_text_field($_POST['imageUpload5']);
-  $instructor5 = sanitize_text_field($_POST['instructorName5']);
-  $belt5 = sanitize_text_field($_POST['beltLevel5']);
-  $instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
+function instructorVal() {
 
   $errors = 0;
 
@@ -167,17 +166,20 @@ if ($img1 != "" || $belt1 != "") {
       echo "<script>alert('instructor name missing!')</script>";
       $errors++;
     }
+  }
 if ($img2 != "" || $belt2 != "") {
     if ($instructor2 == "") {
       echo "<script>alert('instructor name missing!')</script>";
       $errors++;
     }
+  }
 
 if ($img3 != "" || $belt3 != "") {
     if ($instructor3 == "") {
       echo "<script>alert('instructor name missing!')</script>";
       $errors++;
     }
+  }
  if ($img4 != "" || $belt4 != "") {
     if ($instructor4 == "") {
       echo "<script>alert('instructor name missing!')</script>";
@@ -190,6 +192,7 @@ if ($img5 != "" || $belt5 != "") {
     echo "<script>alert('instructor name missing!')</script>";
     $errors++;
   }
+}
 
   if ($errors > 0) {
     return false;
@@ -198,105 +201,85 @@ if ($img5 != "" || $belt5 != "") {
   }
 
 
- 
-
 }
 }
 
-if(isset($_POST['njvkddsbhjdsbvhsdb'])) {
-  if(is_user_logged_in()) {
-if (instructorVal()) {
+function uploadInstructFile($file, $meta_key) {
 
-  $img1 = sanitize_text_field($_POST['imageUpload1']);
-  $instructor1 = sanitize_text_field($_POST['instructorName1']);
-  $belt1 = sanitize_text_field($_POST['beltLevel1']);
-  $instructorDes1 = sanitize_text_field($_POST['instructorDes1']);
-  $img2 = sanitize_text_field($_POST['imageUpload2']);
-  $instructor2 = sanitize_text_field($_POST['instructorName2']);
-  $belt2 = sanitize_text_field($_POST['beltLevel2']);
-  $instructorDes2 = sanitize_text_field($_POST['instructorDes2']);
-  $img3 = sanitize_text_field($_POST['imageUpload3']);
-  $instructor3 = sanitize_text_field($_POST['instructorName3']);
-  $belt3 = sanitize_text_field($_POST['beltLevel3']);
-  $instructorDes3 = sanitize_text_field($_POST['instructorDes3']);
-  $img4 = sanitize_text_field($_POST['imageUpload4']);
-  $instructor4 = sanitize_text_field($_POST['instructorName4']);
-  $belt4 = sanitize_text_field($_POST['beltLevel4']);
-  $instructorDes4 = sanitize_text_field($_POST['instructorDes4']);
-  $img5 = sanitize_text_field($_POST['imageUpload5']);
-  $instructor5 = sanitize_text_field($_POST['instructorName5']);
-  $belt5 = sanitize_text_field($_POST['beltLevel5']);
-  $instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
 
   $uploadsDir = wp_upload_dir();
-  $allowedFileType = array('JPG','jpg','png','jpeg');
+  $allowedFileType = array('jpg','png','jpeg');
 
-  if (isset($img1)) {
+  $target_file = $uploadsDir.basename($file["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-    $file = $_FILES['imageUpload1'];
-
-    if ($files['name'][$id]) {
-
-      $file = array (
-                      'name' => $files['name'][$id],
-                      'type' => $files['type'][$id],
-                      'tmp_name' => $files['tmp_name'][$id],
-                      'error' => $files['error'][$id],
-                      'size' => $files['size'][$id]
-      );
-
-
-  
-$filename = $file['name'];
-$filesize = $file['size'];
-$ext = pathinfo($filename, PATHINFO_EXTENSION);
-//     // $filepath = $uploadsDir.$filename;
-
-//    echo "<script>alert('".$filename."')</script>";
-
-  $_FILES = array("SlideImageInput" => $file);
-
-  foreach ($_FILES as $file => $array) {
-
-      if(!in_array($ext, $allowedFileType)){
-          
-      
-  } else if (
-    $filesize >= 1048576
-  ) {
-    echo "<script>alert('Your file size is too large! Please choose image files of less than 1MB')</script>";
-
-  } else {
-    
-
-  // Add into MySQL database
-
-    $attach_id = insert_attachment($file, $post_id);
-    
-
-
-      if($attach_id) {
-        array_push($attachIdArray, $attach_id);
-          echo "<script>alert('success!')</script>";
+      $check = getimagesize($file["tmp_name"]);
+      if($check !== false) {
+        echo "<script>alert('success!')</script>";
+        $uploadOk = 1;
       } else {
-          echo "<script>alert('Oh No!')</script>";
-          
-          
+        echo "<script>alert('invalid file!')</script>";
+        $uploadOk = 0;
       }
-  }
   
-}
+    
 
-} else {
-echo "<script>alert('Error!')</script>";
+    if(in_array($imageFileType, $allowedFileType)) {
+      echo "<script>alert('correct file type!')</script>";
+      $uploadOk = 1;
+    } else {
+      echo "<script>alert('incorrect file type!')</script>";
+      $uploadOk = 0;
+    }
 
-}
+    if ($file["size"] > 600000) {
+      echo "<script>alert('Too large')</script>";
+      $uploadOk = 0;
+    }
 
+    if ($uploadOk == 0) {
+      echo "<script>alert('Your file was not uploaded!')</script>";
+
+    } else {
+      $attach_id = insert_attachment($file, $post_id);
+      update_post_meta($post_id, $meta_key, $attach_id);
+      echo "<script>alert('success!')</script>";
+      
+    }
   }
 
 
+if (isset($_POST['njvkddsbhjdsbvhsdb']) || wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
+  if (instructorVal()) {
+    
+    if (isset($img1)) {
+  uploadInstructFile($img1, 'instructorImg1');
+  }
+
+  if (isset($img2)) {
+    uploadInstructFile($img1, 'instructorImg2');
+    }
+
+    if (isset($img3)) {
+      uploadInstructFile($img1, 'instructorImg3');
+      }
+
+      if (isset($img4)) {
+        uploadInstructFile($img1, 'instructorImg4');
+        }
+
+        if (isset($img5)) {
+          uploadInstructFile($img1, 'instructorImg5');
+          }
 
 }
+
+}
+
+
+  
+
 
 ?>
 <style type="text/css">
