@@ -136,26 +136,7 @@ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
 }
 }
 
-$img1 = sanitize_text_field($_POST['imageUpload1']);
-$instructor1 = sanitize_text_field($_POST['instructorName1']);
-$belt1 = sanitize_text_field($_POST['beltLevel1']);
-$instructorDes1 = sanitize_text_field($_POST['instructorDes1']);
-$img2 = sanitize_text_field($_POST['imageUpload2']);
-$instructor2 = sanitize_text_field($_POST['instructorName2']);
-$belt2 = sanitize_text_field($_POST['beltLevel2']);
-$instructorDes2 = sanitize_text_field($_POST['instructorDes2']);
-$img3 = sanitize_text_field($_POST['imageUpload3']);
-$instructor3 = sanitize_text_field($_POST['instructorName3']);
-$belt3 = sanitize_text_field($_POST['beltLevel3']);
-$instructorDes3 = sanitize_text_field($_POST['instructorDes3']);
-$img4 = sanitize_text_field($_POST['imageUpload4']);
-$instructor4 = sanitize_text_field($_POST['instructorName4']);
-$belt4 = sanitize_text_field($_POST['beltLevel4']);
-$instructorDes4 = sanitize_text_field($_POST['instructorDes4']);
-$img5 = sanitize_text_field($_POST['imageUpload5']);
-$instructor5 = sanitize_text_field($_POST['instructorName5']);
-$belt5 = sanitize_text_field($_POST['beltLevel5']);
-$instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
+
 
 function instructorVal() {
 
@@ -201,7 +182,6 @@ if ($img5 != "" || $belt5 != "") {
   }
 
 
-}
 }
 
 function uploadInstructFile($file, $meta_key) {
@@ -250,9 +230,33 @@ function uploadInstructFile($file, $meta_key) {
   }
 
 
-if (isset($_POST['njvkddsbhjdsbvhsdb']) || wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
+if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
+  
+  if(wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
+  
+  $img1 = sanitize_text_field($_POST['imageUpload1']);
+$instructor1 = sanitize_text_field($_POST['instructorName1']);
+$belt1 = sanitize_text_field($_POST['beltLevel1']);
+$instructorDes1 = sanitize_text_field($_POST['instructorDes1']);
+$img2 = sanitize_text_field($_POST['imageUpload2']);
+$instructor2 = sanitize_text_field($_POST['instructorName2']);
+$belt2 = sanitize_text_field($_POST['beltLevel2']);
+$instructorDes2 = sanitize_text_field($_POST['instructorDes2']);
+$img3 = sanitize_text_field($_POST['imageUpload3']);
+$instructor3 = sanitize_text_field($_POST['instructorName3']);
+$belt3 = sanitize_text_field($_POST['beltLevel3']);
+$instructorDes3 = sanitize_text_field($_POST['instructorDes3']);
+$img4 = sanitize_text_field($_POST['imageUpload4']);
+$instructor4 = sanitize_text_field($_POST['instructorName4']);
+$belt4 = sanitize_text_field($_POST['beltLevel4']);
+$instructorDes4 = sanitize_text_field($_POST['instructorDes4']);
+$img5 = sanitize_text_field($_POST['imageUpload5']);
+$instructor5 = sanitize_text_field($_POST['instructorName5']);
+$belt5 = sanitize_text_field($_POST['beltLevel5']);
+$instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
+  
   if (instructorVal()) {
-    
+
     if (isset($img1)) {
   uploadInstructFile($img1, 'instructorImg1');
   }
@@ -275,6 +279,7 @@ if (isset($_POST['njvkddsbhjdsbvhsdb']) || wp_verify_nonce($_POST['njvkddsbhjdsb
 
 }
 
+  }
 }
 
 
@@ -492,7 +497,7 @@ Map
 
 <div class="center">
 <div id="instructorCards" class="center">
-<form id="instructorForm" action="" enctype="multipart/form-data" method="post">
+<form id="instructorForm" enctype="multipart/form-data" method="post">
 <?php wp_nonce_field( 'instructor_upload', 'njvkddsbhjdsbvhsdb' ); ?>
   <div class="inAccord" id="instructors2">
     <div class="inCard2">
@@ -502,18 +507,18 @@ Map
         <input name= "imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" 
        name="profile_photo" placeholder="Photo" required="" capture>
       <div class="candTContainer">
-        <input name="instructorName1" class="titIn" placeholder="Instructor Name"></input>
+        <input id="instructorNameTemp1" name="instructorName1" class="titIn" placeholder="Instructor Name">
         <div class="tAndDropCon">
           <div class="drop">
             <form>
             <label class="beltLabel" for="belts">Belt:</label>
-            <select name="beltLevel1" id="beltLevel1" class="beltLevel" name="belts">
+            <select name="beltLevel1" id="beltLevelTemp1" class="beltLevel" name="belts">
               <option value="Black">Black</option>
               <option value="Brown">Brown</option>
               <option value="Purple">Purple</option>
               <option value="Blue">Blue</option>
             </select>
-            </form>
+          
           </div>
         </div>
       </div>
@@ -531,11 +536,64 @@ Map
 
 
     </div>
+    <input name= "imageUpload2" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage2')" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
+       <input name= "imageUpload3" class="hideImageUp" id="imageUpload3" onchange="fasterPreview(this, '#InImage3')" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
+       <input name= "imageUpload4" class="hideImageUp" id="imageUpload4" onchange="fasterPreview(this, '#InImage4')" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
+       <input name= "imageUpload5" class="hideImageUp" id="imageUpload5" onchange="fasterPreview(this, '#InImage5')" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
+
+       <input name="instructorNameUp1" id="instructorUp1" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp2" id="instructorUp2" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp3" id="instructorUp3" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp4" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp5" id="instructorUp5" class="titleUp" placeholder="Instructor Name">
+
+
+      <select name="beltLevelUp1" id="beltLevelUp1" class="beltLevelUp">
+              <option value="Black">Black</option>
+              <option value="Brown">Brown</option>
+              <option value="Purple">Purple</option>
+              <option value="Blue">Blue</option>
+            </select>
+
+      <select name="beltLevelUp2" id="beltLevelUp2" class="beltLevelUp">
+        <option value="Black">Black</option>
+        <option value="Brown">Brown</option>
+        <option value="Purple">Purple</option>
+        <option value="Blue">Blue</option>
+      </select>
+
+      <select name="beltLevelUp3" id="beltLevelUp3" class="beltLevelUp">
+        <option value="Black">Black</option>
+        <option value="Brown">Brown</option>
+        <option value="Purple">Purple</option>
+        <option value="Blue">Blue</option>
+      </select>
+
+      <select name="beltLevelUp4" id="beltLevelUp4" class="beltLevelUp">
+        <option value="Black">Black</option>
+        <option value="Brown">Brown</option>
+        <option value="Purple">Purple</option>
+        <option value="Blue">Blue</option>
+      </select>
+
+      <select name="beltLevelUp5" id="beltLevelUp5" class="beltLevelUp">
+        <option value="Black">Black</option>
+        <option value="Brown">Brown</option>
+        <option value="Purple">Purple</option>
+        <option value="Blue">Blue</option>
+      </select>
+
     <div class="center">
     <button type="submit" class="gymSubs" id="instructSub">Submit</button>
-    <button type="submit" class="cancels" id="instructCan">Cancel</button>
-</div>
+
     </form>
+    <button class="cancels" id="instructCan">Cancel</button>
+
+    </div>
 
 <div class="menuContainer">
 <div id="visitt">
@@ -895,6 +953,27 @@ window.onload = function() {
 
 //     setTimeout(activeness(), 5000)
 // });
+function copyVal(source, output) {
+$(source).on('keyup', function(){
+    var val = $(this).val();
+    $(output).val(val);
+  })
+}
+
+function copySelect(source, output) {
+$(source).on('change', function(){
+    var val = $(this).val();
+    $(output).val(val);
+  })
+}
+
+copySelect('#beltLevelTemp1', '#beltLevelUp1')
+
+
+
+copyVal('#instructorNameTemp1', '#instructorUp1');
+
+
 const imgUp = document.getElementById("uploadImages");
 const imgRules = document.getElementById("imgRules");
 
@@ -1319,22 +1398,22 @@ function showLess() {
      
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup2"><i class="fas fa-file-upload"></i></button><input name="imageUpload2" id="imageUpload2" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input class="titIn" name="instructorName2" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel2" id="beltLevel2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup2"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input class="titIn" id="instructorNameTemp2" name="instructorName2" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel2" id="beltLevelTemp2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup3"><i class="fas fa-file-upload"></i></button><input name="imageUpload3" id="imageUpload3" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input name="instructorName3" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel3" id="beltLevel3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup3"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName3" id="instructorNameTemp3" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel3" id="beltLevelTemp3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
       function()  {
 
-        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup4"><i class="fas fa-file-upload"></i></button><input name="imageUpload4" id="imageUpload4" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input name="instructorName4" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel4" id="beltLevel4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup4"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName4" id="instructorNameTemp4" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel4" id="beltLevelTemp4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
 function()  {
 
-  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup5"><i class="fas fa-file-upload"></i></button><input name="imageUpload5" id="imageUpload5" type="file" name="profile_photo" placeholder="Photo" required="" capture><div class="candTContainer"><input name="instructorName5" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel5" id="beltLevel5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes5" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup5"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName5" id="instructorNameTemp5" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes5" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      }
      ]
 
@@ -1368,7 +1447,30 @@ function()  {
           $("#imageUpload5").click();
           });
 
+          function copyVal(source, output) {
+          $(source).on('keyup', function(){
+            var val = $(this).val();
+            $(output).val(val);
+          });
+          }
+
+          copyVal('#instructorNameTemp1', '#instructorUp1');
+          copyVal('#instructorNameTemp2', '#instructorUp2');
+          copyVal('#instructorNameTemp3', '#instructorUp3');
+          copyVal('#instructorNameTemp4', '#instructorUp4');
+          copyVal('#instructorNameTemp5', '#instructorUp5');
          
+          function copySelect(source, output) {
+          $(source).on('change', function(){
+            var val = $(this).val();
+            $(output).val(val);
+          })
+          }
+
+          copySelect('#beltLevelTemp2', '#beltLevelUp2')
+          copySelect('#beltLevelTemp3', '#beltLevelUp3')
+          copySelect('#beltLevelTemp4', '#beltLevelUp4')
+          copySelect('#beltLevelTemp5', '#beltLevelUp5')
           
 
     $("#imageUpload2").change(function(){
@@ -1400,29 +1502,56 @@ function()  {
     }
   }
 
-
-  
-
-
-
-    
-
-
-
-
      var minusInstructor = document.getElementById("minusInstructor")
      var inCard = document.getElementsByClassName("inAccord")
             
         
          minusInstructor.addEventListener("click", function() {
 
-        inCard[inCard.length-1].remove();
+        inCard[inCard.length-1].remove();               
 
         });
 
+var instructEdit = document.getElementById('editInstruct');
+var inup1 = document.getElementById('inup1');
+var inPlus = document.getElementById('plusInstructor');
+var inMinus = document.getElementById('minusInstructor');
+var inSub = document.getElementById('instructSub');
+var inCan = document.getElementById('instructCan');
+
+ instructEdit.addEventListener('click', function() {
+
+   elementDisBlock(inup1);
+   elementDisBlock(inMinus);
+   elementDisBlock(inPlus);
+   elementDisBlock(inSub);
+   elementDisBlock(inCan);
 
 
-                  var expanded = false;
+ })
+
+ inCan.addEventListener('click', function() {
+
+  elementDisNone(inup1);
+  elementDisNone(inMinus);
+  elementDisNone(inPlus);
+  elementDisNone(inSub);
+  elementDisNone(inCan);
+
+ });
+
+
+ function elementDisNone(element) {
+   element.style.display ="none";
+ }
+
+ function elementDisBlock(element) {
+   element.style.display ="block";
+ }
+
+
+
+ var expanded = false;
 
 function showCheckboxes() {
   var checkboxes = document.getElementById("checkboxes1");
