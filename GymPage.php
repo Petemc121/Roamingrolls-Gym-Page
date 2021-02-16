@@ -234,50 +234,124 @@ if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
   
   if(wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
   
-  $img1 = sanitize_text_field($_POST['imageUpload1']);
-$instructor1 = sanitize_text_field($_POST['instructorName1']);
-$belt1 = sanitize_text_field($_POST['beltLevel1']);
-$instructorDes1 = sanitize_text_field($_POST['instructorDes1']);
-$img2 = sanitize_text_field($_POST['imageUpload2']);
-$instructor2 = sanitize_text_field($_POST['instructorName2']);
-$belt2 = sanitize_text_field($_POST['beltLevel2']);
-$instructorDes2 = sanitize_text_field($_POST['instructorDes2']);
-$img3 = sanitize_text_field($_POST['imageUpload3']);
-$instructor3 = sanitize_text_field($_POST['instructorName3']);
-$belt3 = sanitize_text_field($_POST['beltLevel3']);
-$instructorDes3 = sanitize_text_field($_POST['instructorDes3']);
-$img4 = sanitize_text_field($_POST['imageUpload4']);
-$instructor4 = sanitize_text_field($_POST['instructorName4']);
-$belt4 = sanitize_text_field($_POST['beltLevel4']);
-$instructorDes4 = sanitize_text_field($_POST['instructorDes4']);
-$img5 = sanitize_text_field($_POST['imageUpload5']);
-$instructor5 = sanitize_text_field($_POST['instructorName5']);
-$belt5 = sanitize_text_field($_POST['beltLevel5']);
-$instructorDes5 = sanitize_text_field($_POST['instructorDes5']);
+if (isset($_POST['imageUpload1'])) {
   
-  if (instructorVal()) {
-
-    if (isset($img1)) {
-  uploadInstructFile($img1, 'instructorImg1');
-  }
-
-  if (isset($img2)) {
-    uploadInstructFile($img1, 'instructorImg2');
-    }
-
-    if (isset($img3)) {
-      uploadInstructFile($img1, 'instructorImg3');
-      }
-
-      if (isset($img4)) {
-        uploadInstructFile($img1, 'instructorImg4');
-        }
-
-        if (isset($img5)) {
-          uploadInstructFile($img1, 'instructorImg5');
-          }
+}
 
 }
+
+if (isset($_POST['instructorNameUp1'])) {
+  $instructor1 = sanitize_text_field($_POST['instructorNameUp1']);
+}
+
+if (isset($_POST['beltLevelUp1'])) {
+$belt1 = sanitize_text_field($_POST['beltLevelUp1']);
+}
+
+if (isset($_POST['instructorDesUp1'])) {
+  $instructorDes1 = sanitize_text_field($_POST['instructorDesUp1']);
+  }
+
+
+  if (isset($_POST['imageUpload2'])) {
+    $img2 = sanitize_text_field($_POST['imageUpload2']);
+  }
+  
+  if (isset($_POST['instructorNameUp2'])) {
+    $instructor2 = sanitize_text_field($_POST['instructorNameUp2']);
+  }
+  
+  if (isset($_POST['beltLevelUp2'])) {
+  $belt2 = sanitize_text_field($_POST['beltLevelUp2']);
+  }
+  
+  if (isset($_POST['instructorDesUp2'])) {
+    $instructorDes2 = sanitize_text_field($_POST['instructorDesUp2']);
+    }
+
+    if (isset($_POST['imageUpload3'])) {
+      $img3 = sanitize_text_field($_POST['imageUpload3']);
+    }
+    
+    if (isset($_POST['instructorNameUp3'])) {
+      $instructor3 = sanitize_text_field($_POST['instructorNameUp3']);
+    }
+    
+    if (isset($_POST['beltLevelUp3'])) {
+    $belt3 = sanitize_text_field($_POST['beltLevelUp3']);
+    }
+    
+    if (isset($_POST['instructorDesUp3'])) {
+      $instructorDes3 = sanitize_text_field($_POST['instructorDesUp3']);
+      }
+      if (isset($_POST['imageUpload4'])) {
+        $img4 = sanitize_text_field($_POST['imageUpload4']);
+      }
+      
+      if (isset($_POST['instructorNameUp4'])) {
+        $instructor4 = sanitize_text_field($_POST['instructorNameUp4']);
+      }
+      
+      if (isset($_POST['beltLevelUp4'])) {
+      $belt4 = sanitize_text_field($_POST['beltLevelUp4']);
+      }
+      
+      if (isset($_POST['instructorDesUp4'])) {
+        $instructorDes4 = sanitize_text_field($_POST['instructorDesUp4']);
+        }
+
+        if (isset($_POST['imageUpload5'])) {
+          $img5 = sanitize_text_field($_POST['imageUpload5']);
+        }
+        
+        if (isset($_POST['instructorNameUp5'])) {
+          $instructor5 = sanitize_text_field($_POST['instructorNameUp5']);
+        }
+        
+        if (isset($_POST['beltLevelUp5'])) {
+        $belt5 = sanitize_text_field($_POST['beltLevelUp5']);
+        }
+        
+        if (isset($_POST['instructorDesUp5'])) {
+          $instructorDes5 = sanitize_text_field($_POST['instructorDesUp5']);
+          }
+
+          $img1 = sanitize_text_field($_POST['imageUpload1']);
+  if (instructorVal()) {
+
+    if ($img1 !== '') {
+  uploadInstructFile($img1, 'instructorImg1');
+  } else {
+    echo "<script>alert('oh no!')</script>";
+
+  }
+  
+
+
+  
+//   if (instructorVal()) {
+
+//     if ($img1 !== '') {
+//   uploadInstructFile($img1, 'instructorImg1');
+//   }
+
+//   if ($img2 !== '') {
+//     uploadInstructFile($img1, 'instructorImg2');
+//     }
+
+//     if ($img3 !== '') {
+//       uploadInstructFile($img1, 'instructorImg3');
+//       }
+
+//       if ($img4 !== '') {
+//         uploadInstructFile($img1, 'instructorImg4');
+//         }
+
+//         if ($img5 !== '') {
+//           uploadInstructFile($img1, 'instructorImg5');
+//           }
+
+// }
 
   }
 }
@@ -503,14 +577,12 @@ Map
     <div class="inCard2">
       <div class="instruct-card" id="inPic1" data-toggle="collapse" data-target="#inCollapse2" aria-expanded="true" aria-controls="collapseOne">
         <img id = "InImage1" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif">
-        <button onclick="$('#imageUpload1').click()" id ="inup1" class="inup"><i class="fas fa-file-upload"></i></button>
-        <input name= "imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" 
-       name="profile_photo" placeholder="Photo" required="" capture>
+        <button onclick="$('#imageUpload1').click()" type="button" id ="inup1" class="inup"><i class="fas fa-file-upload"></i></button>
+        <input name="imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
       <div class="candTContainer">
         <input id="instructorNameTemp1" name="instructorName1" class="titIn" placeholder="Instructor Name">
         <div class="tAndDropCon">
           <div class="drop">
-            <form>
             <label class="beltLabel" for="belts">Belt:</label>
             <select name="beltLevel1" id="beltLevelTemp1" class="beltLevel" name="belts">
               <option value="Black">Black</option>
@@ -525,7 +597,7 @@ Map
     </div>
       <div id="inCollapse2" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2">
         <div class="card-body">
-        <textarea name="instructorDes1" class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea>
+        <textarea name="instructorDesTemp1" id="instructorDesTemp1" class="desIn" name="desin1" placeholder="Describe your instructor here."></textarea>
         </div>
       </div>
     </div>
@@ -537,19 +609,25 @@ Map
 
     </div>
     <input name= "imageUpload2" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage2')" type="file" 
-       name="profile_photo" placeholder="Photo" required="" capture>
+         capture>
        <input name= "imageUpload3" class="hideImageUp" id="imageUpload3" onchange="fasterPreview(this, '#InImage3')" type="file" 
-       name="profile_photo" placeholder="Photo" required="" capture>
+        capture>
        <input name= "imageUpload4" class="hideImageUp" id="imageUpload4" onchange="fasterPreview(this, '#InImage4')" type="file" 
-       name="profile_photo" placeholder="Photo" required="" capture>
+        capture>
        <input name= "imageUpload5" class="hideImageUp" id="imageUpload5" onchange="fasterPreview(this, '#InImage5')" type="file" 
-       name="profile_photo" placeholder="Photo" required="" capture>
+      capture>
 
        <input name="instructorNameUp1" id="instructorUp1" class="titleUp" placeholder="Instructor Name">
        <input name="instructorNameUp2" id="instructorUp2" class="titleUp" placeholder="Instructor Name">
        <input name="instructorNameUp3" id="instructorUp3" class="titleUp" placeholder="Instructor Name">
        <input name="instructorNameUp4" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
        <input name="instructorNameUp5" id="instructorUp5" class="titleUp" placeholder="Instructor Name">
+
+       <input name="instructorDesUp1" id="instructorDesUp1" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorDesUp2" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Name">
+       <input name="instructorDesUp3" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Name">
+       <input name="instructorDesUp4" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Name">
+       <input name="instructorDesUp5" id="instructorDesUp5" class="titleUp"  placeholder="Instructor Name">
 
 
       <select name="beltLevelUp1" id="beltLevelUp1" class="beltLevelUp">
@@ -591,7 +669,7 @@ Map
     <button type="submit" class="gymSubs" id="instructSub">Submit</button>
 
     </form>
-    <button class="cancels" id="instructCan">Cancel</button>
+    <button class="cancels" type="button" id="instructCan">Cancel</button>
 
     </div>
 
@@ -972,6 +1050,7 @@ copySelect('#beltLevelTemp1', '#beltLevelUp1')
 
 
 copyVal('#instructorNameTemp1', '#instructorUp1');
+copyVal('#instructorDesTemp1', '#instructorDesUp1');
 
 
 const imgUp = document.getElementById("uploadImages");
@@ -1398,22 +1477,22 @@ function showLess() {
      
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup2"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input class="titIn" id="instructorNameTemp2" name="instructorName2" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel2" id="beltLevelTemp2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup2"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input class="titIn" id="instructorNameTemp2" name="instructorName2" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel2" id="beltLevelTemp2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes2" id="instructorDesTemp2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
      function()  {
 
-      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup3"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName3" id="instructorNameTemp3" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel3" id="beltLevelTemp3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup3"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName3" id="instructorNameTemp3" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel3" id="beltLevelTemp3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp3" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
       function()  {
 
-        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup4"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName4" id="instructorNameTemp4" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel4" id="beltLevelTemp4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup4"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName4" id="instructorNameTemp4" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel4" id="beltLevelTemp4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp4" name="instructorDes4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      },
 
 function()  {
 
-  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup5"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName5" id="instructorNameTemp5" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes5" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
+  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup5"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName5" id="instructorNameTemp5" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes5" id="instructorDesTemp5" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
      }
      ]
 
@@ -1459,6 +1538,11 @@ function()  {
           copyVal('#instructorNameTemp3', '#instructorUp3');
           copyVal('#instructorNameTemp4', '#instructorUp4');
           copyVal('#instructorNameTemp5', '#instructorUp5');
+
+          copyVal('#instructorDesTemp2', '#instructorDesUp2');
+          copyVal('#instructorDesTemp3', '#instructorDesUp3');
+          copyVal('#instructorDesTemp4', '#instructorDesUp4');
+          copyVal('#instructorDesTemp5', '#instructorDesUp5');
          
           function copySelect(source, output) {
           $(source).on('change', function(){
