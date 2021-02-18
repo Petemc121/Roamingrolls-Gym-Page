@@ -104,7 +104,8 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
             
       
           // Add into MySQL database
-
+          echo "<script>alert('".$file."')</script>";
+            
             $attach_id = insert_attachment($file, $post_id);
             
 
@@ -138,61 +139,17 @@ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
 
 
 
-function instructorVal() {
+function uploadInstructFile($file, $meta_key,$fileIn) {
 
-  $errors = 0;
-
-if ($img1 != "" || $belt1 != "") {
-    if ($instructor1 == "") {
-      echo "<script>alert('instructor name missing!')</script>";
-      $errors++;
-    }
-  }
-if ($img2 != "" || $belt2 != "") {
-    if ($instructor2 == "") {
-      echo "<script>alert('instructor name missing!')</script>";
-      $errors++;
-    }
-  }
-
-if ($img3 != "" || $belt3 != "") {
-    if ($instructor3 == "") {
-      echo "<script>alert('instructor name missing!')</script>";
-      $errors++;
-    }
-  }
- if ($img4 != "" || $belt4 != "") {
-    if ($instructor4 == "") {
-      echo "<script>alert('instructor name missing!')</script>";
-      $errors++;
-    }
-  
-  }
-if ($img5 != "" || $belt5 != "") {
-  if ($instructor5 == "") {
-    echo "<script>alert('instructor name missing!')</script>";
-    $errors++;
-  }
-}
-
-  if ($errors > 0) {
-    return false;
-  } else {
-    return true;
-  }
-
-
-}
-
-function uploadInstructFile($file, $meta_key) {
-
-
+  $post_id = get_the_ID();
   $uploadsDir = wp_upload_dir();
   $allowedFileType = array('jpg','png','jpeg');
-
-  $target_file = $uploadsDir.basename($file["name"]);
+  $filename = $file['name'];
   $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+  $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+  echo "<script>alert('".$filename."')</script>";
+  echo "<script>alert('".$imageFileType."')</script>";
+
 
       $check = getimagesize($file["tmp_name"]);
       if($check !== false) {
@@ -220,13 +177,18 @@ function uploadInstructFile($file, $meta_key) {
 
     if ($uploadOk == 0) {
       echo "<script>alert('Your file was not uploaded!')</script>";
-
+      return false;
     } else {
-      $attach_id = insert_attachment($file, $post_id);
+
+       
+
+
+      $attach_id = insert_attachment($fileIn, $post_id);
       update_post_meta($post_id, $meta_key, $attach_id);
       echo "<script>alert('success!')</script>";
       
     }
+  
   }
 
 
@@ -234,14 +196,24 @@ if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
   
   if(wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
   
-if (isset($_POST['imageUpload1'])) {
-  
-}
+if (isset($_FILES['imageUpload1'])) {
+
+  $img1 = $_FILES['imageUpload1'];
+
+  uploadInstructFile($img1, 'instructorImg1', 'imageUpload1');
 
 }
 
 if (isset($_POST['instructorNameUp1'])) {
+
   $instructor1 = sanitize_text_field($_POST['instructorNameUp1']);
+
+    if ($instructor1 !== '') {
+  update_post_meta($post_id, 'instructorName1', $instructor1);
+  echo "<script>alert('in1 added!')</script>";
+
+  }
+
 }
 
 if (isset($_POST['beltLevelUp1'])) {
@@ -316,15 +288,7 @@ if (isset($_POST['instructorDesUp1'])) {
           $instructorDes5 = sanitize_text_field($_POST['instructorDesUp5']);
           }
 
-          $img1 = sanitize_text_field($_POST['imageUpload1']);
-  if (instructorVal()) {
-
-    if ($img1 !== '') {
-  uploadInstructFile($img1, 'instructorImg1');
-  } else {
-    echo "<script>alert('oh no!')</script>";
-
-  }
+       
   
 
 
@@ -576,11 +540,18 @@ Map
   <div class="inAccord" id="instructors2">
     <div class="inCard2">
       <div class="instruct-card" id="inPic1" data-toggle="collapse" data-target="#inCollapse2" aria-expanded="true" aria-controls="collapseOne">
-        <img id = "InImage1" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif">
+        <img id = "InImage1" class="InImage w-100" src="
+        <?php 
+        $instructimg1 = get_post_meta($post_id, "slide_img_array", true);
+        $inImg1src = wp_get_attachment_url($imgArray[$key]);
+        ?>
+        ">
         <button onclick="$('#imageUpload1').click()" type="button" id ="inup1" class="inup"><i class="fas fa-file-upload"></i></button>
-        <input name="imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
       <div class="candTContainer">
-        <input id="instructorNameTemp1" name="instructorName1" class="titIn" placeholder="Instructor Name">
+        <input id="instructorNameTemp1" name="instructorName1" class="titIn" 
+        placeholder="
+        <?php $name = get_post_meta($post_id,'instructorName1',true);
+        echo $name; ?>">
         <div class="tAndDropCon">
           <div class="drop">
             <label class="beltLabel" for="belts">Belt:</label>
@@ -608,6 +579,7 @@ Map
 
 
     </div>
+    <input name="imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
     <input name= "imageUpload2" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage2')" type="file" 
          capture>
        <input name= "imageUpload3" class="hideImageUp" id="imageUpload3" onchange="fasterPreview(this, '#InImage3')" type="file" 
