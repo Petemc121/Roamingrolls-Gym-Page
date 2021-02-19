@@ -196,7 +196,7 @@ if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
   
   if(wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
   
-if (isset($_FILES['imageUpload1'])) {
+if (!empty($_FILES['imageUpload1']['name'])) {
 
   $img1 = $_FILES['imageUpload1'];
 
@@ -204,92 +204,63 @@ if (isset($_FILES['imageUpload1'])) {
 
 }
 
-if (isset($_POST['instructorNameUp1'])) {
+if (!empty($_FILES['imageUpload2']['name'])) {
+  $img2 = sanitize_text_field($_POST['imageUpload2']);
+  uploadInstructFile($img1, 'instructorImg1', 'imageUpload1');
+}
 
-  $instructor1 = sanitize_text_field($_POST['instructorNameUp1']);
-
-    if ($instructor1 !== '') {
-  update_post_meta($post_id, 'instructorName1', $instructor1);
-  echo "<script>alert('in1 added!')</script>";
-
+  if (!empty($_FILES['imageUpload3']['name']) {
+    $img3 = sanitize_text_field($_POST['imageUpload3']);
+    uploadInstructFile($img1, 'instructorImg1', 'imageUpload1');
   }
+  
+    if (!empty($_FILES['imageUpload4']['name']) {
+      $img4 = sanitize_text_field($_POST['imageUpload4']);
+      uploadInstructFile($img1, 'instructorImg1', 'imageUpload1');
+    }
+    
+
+      if (!empty($_FILES['imageUpload5']['name']) {
+        $img5 = sanitize_text_field($_POST['imageUpload5']);
+        uploadInstructFile($img1, 'instructorImg1', 'imageUpload1');
+      }
+    
+
+
+
+
+function addMeta($formPost, $metaKey, &$postVar) {
+  $post_id = get_the_ID();
+  if (isset($formPost)) {
+    $postVar = sanitize_text_field($formPost);
+    
+    if ($postVar !== '') {
+      update_post_meta($post_id, $metaKey, $postVar);
+    
+      }
+    }
 
 }
 
-if (isset($_POST['beltLevelUp1'])) {
-$belt1 = sanitize_text_field($_POST['beltLevelUp1']);
-}
+addMeta($_POST['instructorNameUp1'], 'instructorName1', $instructor1 );
+addMeta($_POST['beltLevelUp1'], 'beltLevel1', $beltLevelUp1 );
+addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp1 );
+addMeta($_POST['instructorNameUp2'], 'instructorName2', $instructor2 );
+addMeta($_POST['beltLevelUp2'], 'beltLevel2', $beltLevelUp2 );
+addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
+addMeta($_POST['instructorNameUp3'], 'instructorName3', $instructor3 );
+addMeta($_POST['beltLevelUp3'], 'beltLevel3', $beltLevelUp3 );
+addMeta($_POST['instructorDesUp3'], 'instructorDes2', $instructorDesUp2 );
+addMeta($_POST['instructorNameUp4'], 'instructorName4', $instructor4 );
+addMeta($_POST['beltLevelUp4'], 'beltLevel4', $beltLevelUp4 );
+addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp4 );
+addMeta($_POST['instructorNameUp5'], 'instructorName5', $instructor5 );
+addMeta($_POST['beltLevelUp5'], 'beltLevel5', $beltLevelUp5 );
+addMeta($_POST['instructorDesUp5'], 'instructorDes5', $instructorDesUp5 );
 
-if (isset($_POST['instructorDesUp1'])) {
-  $instructorDes1 = sanitize_text_field($_POST['instructorDesUp1']);
-  }
 
 
-  if (isset($_POST['imageUpload2'])) {
-    $img2 = sanitize_text_field($_POST['imageUpload2']);
-  }
-  
-  if (isset($_POST['instructorNameUp2'])) {
-    $instructor2 = sanitize_text_field($_POST['instructorNameUp2']);
-  }
-  
-  if (isset($_POST['beltLevelUp2'])) {
-  $belt2 = sanitize_text_field($_POST['beltLevelUp2']);
-  }
-  
-  if (isset($_POST['instructorDesUp2'])) {
-    $instructorDes2 = sanitize_text_field($_POST['instructorDesUp2']);
-    }
 
-    if (isset($_POST['imageUpload3'])) {
-      $img3 = sanitize_text_field($_POST['imageUpload3']);
-    }
-    
-    if (isset($_POST['instructorNameUp3'])) {
-      $instructor3 = sanitize_text_field($_POST['instructorNameUp3']);
-    }
-    
-    if (isset($_POST['beltLevelUp3'])) {
-    $belt3 = sanitize_text_field($_POST['beltLevelUp3']);
-    }
-    
-    if (isset($_POST['instructorDesUp3'])) {
-      $instructorDes3 = sanitize_text_field($_POST['instructorDesUp3']);
-      }
-      if (isset($_POST['imageUpload4'])) {
-        $img4 = sanitize_text_field($_POST['imageUpload4']);
-      }
-      
-      if (isset($_POST['instructorNameUp4'])) {
-        $instructor4 = sanitize_text_field($_POST['instructorNameUp4']);
-      }
-      
-      if (isset($_POST['beltLevelUp4'])) {
-      $belt4 = sanitize_text_field($_POST['beltLevelUp4']);
-      }
-      
-      if (isset($_POST['instructorDesUp4'])) {
-        $instructorDes4 = sanitize_text_field($_POST['instructorDesUp4']);
-        }
-
-        if (isset($_POST['imageUpload5'])) {
-          $img5 = sanitize_text_field($_POST['imageUpload5']);
-        }
-        
-        if (isset($_POST['instructorNameUp5'])) {
-          $instructor5 = sanitize_text_field($_POST['instructorNameUp5']);
-        }
-        
-        if (isset($_POST['beltLevelUp5'])) {
-        $belt5 = sanitize_text_field($_POST['beltLevelUp5']);
-        }
-        
-        if (isset($_POST['instructorDesUp5'])) {
-          $instructorDes5 = sanitize_text_field($_POST['instructorDesUp5']);
-          }
-
-       
-  
 
 
   
@@ -542,8 +513,9 @@ Map
       <div class="instruct-card" id="inPic1" data-toggle="collapse" data-target="#inCollapse2" aria-expanded="true" aria-controls="collapseOne">
         <img id = "InImage1" class="InImage w-100" src="
         <?php 
-        $instructimg1 = get_post_meta($post_id, "slide_img_array", true);
-        $inImg1src = wp_get_attachment_url($imgArray[$key]);
+        $instructimg1 = get_post_meta($post_id, "instructorImg1", true);
+        $inImg1src = wp_get_attachment_url($instructimg1);
+        echo $inImg1src;
         ?>
         ">
         <button onclick="$('#imageUpload1').click()" type="button" id ="inup1" class="inup"><i class="fas fa-file-upload"></i></button>
@@ -576,9 +548,9 @@ Map
 </div>
 
     </div>
+  </div>
 
 
-    </div>
     <input name="imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
     <input name= "imageUpload2" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage2')" type="file" 
          capture>
