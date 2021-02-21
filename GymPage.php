@@ -1425,45 +1425,34 @@ function showLess() {
   }
 })
       
-
-
-          let appendIn = [
-     
-     function()  {
-
-      $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic2" data-toggle="collapse" data-target="#inCollapse3" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage2"class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup2"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input class="titIn" id="instructorNameTemp2" name="instructorName2" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel2" id="beltLevelTemp2" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></form></div></div></div></div><div id="inCollapse3" class="collapse hide" aria-labelledby="inPic2" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes2" id="instructorDesTemp2" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
-     },
-
-     function()  {
-
-      $("#instructorCards").append('<div class="inAccord" id="instructors4"><div class="inCard2"><div class="instruct-card" id="inPic3" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage3" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup3"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName3" id="instructorNameTemp3" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel3" id="beltLevelTemp3" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp3" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
-     },
-
-      function()  {
-
-        $("#instructorCards").append('<div class="inAccord" id="instructors5"><div class="inCard2"><div class="instruct-card" id="inPic4" data-toggle="collapse" data-target="#inCollapse5" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage4" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup4"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName4" id="instructorNameTemp4" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select name="beltLevel4" id="beltLevelTemp4" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse5" class="collapse hide" aria-labelledby="inPic4" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp4" name="instructorDes4" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
-     },
-
-function()  {
-
-  $("#instructorCards").append('<div class="inAccord" id="instructors3"><div class="inCard2"><div class="instruct-card" id="inPic5" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage5" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup5"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName5" id="instructorNameTemp5" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp5" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes5" id="instructorDesTemp5" placeholder="Describe your instructor here."></textarea></div></div></div></div>');
-     }
-     ]
+    
 
    
      var plusInstructor = document.getElementById("plusInstructor")
 
      var i = 0;
 
+
+
      plusInstructor.addEventListener("click", function() {
 
-      // let instructorCards =  document.getElementById('instructorCards')
+       
 
-     
-      
-  
+       let cardLength = document.getElementsByClassName('inAccord').length
 
-      appendIn[i++ % appendIn.length]();
+       i = cardLength -1;
+
+       i++
+
+      let instructorForm =  document.getElementById('instructorForm');
+
+      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div class="inCard2"><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp'+i+'" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+
+      appendedHTML = [];
+
+      appendedHTML.push(appendedCard);
+
+      instructorForm.innerHTML = instructorForm.innerHTML  + appendedCard;
 
     
       
