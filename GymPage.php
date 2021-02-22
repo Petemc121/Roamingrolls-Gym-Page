@@ -546,9 +546,18 @@ Map
 
   for($i=0;$i < sizeof($nameArray); $i++) {
 
+
+    $imgSrc = '';
+
+    if ($imgArray[$i] != "") {
+      $imgSrc = wp_get_attachment_url($imgArray[$i]);
+    } else {
+      $imgSrc = "https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif";
+    }
+
     if ($nameArray[$i] != "") {
 
-    echo '<div class="inAccord" id="instructors'.$i.'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse4" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.wp_get_attachment_url($imgArray[$i]).'"><div class="candTContainer"><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div></div></div></div></div><div id="inCollapse4" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp3" name="instructorDes3" placeholder="Describe your instructor here.">'.$instructorDesArray[$i].'</textarea></div></div></div></div>';
+    echo '<div class="inAccord" id="instructors'.$i.'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here.">'.$instructorDesArray[$i].'</textarea></div></div></div></div>';
     }
   }
 
@@ -999,12 +1008,12 @@ $(source).on('change', function(){
   })
 }
 
-copySelect('#beltLevelTemp1', '#beltLevelUp1')
+copySelect('#beltLevelTemp0', '#beltLevelUp1')
 
 
 
-copyVal('#instructorNameTemp1', '#instructorUp1');
-copyVal('#instructorDesTemp1', '#instructorDesUp1');
+copyVal('#instructorNameTemp0', '#instructorUp1');
+copyVal('#instructorDesTemp0', '#instructorDesUp1');
 
 
 const imgUp = document.getElementById("uploadImages");
@@ -1432,11 +1441,12 @@ function showLess() {
 
      var i = 0;
 
+     var plusClicked = 0
 
 
      plusInstructor.addEventListener("click", function() {
 
-       
+       plusClicked++
 
        let cardLength = document.getElementsByClassName('inAccord').length
 
@@ -1446,7 +1456,7 @@ function showLess() {
 
       let instructorForm =  document.getElementById('instructorForm');
 
-      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div class="inCard2"><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp'+i+'" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp'+i+'" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
 
       appendedHTML = [];
 
@@ -1455,21 +1465,27 @@ function showLess() {
       instructorForm.innerHTML = instructorForm.innerHTML  + appendedCard;
 
     
-      
+      for(i=0;i<deleteButtons.length;i++) {
+     elementDisBlock(deleteButtons[i]);
+   }
 
-        $("#inup2").click(function(e) {
+   $("#inup0").click(function(e) {
+          $("#imageUpload1").click();
+          });
+
+        $("#inup1").click(function(e) {
           $("#imageUpload2").click();
           });
 
-          $("#inup3").click(function(e) {
+          $("#inup2").click(function(e) {
           $("#imageUpload3").click();
           });
 
-          $("#inup4").click(function(e) {
+          $("#inup3").click(function(e) {
           $("#imageUpload4").click();
           });
 
-          $("#inup5").click(function(e) {
+          $("#inup4").click(function(e) {
           $("#imageUpload5").click();
           });
 
@@ -1480,16 +1496,16 @@ function showLess() {
           });
           }
 
-          copyVal('#instructorNameTemp1', '#instructorUp1');
-          copyVal('#instructorNameTemp2', '#instructorUp2');
-          copyVal('#instructorNameTemp3', '#instructorUp3');
-          copyVal('#instructorNameTemp4', '#instructorUp4');
-          copyVal('#instructorNameTemp5', '#instructorUp5');
+          copyVal('#instructorNameTemp0', '#instructorUp1');
+          copyVal('#instructorNameTemp1', '#instructorUp2');
+          copyVal('#instructorNameTemp2', '#instructorUp3');
+          copyVal('#instructorNameTemp3', '#instructorUp4');
+          copyVal('#instructorNameTemp4', '#instructorUp5');
 
-          copyVal('#instructorDesTemp2', '#instructorDesUp2');
-          copyVal('#instructorDesTemp3', '#instructorDesUp3');
-          copyVal('#instructorDesTemp4', '#instructorDesUp4');
-          copyVal('#instructorDesTemp5', '#instructorDesUp5');
+          copyVal('#instructorDesTemp1', '#instructorDesUp2');
+          copyVal('#instructorDesTemp2', '#instructorDesUp3');
+          copyVal('#instructorDesTemp3', '#instructorDesUp4');
+          copyVal('#instructorDesTemp4', '#instructorDesUp5');
          
           function copySelect(source, output) {
           $(source).on('change', function(){
@@ -1498,10 +1514,10 @@ function showLess() {
           })
           }
 
-          copySelect('#beltLevelTemp2', '#beltLevelUp2');
-          copySelect('#beltLevelTemp3', '#beltLevelUp3');
-          copySelect('#beltLevelTemp4', '#beltLevelUp4');
-          copySelect('#beltLevelTemp5', '#beltLevelUp5');
+          copySelect('#beltLevelTemp1', '#beltLevelUp2');
+          copySelect('#beltLevelTemp2', '#beltLevelUp3');
+          copySelect('#beltLevelTemp3', '#beltLevelUp4');
+          copySelect('#beltLevelTemp4', '#beltLevelUp5');
           
 
     $("#imageUpload2").change(function(){
@@ -1550,6 +1566,9 @@ var inPlus = document.getElementById('plusInstructor');
 var inMinus = document.getElementById('minusInstructor');
 var inSub = document.getElementById('instructSub');
 var inCan = document.getElementById('instructCan');
+var deleteButtons = document.getElementsByClassName('minusInstructor')
+var imgup = document.getElementsByClassName('inup')
+let cardArray = document.getElementsByClassName('inAccord');
 
  instructEdit.addEventListener('click', function() {
 
@@ -1558,6 +1577,12 @@ var inCan = document.getElementById('instructCan');
    elementDisBlock(inPlus);
    elementDisBlock(inSub);
    elementDisBlock(inCan);
+
+   for(i=0;i<deleteButtons.length;i++) {
+     elementDisBlock(deleteButtons[i]);
+     elementDisBlock(imgup[i]);
+     
+   }
 
 
  })
@@ -1569,6 +1594,18 @@ var inCan = document.getElementById('instructCan');
   elementDisNone(inPlus);
   elementDisNone(inSub);
   elementDisNone(inCan);
+
+  
+  for(i=0;i<deleteButtons.length;i++) {
+     elementDisNone(deleteButtons[i]);
+     elementDisNone(imgup[i]);
+   }
+
+   if (plusClicked != 0) {
+      cardArray.splice(-1,plusclicked);
+   }
+
+
 
  });
 
