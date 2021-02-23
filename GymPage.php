@@ -557,7 +557,7 @@ Map
 
     if ($nameArray[$i] != "") {
 
-    echo '<div class="inAccord" id="instructors'.$i.'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here.">'.$instructorDesArray[$i].'</textarea></div></div></div></div>';
+    echo '<div class="inAccord" id="instructors'.$i.'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent=".inCard2"><div class="card-body"><div class="desOut" id ="instructorDes'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
     }
   }
 
@@ -1456,7 +1456,7 @@ function showLess() {
 
       let instructorForm =  document.getElementById('instructorForm');
 
-      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp'+i+'" class="beltLevel" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div class="inCard2"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse6" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div class=tAndDropCon"><div class="drop"><form><label class="beltLabel" for="belts">Belt:</label><select  id="beltLevelTemp'+i+'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse6" class="collapse hide" aria-labelledby="inPic5" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
 
       appendedHTML = [];
 
@@ -1569,6 +1569,12 @@ var inCan = document.getElementById('instructCan');
 var deleteButtons = document.getElementsByClassName('minusInstructor')
 var imgup = document.getElementsByClassName('inup')
 let cardArray = document.getElementsByClassName('inAccord');
+let inDesOut = document.getElementsByClassName('desOut');
+let inDesIn = document.getElementsByClassName('desIn');
+let beltOut = document.getElementsByClassName('beltLevelOut');
+let beltIn = document.getElementsByClassName('beltLevelIn');
+let nameOut = document.getElementsByClassName('titOut');
+let nameIn = document.getElementsByClassName('titIn');
 
  instructEdit.addEventListener('click', function() {
 
@@ -1581,6 +1587,12 @@ let cardArray = document.getElementsByClassName('inAccord');
    for(i=0;i<deleteButtons.length;i++) {
      elementDisBlock(deleteButtons[i]);
      elementDisBlock(imgup[i]);
+     elementDisBlock(inDesIn[i]);
+     elementDisNone(inDesOut[i]);
+     elementDisNone(beltOut[i]);
+     elementDisBlock(beltIn[i]);
+     elementDisNone(nameOut[i]);
+     elementDisBlock(nameIn[i]);
      
    }
 
@@ -1599,6 +1611,12 @@ let cardArray = document.getElementsByClassName('inAccord');
   for(i=0;i<deleteButtons.length;i++) {
      elementDisNone(deleteButtons[i]);
      elementDisNone(imgup[i]);
+     elementDisBlock(inDesOut[i]);
+     elementDisNone(inDesIn[i]);
+     elementDisNone(beltIn[i]);
+     elementDisBlock(beltOut[i]);
+     elementDisNone(nameIn[i]);
+     elementDisBlock(nameOut[i]);
    }
 
    number = cardArray.length;
