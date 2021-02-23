@@ -912,36 +912,36 @@ Map
         desOut.style.margin = "0 auto";
       })
 
-      let map;
+    //   let map;
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 2,
-          center: new google.maps.LatLng(2.8, -187.3),
-          mapTypeId: "terrain",
-        });
-        // Create a <script> tag and set the USGS URL as the source.
-        const script = document.createElement("script");
-        // This example uses a local copy of the GeoJSON stored at
-        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-        script.src =
-          "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
-        document.getElementsByTagName("head")[0].appendChild(script);
-      }
+    //   function initMap() {
+    //     map = new google.maps.Map(document.getElementById("map"), {
+    //       zoom: 2,
+    //       center: new google.maps.LatLng(2.8, -187.3),
+    //       mapTypeId: "terrain",
+    //     });
+    //     // Create a <script> tag and set the USGS URL as the source.
+    //     const script = document.createElement("script");
+    //     // This example uses a local copy of the GeoJSON stored at
+    //     // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+    //     script.src =
+    //       "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
+    //     document.getElementsByTagName("head")[0].appendChild(script);
+    //   }
 
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      const eqfeed_callback = function (results) {
-        for (let i = 0; i < results.features.length; i++) {
-          const coords = results.features[i].geometry.coordinates;
-          const latLng = new google.maps.LatLng(coords[1], coords[0]);
-          new google.maps.Marker({
-            position: latLng,
-            map: map,
-          });
-        }
-      };
-    </script>
+    //   // Loop through the results array and place a marker for each
+    //   // set of coordinates.
+    //   const eqfeed_callback = function (results) {
+    //     for (let i = 0; i < results.features.length; i++) {
+    //       const coords = results.features[i].geometry.coordinates;
+    //       const latLng = new google.maps.LatLng(coords[1], coords[0]);
+    //       new google.maps.Marker({
+    //         position: latLng,
+    //         map: map,
+    //       });
+    //     }
+    //   };
+    // </script>
 
     <script>
 
@@ -1145,7 +1145,7 @@ function handleFileSelect() {
 var slideContain = document.getElementById('slideshow-container');
 var displayImg = document.getElementById("displayImg")
 
-var showmap = document.getElementById("mapContain")
+// var showmap = document.getElementById("mapContain")
 var title = document.getElementById("gymTitle")
 var gymDes = document.getElementById("gymDesout")
 var editDes = document.getElementById("editDes")
@@ -1243,59 +1243,59 @@ function hideslide() {
 
 }
 
-function showMap() {
-    showmap.style.display = "block";
-    displayImg.style.display ="none";
-    title.style.marginTop = "80px";
-  description.style.display = "block";
-    gymDes.style.display = "none";
-    instructCon.style.display = "none";
-    desTitle.style.display = "none";
-    prices.style.display = "none";
-    pagesecmenu.style.display = "none";
-    visitT.style.display = "none";
-    plink.style.display = "none";
-    slink.style.display = "none";
-    schedulet.style.display = "none";
-    bigCon.style.display = "none";
-    editDes.style.display = "none";
-    fullPrice.style.display = "none";
-    update1.style.display = "none";
-    update2.style.display = "none";
-    checkB.style.display = "none";
-    scheduleP.style.display = "none";
+// function showMap() {
+//     showmap.style.display = "block";
+//     displayImg.style.display ="none";
+//     title.style.marginTop = "80px";
+//   description.style.display = "block";
+//     gymDes.style.display = "none";
+//     instructCon.style.display = "none";
+//     desTitle.style.display = "none";
+//     prices.style.display = "none";
+//     pagesecmenu.style.display = "none";
+//     visitT.style.display = "none";
+//     plink.style.display = "none";
+//     slink.style.display = "none";
+//     schedulet.style.display = "none";
+//     bigCon.style.display = "none";
+//     editDes.style.display = "none";
+//     fullPrice.style.display = "none";
+//     update1.style.display = "none";
+//     update2.style.display = "none";
+//     checkB.style.display = "none";
+//     scheduleP.style.display = "none";
 
     
     
-}
+// }
 
-function hideMap() {
+// function hideMap() {
 
- showmap.style.display = "none"
-  displayImg.style.display ="block";
-  title.style.marginTop = "0px";
-  description.style.display = "block";
-  gymDes.style.display = "block";
-    desTitle.style.display = "block";
-    instructCon.style.display = "block";
-    prices.style.display = "block";
-    pagesecmenu.style.display = "block";
-    visitT.style.display = "block";
-    plink.style.display = "block";
-    slink.style.display = "block";
-    schedulet.style.display = "block";
-    bigCon.style.display = "block";
-    editDes.style.display = "block";
-    fullPrice.style.display = "block";
-    update1.style.display = "block";
-    update2.style.display = "block";
-    checkB.style.display = "block";
-    scheduleP.style.display = "block";
+//  showmap.style.display = "none"
+//   displayImg.style.display ="block";
+//   title.style.marginTop = "0px";
+//   description.style.display = "block";
+//   gymDes.style.display = "block";
+//     desTitle.style.display = "block";
+//     instructCon.style.display = "block";
+//     prices.style.display = "block";
+//     pagesecmenu.style.display = "block";
+//     visitT.style.display = "block";
+//     plink.style.display = "block";
+//     slink.style.display = "block";
+//     schedulet.style.display = "block";
+//     bigCon.style.display = "block";
+//     editDes.style.display = "block";
+//     fullPrice.style.display = "block";
+//     update1.style.display = "block";
+//     update2.style.display = "block";
+//     checkB.style.display = "block";
+//     scheduleP.style.display = "block";
 
 
     
 
-}
+// }
 
 function showMore() {
 
@@ -1572,7 +1572,7 @@ let cardArray = document.getElementsByClassName('inAccord');
 
  instructEdit.addEventListener('click', function() {
 
-   
+   plusClicked = 0;
   //  elementDisBlock(inMinus);
    elementDisBlock(inPlus);
    elementDisBlock(inSub);
@@ -1601,8 +1601,12 @@ let cardArray = document.getElementsByClassName('inAccord');
      elementDisNone(imgup[i]);
    }
 
-   if (plusClicked != 0) {
-      cardArray.splice(-1,plusclicked);
+   number = cardArray.length;
+
+   if (plusClicked > 0) {
+     for (i=cardArray.length -1;i>number - (plusClicked + 1);i--) {
+       cardArray[i].parentNode.removeChild(cardArray[i])
+     }
    }
 
 
