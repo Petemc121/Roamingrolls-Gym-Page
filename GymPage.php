@@ -99,7 +99,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
             $filesize > 600000
           ) {
             echo "<script>alert('Your file size is too large! Please choose image files of less than 1MB')</script>";
-
+// hello
           } else {
             
       
