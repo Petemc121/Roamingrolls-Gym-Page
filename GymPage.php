@@ -503,6 +503,9 @@ Map
 
 <button class="plusPic" id="editInstruct"><i class="fas fa-edit"></i></button>
 
+<button  id="instructID"><i class="fas fa-edit"></i></button>
+
+
 
 
 <div class="center">
@@ -1437,6 +1440,8 @@ function showLess() {
 let beltOut = document.getElementsByClassName('beltLevelOut');
 let beltIn = document.getElementsByClassName('beltLevelIn');
 let nameOut = document.getElementsByClassName('titOut');
+
+let deleteButtons = document.getElementsByClassName('minusInstructor');
 let nameIn = document.getElementsByClassName('titIn');
 
    
@@ -1478,7 +1483,6 @@ let nameIn = document.getElementsByClassName('titIn');
         plusClicked--;
       }
 
-      let deleteButtons = document.getElementsByClassName('minusInstructor');
 
 for(let i = 0; i<deleteButtons.length; i++) {
           deleteButtons[i].onclick = removeCard;
@@ -1587,15 +1591,27 @@ for(let i = 0; i<deleteButtons.length; i++) {
 var instructEdit = document.getElementById('editInstruct');
 var inPlus = document.getElementById('plusInstructor');
 var inMinus = document.getElementById('minusInstructor');
+var inid = document.getElementById('instructID');
 var inSub = document.getElementById('instructSub');
 var inCan = document.getElementById('instructCan');
-let deleteButtons = document.getElementsByClassName('minusInstructor')
 var imgup = document.getElementsByClassName('inup')
 let cardArray = document.getElementsByClassName('inAccord');
 let inDesOut = document.getElementsByClassName('desOut');
 let inDesIn = document.getElementsByClassName('desIn');
+let beltOut = document.getElementsByClassName('beltLevelOut');
+let beltIn = document.getElementsByClassName('beltLevelIn');
+let nameOut = document.getElementsByClassName('titOut');
+let nameIn = document.getElementsByClassName('titIn');
+
+let deleteButtons = document.getElementsByClassName('minusInstructor');
+let nameIn = document.getElementsByClassName('titIn');
 
 
+function resetIds(idName, class) {
+  for(i=0;i<class.length;i++) {
+ class[i].id = idName + i;
+  }
+}
 
 function removeCard(eventObj) {
   var deleteButton = eventObj.target;
@@ -1603,16 +1619,27 @@ function removeCard(eventObj) {
    if (confirm('Are you sure you want to delete this existing instructor?')) {
     deleteButton.parentNode.parentNode.parentNode.parentNode.removeChild(deleteButton.parentNode.parentNode.parentNode);
   plusClicked--;
- 
+  resetIds("instructors", cardArray);
+  resetIds("inup", imgup);
+  resetIds("instructorDes", inDesIn);
+  resetIds("instructors", cardArray);
+  resetIds("instructors", cardArray);
 } 
 
-for(let i = 0; i<deleteButtons.length; i++) {
-          deleteButtons[i].onclick = removeCard;
-        }
- 
 }
 
+
  instructEdit.addEventListener('click', function() {
+
+  for(let i = 0; i<deleteButtons.length; i++) {
+          deleteButtons[i].onclick = removeCard;
+        }
+  
+        
+ 
+
+ 
+
 
    plusClicked = 0;
   //  elementDisBlock(inMinus);
@@ -1635,32 +1662,32 @@ for(let i = 0; i<deleteButtons.length; i++) {
  inCan.addEventListener('click', function() {
 
 
-  // elementDisNone(inMinus);
-  elementDisNone(inPlus);
-  elementDisNone(inSub);
-  elementDisNone(inCan);
+  window.location.reload();
+
+  // // elementDisNone(inMinus);
+  // elementDisNone(inPlus);
+  // elementDisNone(inSub);
+  // elementDisNone(inCan);
 
   
-  for(i=0;i<deleteButtons.length;i++) {
-     elementDisNone(deleteButtons[i]);
-     elementDisNone(imgup[i]);
-     elementDisBlock(inDesOut[i]);
-     elementDisNone(inDesIn[i]);
-     elementDisNone(beltIn[i]);
-     elementDisBlock(beltOut[i]);
-     elementDisNone(nameIn[i]);
-     elementDisBlock(nameOut[i]);
-   }
+  // for(i=0;i<deleteButtons.length;i++) {
+  //    elementDisNone(deleteButtons[i]);
+  //    elementDisNone(imgup[i]);
+  //    elementDisBlock(inDesOut[i]);
+  //    elementDisNone(inDesIn[i]);
+  //    elementDisNone(beltIn[i]);
+  //    elementDisBlock(beltOut[i]);
+  //    elementDisNone(nameIn[i]);
+  //    elementDisBlock(nameOut[i]);
+  //  }
 
-   number = cardArray.length;
+  //  cardLength = cardArray.length;
 
-   if (plusClicked > 0) {
-     for (i=cardArray.length -1;i>number - (plusClicked + 1);i--) {
-       cardArray[i].parentNode.removeChild(cardArray[i])
-     }
-   }
-
-
+  //  if (plusClicked > 0) {
+  //    for (i=cardLength -1;i>cardLength - (plusClicked + 1);i--) {
+  //      cardArray[i].parentNode.removeChild(cardArray[i])
+  //    }
+  //  }
 
  });
 
