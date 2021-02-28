@@ -3,8 +3,6 @@ global $wpdb;
 global $current_user;
 wp_get_current_user();
 
-
-
 $kv_author =get_the_author_meta('ID'); 	
 
  if($current_user->ID != $kv_author){
