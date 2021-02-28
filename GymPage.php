@@ -106,7 +106,6 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
             $attach_id = insert_attachment($file, $post_id);
             
 
-
               if($attach_id) {
                 array_push($attachIdArray, $attach_id);
                   echo "<script>alert('success!')</script>";
@@ -120,8 +119,6 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       }
       
 
-
-      
 
   } else {
       echo "<script>alert('Error!')</script>";
