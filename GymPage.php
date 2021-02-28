@@ -30,7 +30,6 @@ if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahld
     return true;
   }
 
-
 }else {
   return false;
 }
