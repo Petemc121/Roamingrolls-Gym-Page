@@ -285,10 +285,6 @@ addMeta($_POST['instructorDesUp5'], 'instructorDes5', $instructorDesUp5 );
   }
 }
 
-
-  
-
-
 ?>
 <style type="text/css">
 
