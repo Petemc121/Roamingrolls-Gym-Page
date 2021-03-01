@@ -207,7 +207,7 @@ if (!empty($_FILES['imageUpload1']['name'])) {
 
 if (!empty($_FILES['imageUpload2']['name'])) {
   $img2 = $_FILES['imageUpload2'];
-  uploadInstructFile($img1, 'instructorImg1', 'imageUpload2');
+  uploadInstructFile($img1, 'instructorImg2', 'imageUpload2');
 }
 
   if (!empty($_FILES['imageUpload3']['name'])) {
@@ -232,6 +232,8 @@ if (!empty($_FILES['imageUpload2']['name'])) {
 
 function addMeta($formPost, $metaKey, &$postVar) {
   $post_id = get_the_ID();
+
+
   if (isset($formPost)) {
     $postVar = sanitize_text_field($formPost);
     
@@ -243,21 +245,77 @@ function addMeta($formPost, $metaKey, &$postVar) {
 
 }
 
+
+
+if($_POST['instructorNameUp1'] !== 'deletedCard') {
+
 addMeta($_POST['instructorNameUp1'], 'instructorName1', $instructor1 );
 addMeta($_POST['beltLevelUp1'], 'beltLevel1', $beltLevelUp1 );
 addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp1 );
+  }else {
+
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName1'); 
+    delete_post_meta($post_id, 'instructorImg1'); 
+    delete_post_meta($post_id, 'instructorDes1'); 
+    delete_post_meta($post_id, 'beltLevel1'); 
+
+  }
+
+
+
+  if($_POST['instructorNameUp2'] != 'deletedCard') {
+
 addMeta($_POST['instructorNameUp2'], 'instructorName2', $instructor2 );
 addMeta($_POST['beltLevelUp2'], 'beltLevel2', $beltLevelUp2 );
 addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
+  } else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName2'); 
+    delete_post_meta($post_id, 'instructorImg2'); 
+    delete_post_meta($post_id, 'instructorDes2'); 
+    delete_post_meta($post_id, 'beltLevel2'); 
+
+  }
+
+  if($_POST['instructorNameUp3'] != 'deletedCard') {
 addMeta($_POST['instructorNameUp3'], 'instructorName3', $instructor3 );
 addMeta($_POST['beltLevelUp3'], 'beltLevel3', $beltLevelUp3 );
 addMeta($_POST['instructorDesUp3'], 'instructorDes2', $instructorDesUp2 );
+  } else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName3'); 
+    delete_post_meta($post_id, 'instructorImg3'); 
+    delete_post_meta($post_id, 'instructorDes3'); 
+    delete_post_meta($post_id, 'beltLevel3');
+  }
+
+  if($_POST['instructorNameUp4'] != 'deletedCard') {
+
 addMeta($_POST['instructorNameUp4'], 'instructorName4', $instructor4 );
 addMeta($_POST['beltLevelUp4'], 'beltLevel4', $beltLevelUp4 );
 addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp4 );
+  }else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName4'); 
+    delete_post_meta($post_id, 'instructorImg4'); 
+    delete_post_meta($post_id, 'instructorDes4'); 
+    delete_post_meta($post_id, 'beltLevel4');
+  }
+
+  if($_POST['instructorNameUp5'] != 'deletedCard') {
+
 addMeta($_POST['instructorNameUp5'], 'instructorName5', $instructor5 );
 addMeta($_POST['beltLevelUp5'], 'beltLevel5', $beltLevelUp5 );
 addMeta($_POST['instructorDesUp5'], 'instructorDes5', $instructorDesUp5 );
+
+  } else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName5'); 
+    delete_post_meta($post_id, 'instructorImg5'); 
+    delete_post_meta($post_id, 'instructorDes5'); 
+    delete_post_meta($post_id, 'beltLevel5');
+  }
 
 
 
@@ -291,8 +349,6 @@ addMeta($_POST['instructorDesUp5'], 'instructorDes5', $instructorDesUp5 );
 
   }
 }
-
-
   
 
 
@@ -583,48 +639,48 @@ Map
        <input name= "imageUpload5" class="hideImageUp" id="imageUpload5" onchange="fasterPreview(this, '#InImage5')" type="file" 
       capture>
 
-       <input name="instructorNameUp1" id="instructorUp1" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp2" id="instructorUp2" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp3" id="instructorUp3" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp4" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp5" id="instructorUp5" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp1" id="instructorUp0" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp2" id="instructorUp1" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp3" id="instructorUp2" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp4" id="instructorUp3" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp5" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
 
-       <input name="instructorDesUp1" id="instructorDesUp1" class="titleUp" placeholder="Instructor Des">
-       <input name="instructorDesUp2" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Des">
-       <input name="instructorDesUp3" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Des">
-       <input name="instructorDesUp4" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Des">
-       <input name="instructorDesUp5" id="instructorDesUp5" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp1" id="instructorDesUp0" class="titleUp" placeholder="Instructor Des">
+       <input name="instructorDesUp2" id="instructorDesUp1" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp3" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp4" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp5" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Des">
 
 
-      <select name="beltLevelUp1" id="beltLevelUp1" class="beltLevelUp">
+      <select name="beltLevelUp1" id="beltLevelUp0" class="beltLevelUp">
               <option value="Black">Black</option>
               <option value="Brown">Brown</option>
               <option value="Purple">Purple</option>
               <option value="Blue">Blue</option>
             </select>
 
-      <select name="beltLevelUp2" id="beltLevelUp2" class="beltLevelUp">
+      <select name="beltLevelUp2" id="beltLevelUp1" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
         <option value="Blue">Blue</option>
       </select>
 
-      <select name="beltLevelUp3" id="beltLevelUp3" class="beltLevelUp">
+      <select name="beltLevelUp3" id="beltLevelUp2" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
         <option value="Blue">Blue</option>
       </select>
 
-      <select name="beltLevelUp4" id="beltLevelUp4" class="beltLevelUp">
+      <select name="beltLevelUp4" id="beltLevelUp3" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
         <option value="Blue">Blue</option>
       </select>
 
-      <select name="beltLevelUp5" id="beltLevelUp5" class="beltLevelUp">
+      <select name="beltLevelUp5" id="beltLevelUp4" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
@@ -1475,7 +1531,7 @@ for(let i = 0; i<deleteButtons.length; i++) {
      elementDisBlock(imgup[i]);
    }
 
-   $("#inup0").click(function(e) {
+        $("#inup0").click(function(e) {
           $("#imageUpload1").click();
           });
 
@@ -1502,16 +1558,17 @@ for(let i = 0; i<deleteButtons.length; i++) {
           });
           }
 
-          copyVal('#instructorNameTemp0', '#instructorUp1');
-          copyVal('#instructorNameTemp1', '#instructorUp2');
-          copyVal('#instructorNameTemp2', '#instructorUp3');
-          copyVal('#instructorNameTemp3', '#instructorUp4');
-          copyVal('#instructorNameTemp4', '#instructorUp5');
+          copyVal('#instructorNameTemp0', '#instructorUp0');
+          copyVal('#instructorNameTemp1', '#instructorUp1');
+          copyVal('#instructorNameTemp2', '#instructorUp2');
+          copyVal('#instructorNameTemp3', '#instructorUp3');
+          copyVal('#instructorNameTemp4', '#instructorUp4');
 
-          copyVal('#instructorDesTemp1', '#instructorDesUp2');
-          copyVal('#instructorDesTemp2', '#instructorDesUp3');
-          copyVal('#instructorDesTemp3', '#instructorDesUp4');
-          copyVal('#instructorDesTemp4', '#instructorDesUp5');
+          copyVal('#instructorDesTemp0', '#instructorDesUp0');
+          copyVal('#instructorDesTemp1', '#instructorDesUp1');
+          copyVal('#instructorDesTemp2', '#instructorDesUp2');
+          copyVal('#instructorDesTemp3', '#instructorDesUp3');
+          copyVal('#instructorDesTemp4', '#instructorDesUp4');
          
           function copySelect(source, output) {
           $(source).on('change', function(){
@@ -1520,11 +1577,15 @@ for(let i = 0; i<deleteButtons.length; i++) {
           })
           }
 
-          copySelect('#beltLevelTemp1', '#beltLevelUp2');
-          copySelect('#beltLevelTemp2', '#beltLevelUp3');
-          copySelect('#beltLevelTemp3', '#beltLevelUp4');
-          copySelect('#beltLevelTemp4', '#beltLevelUp5');
+          copySelect('#beltLevelTemp1', '#beltLevelUp0');
+          copySelect('#beltLevelTemp2', '#beltLevelUp1');
+          copySelect('#beltLevelTemp3', '#beltLevelUp2');
+          copySelect('#beltLevelTemp4', '#beltLevelUp3');
+          copySelect('#beltLevelTemp4', '#beltLevelUp4');
           
+    $("#imageUpload1").change(function(){
+    fasterPreview( this, "#InImage1" );
+    });
 
     $("#imageUpload2").change(function(){
     fasterPreview( this, "#InImage2" );
@@ -1597,7 +1658,7 @@ function resetDataTarget(dataName, className) {
 
 function removeCard(eventObj) {
   var deleteButton = eventObj.target;
-
+ 
    if (confirm('Are you sure you want to delete this existing instructor?')) {
     deleteButton.parentNode.parentNode.parentNode.parentNode.removeChild(deleteButton.parentNode.parentNode.parentNode);
   plusClicked--;
@@ -1608,12 +1669,15 @@ function removeCard(eventObj) {
   resetIds("beltLevelTemp", beltIn);
   resetIds("inCard", inCard);
   resetIds("inPic", instructCard);
+  resetIds("minusInstructor", deleteButtons);
   // resetIds("InImage", InImage);
   resetIds("instructorNameTemp", nameIn);
   resetIds("inCollapse", collapse);
   resetDataTarget("#inCard", collapse);
   
+  let idNum = this.id.charAt(15)
 
+    $('#instructorUp' + idNum).val('deletedCard');
 } 
 
 }
@@ -1794,6 +1858,7 @@ $(source).on('keyup', function(){
   })
 }
 
+
 function copySelect(source, output) {
 $(source).on('change', function(){
     var val = $(this).val();
@@ -1801,11 +1866,6 @@ $(source).on('change', function(){
   })
 }
 
-function insertDelete(source, output) {
-$(source).on('click', function() {
-  $(output).val("deleteSelected");
-});
-}
 </script>
 
 
