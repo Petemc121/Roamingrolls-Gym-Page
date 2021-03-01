@@ -560,7 +560,7 @@ Map
 
     if ($nameArray[$i] != "") {
 
-    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="minusInstructor" id="minusInstructor'.$i.'"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="minusInstructor" id="minusInstructor'.$i.'"><i class="fas fa-minus-circle fa-lg"></i></button><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
     }
   }
 
@@ -589,11 +589,11 @@ Map
        <input name="instructorNameUp4" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
        <input name="instructorNameUp5" id="instructorUp5" class="titleUp" placeholder="Instructor Name">
 
-       <input name="instructorDesUp1" id="instructorDesUp1" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorDesUp2" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Name">
-       <input name="instructorDesUp3" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Name">
-       <input name="instructorDesUp4" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Name">
-       <input name="instructorDesUp5" id="instructorDesUp5" class="titleUp"  placeholder="Instructor Name">
+       <input name="instructorDesUp1" id="instructorDesUp1" class="titleUp" placeholder="Instructor Des">
+       <input name="instructorDesUp2" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp3" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp4" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp5" id="instructorDesUp5" class="titleUp"  placeholder="Instructor Des">
 
 
       <select name="beltLevelUp1" id="beltLevelUp1" class="beltLevelUp">
@@ -997,28 +997,6 @@ window.onload = function() {
 
 //     setTimeout(activeness(), 5000)
 // });
-function copyVal(source, output) {
-$(source).on('keyup', function(){
-    var val = $(this).val();
-    $(output).val(val);
-  })
-}
-
-function copySelect(source, output) {
-$(source).on('change', function(){
-    var val = $(this).val();
-    $(output).val(val);
-  })
-}
-
-copySelect('#beltLevelTemp0', '#beltLevelUp1')
-
-
-
-copyVal('#instructorNameTemp0', '#instructorUp1');
-copyVal('#instructorDesTemp0', '#instructorDesUp1');
-
-
 const imgUp = document.getElementById("uploadImages");
 const imgRules = document.getElementById("imgRules");
 
@@ -1440,7 +1418,7 @@ function showLess() {
 let beltOut = document.getElementsByClassName('beltLevelOut');
 let beltIn = document.getElementsByClassName('beltLevelIn');
 let nameOut = document.getElementsByClassName('titOut');
-
+var imgup = document.getElementsByClassName('inup')
 let deleteButtons = document.getElementsByClassName('minusInstructor');
 let nameIn = document.getElementsByClassName('titIn');
 
@@ -1467,7 +1445,7 @@ let nameIn = document.getElementsByClassName('titIn');
 
       let instructorForm =  document.getElementById('instructorForm');
 
-      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div id = "inCard'+i+'" = class="inCard"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse'+i+'" aria-expanded="true" aria-controls="collapse'+i+'"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div style="display:none;" class="titOut"></div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut" style="display:none;"></div><select  id="beltLevelTemp'+i+'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'+i+'" class="collapse hide" aria-labelledby="inPic'+i+'" data-parent="#inCard'+i+'"><div class="card-body"><div class="desOut" style="display:none;" id ="instructorDesOut'+i+'"></div><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div id = "inCard'+i+'" = class="inCard"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse'+i+'" aria-expanded="true" aria-controls="collapse'+i+'"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button type= "button" class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div style="display:none;" class="titOut"></div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut" style="display:none;"></div><select  id="beltLevelTemp'+i+'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'+i+'" class="collapse hide" aria-labelledby="inPic'+i+'" data-parent="#inCard'+i+'"><div class="card-body"><div class="desOut" style="display:none;" id ="instructorDesOut'+i+'"></div><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
 
   
     
@@ -1494,6 +1472,7 @@ for(let i = 0; i<deleteButtons.length; i++) {
     
       for(i=0;i<deleteButtons.length;i++) {
      elementDisBlock(deleteButtons[i]);
+     elementDisBlock(imgup[i]);
    }
 
    $("#inup0").click(function(e) {
@@ -1597,7 +1576,6 @@ var InImage = document.getElementsByClassName('InImage');
 var collapse = document.getElementsByClassName('collapse');
 var inSub = document.getElementById('instructSub');
 var inCan = document.getElementById('instructCan');
-var imgup = document.getElementsByClassName('inup')
 let cardArray = document.getElementsByClassName('inAccord');
 let inDesOut = document.getElementsByClassName('desOut');
 let inDesIn = document.getElementsByClassName('desIn');
@@ -1634,6 +1612,7 @@ function removeCard(eventObj) {
   resetIds("instructorNameTemp", nameIn);
   resetIds("inCollapse", collapse);
   resetDataTarget("#inCard", collapse);
+  
 
 } 
 
@@ -1646,9 +1625,43 @@ function removeCard(eventObj) {
           deleteButtons[i].onclick = removeCard;
         }
   
+        $("#inup0").click(function(e) {
+          $("#imageUpload1").click();
+          });
+
+        $("#inup1").click(function(e) {
+          $("#imageUpload2").click();
+          });
+
+          $("#inup2").click(function(e) {
+          $("#imageUpload3").click();
+          });
+
+          $("#inup3").click(function(e) {
+          $("#imageUpload4").click();
+          });
+
+          $("#inup4").click(function(e) {
+          $("#imageUpload5").click();
+          });
         
  
+          copyVal('#instructorNameTemp0', '#instructorUp1');
+          copyVal('#instructorNameTemp1', '#instructorUp2');
+          copyVal('#instructorNameTemp2', '#instructorUp3');
+          copyVal('#instructorNameTemp3', '#instructorUp4');
+          copyVal('#instructorNameTemp4', '#instructorUp5');
 
+          copyVal('#instructorDesTemp0', '#instructorDesUp1');
+          copyVal('#instructorDesTemp1', '#instructorDesUp2');
+          copyVal('#instructorDesTemp2', '#instructorDesUp3');
+          copyVal('#instructorDesTemp3', '#instructorDesUp4');
+          copyVal('#instructorDesTemp4', '#instructorDesUp5');
+
+          copySelect('#beltLevelTemp1', '#beltLevelUp2');
+          copySelect('#beltLevelTemp2', '#beltLevelUp3');
+          copySelect('#beltLevelTemp3', '#beltLevelUp4');
+          copySelect('#beltLevelTemp4', '#beltLevelUp5');
  
 
 
@@ -1668,6 +1681,7 @@ function removeCard(eventObj) {
      elementDisNone(beltOut[i]);
      elementDisBlock(nameIn[i]);
      elementDisNone(nameOut[i]);
+    
       
      
    }
@@ -1773,6 +1787,25 @@ function showCheckboxes5() {
   }
 }
 
+function copyVal(source, output) {
+$(source).on('keyup', function(){
+    var val = $(this).val();
+    $(output).val(val);
+  })
+}
+
+function copySelect(source, output) {
+$(source).on('change', function(){
+    var val = $(this).val();
+    $(output).val(val);
+  })
+}
+
+function insertDelete(source, output) {
+$(source).on('click', function() {
+  $(output).val("deleteSelected");
+});
+}
 </script>
 
 
