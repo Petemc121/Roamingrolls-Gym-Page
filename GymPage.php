@@ -3,6 +3,8 @@ global $wpdb;
 global $current_user;
 wp_get_current_user();
 
+
+
 $kv_author =get_the_author_meta('ID'); 	
 
  if($current_user->ID != $kv_author){
@@ -12,6 +14,7 @@ $kv_author =get_the_author_meta('ID');
     echo "<style>#minusInstructor{display:none !important;}</style>";
     echo "<style>.inup{display:none !important;}</style>";
     echo "<style>#imgRules{display:none !important;}</style>";
+    echo "<style>#editInstruct{display:none !important;}</style>";
  } 
 
 $post_id = get_the_ID();
@@ -29,6 +32,7 @@ if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahld
   }else {
     return true;
   }
+
 
 }else {
   return false;
@@ -106,6 +110,7 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
             $attach_id = insert_attachment($file, $post_id);
             
 
+
               if($attach_id) {
                 array_push($attachIdArray, $attach_id);
                   echo "<script>alert('success!')</script>";
@@ -119,6 +124,8 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       }
       
 
+
+      
 
   } else {
       echo "<script>alert('Error!')</script>";
@@ -284,6 +291,10 @@ addMeta($_POST['instructorDesUp5'], 'instructorDes5', $instructorDesUp5 );
 
   }
 }
+
+
+  
+
 
 ?>
 <style type="text/css">
@@ -1647,12 +1658,17 @@ function removeCard(eventObj) {
    elementDisBlock(inSub);
    elementDisBlock(inCan);
 
+
    for(i=0;i<deleteButtons.length;i++) {
      elementDisBlock(deleteButtons[i]);
      elementDisBlock(imgup[i]);
      elementDisBlock(inDesIn[i]);
      elementDisNone(inDesOut[i]);
-     
+     elementDisBlock(beltIn[i]);
+     elementDisNone(beltOut[i]);
+     elementDisBlock(nameIn[i]);
+     elementDisNone(nameOut[i]);
+      
      
    }
 
