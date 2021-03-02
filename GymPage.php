@@ -587,6 +587,12 @@ Map
     
   );
 
+  for($i=0;$i < sizeof($nameArray); $i++) {
+    if ($nameArray[$i] == "") {
+      \array_splice($nameArray, $i, 1);
+    }
+  }
+
   $beltArray = array(
     get_post_meta($post_id, "beltLevel1", true),
     get_post_meta($post_id, "beltLevel2", true),
@@ -607,18 +613,19 @@ Map
 
 
     $imgSrc = '';
-
     if ($imgArray[$i] != "") {
       $imgSrc = wp_get_attachment_url($imgArray[$i]);
-    } else {
-      $imgSrc = "https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif";
-    }
+        } else {
+          $imgSrc = "https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif";
+        }
 
-    if ($nameArray[$i] != "") {
+ 
+      if ($nameArray[$i] != "") {
 
     echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="minusInstructor" id="minusInstructor'.$i.'"><i class="fas fa-minus-circle fa-lg"></i></button><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
-    }
-  }
+      }
+    } 
+  
 
 
   
@@ -628,7 +635,7 @@ Map
     </div>
   </div>
 
-    <input name="imageUpload1" id="imageUpload1" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
+    <input name="imageUpload1" id="imageUpload1" class="hideImageUp" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
 
     <input name= "imageUpload2" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage2')" type="file" 
          capture>
@@ -1532,23 +1539,23 @@ for(let i = 0; i<deleteButtons.length; i++) {
    }
 
         $("#inup0").click(function(e) {
-          $("#imageUpload1").click();
+          $("#imageUpload0").click();
           });
 
         $("#inup1").click(function(e) {
-          $("#imageUpload2").click();
+          $("#imageUpload1").click();
           });
 
           $("#inup2").click(function(e) {
-          $("#imageUpload3").click();
+          $("#imageUpload2").click();
           });
 
           $("#inup3").click(function(e) {
-          $("#imageUpload4").click();
+          $("#imageUpload3").click();
           });
 
           $("#inup4").click(function(e) {
-          $("#imageUpload5").click();
+          $("#imageUpload4").click();
           });
 
           function copyVal(source, output) {
@@ -1583,6 +1590,10 @@ for(let i = 0; i<deleteButtons.length; i++) {
           copySelect('#beltLevelTemp4', '#beltLevelUp3');
           copySelect('#beltLevelTemp4', '#beltLevelUp4');
           
+    $("#imageUpload0").change(function(){
+    fasterPreview( this, "#InImage0" );
+    });
+
     $("#imageUpload1").change(function(){
     fasterPreview( this, "#InImage1" );
     });
@@ -1595,13 +1606,9 @@ for(let i = 0; i<deleteButtons.length; i++) {
     fasterPreview( this, "#InImage3" );
     });
 
+
     $("#imageUpload4").change(function(){
-    fasterPreview( this, "#InImage4" );
-    });
-
-
-    $("#imageUpload5").change(function(){
-    fasterPreview( this,"#InImage5" );
+    fasterPreview( this,"#InImage4" );
     });
      });
 
@@ -1710,22 +1717,22 @@ function removeCard(eventObj) {
           });
         
  
-          copyVal('#instructorNameTemp0', '#instructorUp1');
-          copyVal('#instructorNameTemp1', '#instructorUp2');
-          copyVal('#instructorNameTemp2', '#instructorUp3');
-          copyVal('#instructorNameTemp3', '#instructorUp4');
-          copyVal('#instructorNameTemp4', '#instructorUp5');
+          copyVal('#instructorNameTemp0', '#instructorUp0');
+          copyVal('#instructorNameTemp1', '#instructorUp1');
+          copyVal('#instructorNameTemp2', '#instructorUp2');
+          copyVal('#instructorNameTemp3', '#instructorUp3');
+          copyVal('#instructorNameTemp4', '#instructorUp4');
 
-          copyVal('#instructorDesTemp0', '#instructorDesUp1');
-          copyVal('#instructorDesTemp1', '#instructorDesUp2');
-          copyVal('#instructorDesTemp2', '#instructorDesUp3');
-          copyVal('#instructorDesTemp3', '#instructorDesUp4');
-          copyVal('#instructorDesTemp4', '#instructorDesUp5');
+          copyVal('#instructorDesTemp0', '#instructorDesUp0');
+          copyVal('#instructorDesTemp1', '#instructorDesUp1');
+          copyVal('#instructorDesTemp2', '#instructorDesUp2');
+          copyVal('#instructorDesTemp3', '#instructorDesUp3');
+          copyVal('#instructorDesTemp4', '#instructorDesUp4');
 
-          copySelect('#beltLevelTemp1', '#beltLevelUp2');
-          copySelect('#beltLevelTemp2', '#beltLevelUp3');
-          copySelect('#beltLevelTemp3', '#beltLevelUp4');
-          copySelect('#beltLevelTemp4', '#beltLevelUp5');
+          copySelect('#beltLevelTemp1', '#beltLevelUp0');
+          copySelect('#beltLevelTemp2', '#beltLevelUp2');
+          copySelect('#beltLevelTemp3', '#beltLevelUp3');
+          copySelect('#beltLevelTemp4', '#beltLevelUp4');
  
 
 
