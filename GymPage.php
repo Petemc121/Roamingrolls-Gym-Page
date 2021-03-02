@@ -197,32 +197,32 @@ if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
   
   if(wp_verify_nonce($_POST['njvkddsbhjdsbvhsdb'], 'instructor_upload' )) {
   
-if (!empty($_FILES['imageUpload1']['name'])) {
+if (!empty($_FILES['imageUpload0']['name'])) {
 
-  $img1 = $_FILES['imageUpload1'];
+  $img1 = $_FILES['imageUpload0'];
 
   uploadInstructFile($img1, 'instructorImg1', 'imageUpload1');
 
 }
 
-if (!empty($_FILES['imageUpload2']['name'])) {
-  $img2 = $_FILES['imageUpload2'];
+if (!empty($_FILES['imageUpload1']['name'])) {
+  $img2 = $_FILES['imageUpload1'];
   uploadInstructFile($img1, 'instructorImg2', 'imageUpload2');
 }
 
-  if (!empty($_FILES['imageUpload3']['name'])) {
-    $img3 = $_FILES['imageUpload3'];
+  if (!empty($_FILES['imageUpload2']['name'])) {
+    $img3 = $_FILES['imageUpload2'];
     uploadInstructFile($img3, 'instructorImg3', 'imageUpload3');
   }
   
-    if (!empty($_FILES['imageUpload4']['name'])) {
-      $img4 = $_FILES['imageUpload4'];
+    if (!empty($_FILES['imageUpload3']['name'])) {
+      $img4 = $_FILES['imageUpload3'];
       uploadInstructFile($img4, 'instructorImg4', 'imageUpload4');
     }
     
 
-      if (!empty($_FILES['imageUpload5']['name'])) {
-        $img5 = $_FILES['imageUpload5'];
+      if (!empty($_FILES['imageUpload4']['name'])) {
+        $img5 = $_FILES['imageUpload4'];
         uploadInstructFile($img5, 'instructorImg5', 'imageUpload5');
       }
     
@@ -635,15 +635,15 @@ Map
     </div>
   </div>
 
-    <input name="imageUpload1" id="imageUpload1" class="hideImageUp" onchange="fasterPreview(this, '#InImage1')" type="file" capture>
+    <input name="imageUpload1" id="imageUpload0" class="hideImageUp" onchange="fasterPreview(this, '#InImage0')" type="file" capture>
 
-    <input name= "imageUpload2" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage2')" type="file" 
+    <input name= "imageUpload1" class="hideImageUp" id="imageUpload2" onchange="fasterPreview(this, '#InImage1')" type="file" 
          capture>
-       <input name= "imageUpload3" class="hideImageUp" id="imageUpload3" onchange="fasterPreview(this, '#InImage3')" type="file" 
+       <input name= "imageUpload2" class="hideImageUp" id="imageUpload3" onchange="fasterPreview(this, '#InImage2')" type="file" 
         capture>
-       <input name= "imageUpload4" class="hideImageUp" id="imageUpload4" onchange="fasterPreview(this, '#InImage4')" type="file" 
+       <input name= "imageUpload3" class="hideImageUp" id="imageUpload4" onchange="fasterPreview(this, '#InImage3')" type="file" 
         capture>
-       <input name= "imageUpload5" class="hideImageUp" id="imageUpload5" onchange="fasterPreview(this, '#InImage5')" type="file" 
+       <input name= "imageUpload4" class="hideImageUp" id="imageUpload5" onchange="fasterPreview(this, '#InImage4')" type="file" 
       capture>
 
        <input name="instructorNameUp1" id="instructorUp0" class="titleUp" placeholder="Instructor Name">
