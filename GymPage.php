@@ -596,21 +596,6 @@ Map
     
   );
 
-  
-  
-
-  for($i=0; $i < sizeof($nameArray); $i++) {
-
-    if ($nameArray[0] == "") {
-      array_splice($nameArray, 0 , 1);
-    }
-    if ($nameArray[$i] == "") {
-      array_splice($nameArray, $i, 1);
-    }
-  }
-
-  print_r($nameArray);
-
   $beltArray = array(
     get_post_meta($post_id, "beltLevel1", true),
     get_post_meta($post_id, "beltLevel2", true),
@@ -619,6 +604,8 @@ Map
     get_post_meta($post_id, "beltLevel5", true)
   );
 
+  
+
   $instructorDesArray = array(
     get_post_meta($post_id, "instructorDes1", true),
     get_post_meta($post_id, "instructorDes2", true),
@@ -626,6 +613,27 @@ Map
     get_post_meta($post_id, "instructorDes4", true),
     get_post_meta($post_id, "instructorDes5", true)
   );
+
+  for($i=0; $i < sizeof($nameArray); $i++) {
+
+    if ($nameArray[0] == "") {
+      array_splice($nameArray, 0 , 1);
+      array_splice($beltArray, 0 , 1);
+      array_splice($instructorDesArray, 0 , 1);
+      array_splice($imgArray, 0 , 1);
+    }
+    if ($nameArray[$i] == "") {
+      array_splice($nameArray, $i, 1);
+      array_splice($beltArray, $i, 1);
+      array_splice($instructorDesArray, $i, 1);
+      array_splice($imgArray, $i , 1);
+
+    }
+  }
+
+  print_r($nameArray);
+  print_r($beltArray);
+  print_r($instructorDesArray);
 
   for($i=0;$i < sizeof($nameArray); $i++) {
 
@@ -1502,6 +1510,29 @@ let nameOut = document.getElementsByClassName('titOut');
 var imgup = document.getElementsByClassName('inup')
 let deleteButtons = document.getElementsByClassName('minusInstructor');
 let nameIn = document.getElementsByClassName('titIn');
+let cards = document.getElementsByClassName('inAccord')
+
+cards.addEventListener('change', function() {
+
+          copyVal('#instructorNameTemp0', '#instructorUp0');
+          copyVal('#instructorNameTemp1', '#instructorUp1');
+          copyVal('#instructorNameTemp2', '#instructorUp2');
+          copyVal('#instructorNameTemp3', '#instructorUp3');
+          copyVal('#instructorNameTemp4', '#instructorUp4');
+
+          copyVal('#instructorDesTemp0', '#instructorDesUp0');
+          copyVal('#instructorDesTemp1', '#instructorDesUp1');
+          copyVal('#instructorDesTemp2', '#instructorDesUp2');
+          copyVal('#instructorDesTemp3', '#instructorDesUp3');
+          copyVal('#instructorDesTemp4', '#instructorDesUp4');
+
+          copySelect('#beltLevelTemp0', '#beltLevelUp0');
+          copySelect('#beltLevelTemp1', '#beltLevelUp1');
+          copySelect('#beltLevelTemp2', '#beltLevelUp2');
+          copySelect('#beltLevelTemp3', '#beltLevelUp3');
+          copySelect('#beltLevelTemp4', '#beltLevelUp4');
+
+});
 
    
      var plusInstructor = document.getElementById("plusInstructor")
@@ -1517,8 +1548,8 @@ let nameIn = document.getElementsByClassName('titIn');
    
 
        plusClicked++
-
        let cardLength = document.getElementsByClassName('inAccord').length
+      
 
        i = cardLength -1;
 
@@ -1583,17 +1614,7 @@ for(let i = 0; i<deleteButtons.length; i++) {
           });
           }
 
-          copyVal('#instructorNameTemp0', '#instructorUp0');
-          copyVal('#instructorNameTemp1', '#instructorUp1');
-          copyVal('#instructorNameTemp2', '#instructorUp2');
-          copyVal('#instructorNameTemp3', '#instructorUp3');
-          copyVal('#instructorNameTemp4', '#instructorUp4');
-
-          copyVal('#instructorDesTemp0', '#instructorDesUp0');
-          copyVal('#instructorDesTemp1', '#instructorDesUp1');
-          copyVal('#instructorDesTemp2', '#instructorDesUp2');
-          copyVal('#instructorDesTemp3', '#instructorDesUp3');
-          copyVal('#instructorDesTemp4', '#instructorDesUp4');
+        
          
           function copySelect(source, output) {
           $(source).on('change', function(){
@@ -1602,11 +1623,7 @@ for(let i = 0; i<deleteButtons.length; i++) {
           })
           }
 
-          copySelect('#beltLevelTemp0', '#beltLevelUp0');
-          copySelect('#beltLevelTemp1', '#beltLevelUp1');
-          copySelect('#beltLevelTemp2', '#beltLevelUp2');
-          copySelect('#beltLevelTemp3', '#beltLevelUp3');
-          copySelect('#beltLevelTemp4', '#beltLevelUp4');
+          
           
     $("#imageUpload0").change(function(){
     fasterPreview( this, "#InImage0" );
@@ -1748,23 +1765,7 @@ function removeCard(eventObj) {
           
         
  
-          copyVal('#instructorNameTemp0', '#instructorUp0');
-          copyVal('#instructorNameTemp1', '#instructorUp1');
-          copyVal('#instructorNameTemp2', '#instructorUp2');
-          copyVal('#instructorNameTemp3', '#instructorUp3');
-          copyVal('#instructorNameTemp4', '#instructorUp4');
-
-          copyVal('#instructorDesTemp0', '#instructorDesUp0');
-          copyVal('#instructorDesTemp1', '#instructorDesUp1');
-          copyVal('#instructorDesTemp2', '#instructorDesUp2');
-          copyVal('#instructorDesTemp3', '#instructorDesUp3');
-          copyVal('#instructorDesTemp4', '#instructorDesUp4');
-
-          copySelect('#beltLevelTemp0', '#beltLevelUp0');
-          copySelect('#beltLevelTemp1', '#beltLevelUp1');
-          copySelect('#beltLevelTemp2', '#beltLevelUp2');
-          copySelect('#beltLevelTemp3', '#beltLevelUp3');
-          copySelect('#beltLevelTemp4', '#beltLevelUp4');
+        
  
 
 
