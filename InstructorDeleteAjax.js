@@ -20,7 +20,6 @@ window.onload = function() {
 
     }
 }
-
         // $('#minusInstructor1').on('click',function(){
         //     $.ajax({
         //         type:'POST',
