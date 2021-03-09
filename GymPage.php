@@ -200,6 +200,7 @@ if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
 if (!empty($_FILES['imageUpload0']['name'])) {
 
   $img1 = $_FILES['imageUpload0'];
+  echo "<script>alert('".$img1."')</script>";
 
   uploadInstructFile($img1, 'instructorImg1', 'imageUpload0');
 
@@ -1391,107 +1392,6 @@ function showLess() {
   
 
 }
-
-
-// var plusevent = document.getElementById("plusevent1");
-
-//        let appendArr = [
-     
-//         function()  {
-
-//          $("#contain").append('<div id="event1" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(this)"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes1"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
-
-//         },
-
-//         function() {
-
-//           $("#contain").append('<div id="event2" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes2()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes2"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
-
-//           },
-
-//           function() {
-
-//           $("#contain").append('<div id="event3" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes3()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes3"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
-
-//           },
-
-//           function() {
-
-//           $("#contain").append('<div id="event4" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes4()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes4"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
-
-//           },
-
-//           function() {
-
-//           $("#contain").append('<div id="event5" class="eventcopy"><h6> Class: </h6><div class="inputs" contenteditable></div><h6> Time: </h6><div class="inputs" contenteditable></div><h6> Duration: </h6><div class="inputs" contenteditable></div><form><div class="multiselect"><div class="selectBox" onclick="showCheckboxes5()"><div><div class="repeat">Days <i class="fas fa-sort-down"></i></div></div><div class="overSelect"></div></div><div id="checkboxes5"><label for="days"><input type="checkbox" class="days"/>Sunday</label><label for="days"><input type="checkbox" class="days" id="Monday"/>Monday</label><label for="days"><input type="checkbox" class="days"/>Tuesday</label><label for="days"><input type="checkbox"  class="days"/>Wednesday</label><label for="days"><input type="checkbox" class="days"/>Thursday</label><label for="days"><input type="checkbox"  class="days"/>Friday</label><label for="days"><input type="checkbox" class="days"/>Saturday</label></div></div></form></div>');
-
-//           }
-
-//         ];
-
-//         let i=0;
-
-
-//         plusevent.onclick = function() {
-
-          
-
-//           appendArr[i++ % appendArr.length]();
-
-          
-//                   };
-
-//     var eventCopy = document.getElementsByClassName("eventcopy")
-
-// document.getElementById('minusevent').addEventListener("click", function() {
-
-// $(eventCopy[eventCopy.length - 1]).remove();
-
-// });
-
-
-
-//           var plusFacility = document.getElementById("plusFacility") 
-
-//           let appendFac = [
-     
-//      function()  {
-
-//       $("#facilityCards").append(' <div class="FacAccord" id="Facility3"><div class="FacCard2"><div class="instruct-card" id="FacPic1" data-toggle="collapse" data-target="#FacCollapse1" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse1" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin2" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-//      },
-
-//      function()  {
-
-//       $("#facilityCards").append(' <div class="FacAccord" id="Facility4"><div class="FacCard2"><div class="instruct-card" id="FacPic2" data-toggle="collapse" data-target="#FacCollapse2" aria-expanded="true" aria-controls="collapseTwo"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse2" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard3"><div class="card-body"><textarea class="desIn" name="desin3" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-//      },
-
-//       function()  {
-
-//         $("#facilityCards").append(' <div class="FacAccord" id="Facility5"><div class="FacCard2"><div class="instruct-card" id="FacPic3" data-toggle="collapse" data-target="#FacCollapse3" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse3" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin4" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-//      },
-
-// function()  {
-
-//         $("#facilityCards").append(' <div class="FacAccord" id="Facility6"><div class="FacCard2"><div class="instruct-card" id="FacPic4" data-toggle="collapse" data-target="#FacCollapse4" aria-expanded="true" aria-controls="collapseOne"><img class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/08/Untitled-design-20.png"><div class="TContainer"><input class="titIn" placeholder="Facility Name"></input></div></div><div id="FacCollapse4" class="collapse hide" aria-labelledby="inPic1" data-parent=".inCard2"><div class="card-body"><textarea class="desIn" name="desin5" placeholder="Describe your facility here."></textarea></div></div></div></div>');
-//      },
-
-//      ]
-
-//      plusFacility.onclick = function() {
-
-//       appendFac[i++ % appendFac.length]();
-
-//      }
-
-//      var minusFacility = document.getElementById("minusFacility")
-//      var card = document.getElementsByClassName("FacCard2")
-            
-        
-//          minusFacility.addEventListener("click", function() {
-
-//         card[card.length-1].remove();
-
-//         })
 
 
  var other = document.getElementById("other")
