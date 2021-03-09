@@ -1,12 +1,16 @@
+window.onload
+
+let deleteButtons = document.getElementsByClassName('minusInstructor');
 
 
-window.onload = function() {
+    for(i=0; i<deleteButtons.length; i++) {
 
-    const minusInstructor = document.getElementsByClassName('minusInstructor');
-   
-    for(i=0; i<minusInstructor.length; i++) {
+        
 
-    minusInstructor[i].on('click',function(){
+
+   deleteButtons[i].on('click', function(){
+    alert('Hey!');
+
         var deleteButton = this.id
             $.ajax({
                 type:'POST',
@@ -14,12 +18,21 @@ window.onload = function() {
                 data: 'minus_id=' + deleteButton,
                 success:function() {
                     alert('success!');
+                },
+                error:function() {
+                    alert('failure!')
                 }
             }); 
+
+
+
+        }
         });
 
     }
-}
+});
+
+
         // $('#minusInstructor1').on('click',function(){
         //     $.ajax({
         //         type:'POST',
