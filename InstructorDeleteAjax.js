@@ -1,4 +1,4 @@
-window.onload
+window.onload = function() {
 
 let deleteButtons = document.getElementsByClassName('minusInstructor');
 
@@ -26,11 +26,12 @@ let deleteButtons = document.getElementsByClassName('minusInstructor');
 
 
 
-        }
         });
 
     }
-});
+
+}
+        
 
 
         // $('#minusInstructor1').on('click',function(){
