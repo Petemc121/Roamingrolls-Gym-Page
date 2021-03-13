@@ -567,6 +567,7 @@ Map
 <div class="center">
 <div id="inpm">
 <button type="button" id="plusInstructor" class="plusevent"><i class="fas fa-plus-circle fa-lg"></i></button>
+<button type="button" id="minInstructor" class="plusevent"><i class="fas fa-minus-circle fa-lg"></i></button>
 
 </div>
 </div>
@@ -652,7 +653,7 @@ Map
  
       if ($nameArray[$i] != "") {
 
-    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="minusInstructor" id="minusInstructor'.$i.'"><i class="fas fa-minus-circle fa-lg"></i></button><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
       }
     } 
   
@@ -1438,7 +1439,7 @@ let nameIn = document.getElementsByClassName('titIn');
 
       let instructorForm =  document.getElementById('instructorForm');
 
-      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div id = "inCard'+i+'" = class="inCard"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse'+i+'" aria-expanded="true" aria-controls="collapse'+i+'"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button type= "button" class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div style="display:none;" class="titOut"></div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut" style="display:none;"></div><select  id="beltLevelTemp'+i+'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'+i+'" class="collapse hide" aria-labelledby="inPic'+i+'" data-parent="#inCard'+i+'"><div class="card-body"><div class="desOut" style="display:none;" id ="instructorDesOut'+i+'"></div><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div id = "inCard'+i+'" = class="inCard"><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse'+i+'" aria-expanded="true" aria-controls="collapse'+i+'"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button type= "button" class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div style="display:none;" class="titOut"></div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut" style="display:none;"></div><select  id="beltLevelTemp'+i+'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'+i+'" class="collapse hide" aria-labelledby="inPic'+i+'" data-parent="#inCard'+i+'"><div class="card-body"><div class="desOut" style="display:none;" id ="instructorDesOut'+i+'"></div><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
 
   
     
@@ -1573,7 +1574,7 @@ var instructEdit = document.getElementById('editInstruct');
 let inCard = document.getElementsByClassName('inCard');
 let instructCard = document.getElementsByClassName('instruct-card');
 var inPlus = document.getElementById('plusInstructor');
-var inMinus = document.getElementById('minusInstructor');
+var inMinus = document.getElementById('minInstructor');
 var InImage = document.getElementsByClassName('InImage');
 var collapse = document.getElementsByClassName('collapse');
 var inSub = document.getElementById('instructSub');
@@ -1707,6 +1708,7 @@ function removeCard(eventObj) {
    plusClicked = 0;
   //  elementDisBlock(inMinus);
    elementDisBlock(inPlus);
+   elementDisBlock(inMinus);
    elementDisBlock(inSub);
    elementDisBlock(inCan);
 
