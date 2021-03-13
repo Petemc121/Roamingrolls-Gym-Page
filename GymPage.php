@@ -4,7 +4,6 @@ global $current_user;
 wp_get_current_user();
 
 
-
 $kv_author =get_the_author_meta('ID'); 	
 
  if($current_user->ID != $kv_author){
@@ -248,11 +247,11 @@ function addMeta($formPost, $metaKey, &$postVar) {
 
 
 
-if($_POST['instructorNameUp1'] !== '') {
+if($_POST['instructorNameUp0'] !== '') {
 
-addMeta($_POST['instructorNameUp1'], 'instructorName1', $instructor1 );
-addMeta($_POST['beltLevelUp1'], 'beltLevel1', $beltLevelUp1 );
-addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp1 );
+addMeta($_POST['instructorNameUp0'], 'instructorName0', $instructor0 );
+addMeta($_POST['beltLevelUp0'], 'beltLevel0', $beltLevelUp0 );
+addMeta($_POST['instructorDesUp0'], 'instructorDes0', $instructorDesUp1 );
   }
   
   // else {
@@ -269,11 +268,11 @@ addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp1 );
 
 
 
-  if($_POST['instructorNameUp2'] !== '') {
+  if($_POST['instructorNameUp1'] !== '') {
 
-addMeta($_POST['instructorNameUp2'], 'instructorName2', $instructor2 );
-addMeta($_POST['beltLevelUp2'], 'beltLevel2', $beltLevelUp2 );
-addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
+addMeta($_POST['instructorNameUp1'], 'instructorName1', $instructor1 );
+addMeta($_POST['beltLevelUp1'], 'beltLevel1', $beltLevelUp1 );
+addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp2 );
   } 
   // else {
   //   $post_id = get_the_ID();
@@ -284,10 +283,10 @@ addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
   //   echo "<script>alert('deleted2!')</script>";
   // }
 
-  if($_POST['instructorNameUp3'] !== '') {
-addMeta($_POST['instructorNameUp3'], 'instructorName3', $instructor3 );
-addMeta($_POST['beltLevelUp3'], 'beltLevel3', $beltLevelUp3 );
-addMeta($_POST['instructorDesUp3'], 'instructorDes2', $instructorDesUp2 );
+  if($_POST['instructorNameUp2'] !== '') {
+addMeta($_POST['instructorNameUp2'], 'instructorName2', $instructor2 );
+addMeta($_POST['beltLevelUp2'], 'beltLevel2', $beltLevelUp2 );
+addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
   }
   //  else {
   //   $post_id = get_the_ID();
@@ -299,11 +298,11 @@ addMeta($_POST['instructorDesUp3'], 'instructorDes2', $instructorDesUp2 );
   //   echo "<script>alert('deleted3!')</script>";
   // }
 
-  if($_POST['instructorNameUp4'] !== '') {
+  if($_POST['instructorNameUp3'] !== '') {
 
-addMeta($_POST['instructorNameUp4'], 'instructorName4', $instructor4 );
-addMeta($_POST['beltLevelUp4'], 'beltLevel4', $beltLevelUp4 );
-addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp4 );
+addMeta($_POST['instructorNameUp3'], 'instructorName3', $instructor3 );
+addMeta($_POST['beltLevelUp3'], 'beltLevel3', $beltLevelUp3 );
+addMeta($_POST['instructorDesUp3'], 'instructorDes3', $instructorDesUp4 );
   }
   // else {
   //   $post_id = get_the_ID();
@@ -315,11 +314,11 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp4 );
   //   echo "<script>alert('deleted4!')</script>";
   // }
 
-  if($_POST['instructorNameUp5'] !== '') {
+  if($_POST['instructorNameUp4'] !== '') {
 
-addMeta($_POST['instructorNameUp5'], 'instructorName5', $instructor5 );
-addMeta($_POST['beltLevelUp5'], 'beltLevel5', $beltLevelUp5 );
-addMeta($_POST['instructorDesUp5'], 'instructorDes5', $instructorDesUp5 );
+addMeta($_POST['instructorNameUp4'], 'instructorName4', $instructor4 );
+addMeta($_POST['beltLevelUp4'], 'beltLevel4', $beltLevelUp4 );
+addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
  } 
 //  else {
   //   $post_id = get_the_ID();
@@ -585,38 +584,38 @@ Map
   <?php 
   
   $imgArray = array(
+    get_post_meta($post_id, "instructorImg0", true),
     get_post_meta($post_id, "instructorImg1", true),
     get_post_meta($post_id, "instructorImg2", true),
     get_post_meta($post_id, "instructorImg3", true),
-    get_post_meta($post_id, "instructorImg4", true),
-    get_post_meta($post_id, "instructorImg5", true)
+    get_post_meta($post_id, "instructorImg4", true)
   );
 
   $nameArray = array(
+    get_post_meta($post_id, "instructorName0", true),
     get_post_meta($post_id, "instructorName1", true),
     get_post_meta($post_id, "instructorName2", true),
     get_post_meta($post_id, "instructorName3", true),
-    get_post_meta($post_id, "instructorName4", true),
-    get_post_meta($post_id, "instructorName5", true)
+    get_post_meta($post_id, "instructorName4", true)
     
   );
 
   $beltArray = array(
+    get_post_meta($post_id, "beltLevel0", true),
     get_post_meta($post_id, "beltLevel1", true),
     get_post_meta($post_id, "beltLevel2", true),
     get_post_meta($post_id, "beltLevel3", true),
-    get_post_meta($post_id, "beltLevel4", true),
-    get_post_meta($post_id, "beltLevel5", true)
+    get_post_meta($post_id, "beltLevel4", true)
   );
 
   
 
   $instructorDesArray = array(
+    get_post_meta($post_id, "instructorDes0", true),
     get_post_meta($post_id, "instructorDes1", true),
     get_post_meta($post_id, "instructorDes2", true),
     get_post_meta($post_id, "instructorDes3", true),
-    get_post_meta($post_id, "instructorDes4", true),
-    get_post_meta($post_id, "instructorDes5", true)
+    get_post_meta($post_id, "instructorDes4", true)
   );
 
   for($i=0; $i < sizeof($nameArray); $i++) {
@@ -677,48 +676,48 @@ Map
        <input name= "imageUpload4" class="hideImageUp" id="imageUpload4" onchange="fasterPreview(this, '#InImage4')" type="file" 
       capture>
 
-       <input name="instructorNameUp1" id="instructorUp0" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp2" id="instructorUp1" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp3" id="instructorUp2" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp4" id="instructorUp3" class="titleUp" placeholder="Instructor Name">
-       <input name="instructorNameUp5" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp0" id="instructorUp0" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp1" id="instructorUp1" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp2" id="instructorUp2" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp3" id="instructorUp3" class="titleUp" placeholder="Instructor Name">
+       <input name="instructorNameUp4" id="instructorUp4" class="titleUp" placeholder="Instructor Name">
 
-       <input name="instructorDesUp1" id="instructorDesUp0" class="titleUp" placeholder="Instructor Des">
-       <input name="instructorDesUp2" id="instructorDesUp1" class="titleUp"  placeholder="Instructor Des">
-       <input name="instructorDesUp3" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Des">
-       <input name="instructorDesUp4" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Des">
-       <input name="instructorDesUp5" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp0" id="instructorDesUp0" class="titleUp" placeholder="Instructor Des">
+       <input name="instructorDesUp1" id="instructorDesUp1" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp2" id="instructorDesUp2" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp3" id="instructorDesUp3" class="titleUp"  placeholder="Instructor Des">
+       <input name="instructorDesUp4" id="instructorDesUp4" class="titleUp"  placeholder="Instructor Des">
 
 
-      <select name="beltLevelUp1" id="beltLevelUp0" class="beltLevelUp">
+      <select name="beltLevelUp0" id="beltLevelUp0" class="beltLevelUp">
               <option value="Black">Black</option>
               <option value="Brown">Brown</option>
               <option value="Purple">Purple</option>
               <option value="Blue">Blue</option>
             </select>
 
-      <select name="beltLevelUp2" id="beltLevelUp1" class="beltLevelUp">
+      <select name="beltLevelUp1" id="beltLevelUp1" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
         <option value="Blue">Blue</option>
       </select>
 
-      <select name="beltLevelUp3" id="beltLevelUp2" class="beltLevelUp">
+      <select name="beltLevelUp2" id="beltLevelUp2" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
         <option value="Blue">Blue</option>
       </select>
 
-      <select name="beltLevelUp4" id="beltLevelUp3" class="beltLevelUp">
+      <select name="beltLevelUp3" id="beltLevelUp3" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
         <option value="Blue">Blue</option>
       </select>
 
-      <select name="beltLevelUp5" id="beltLevelUp4" class="beltLevelUp">
+      <select name="beltLevelUp4" id="beltLevelUp4" class="beltLevelUp">
         <option value="Black">Black</option>
         <option value="Brown">Brown</option>
         <option value="Purple">Purple</option>
@@ -939,6 +938,7 @@ Map
   <?php
 
       $imgArray = get_post_meta($post_id, "slide_img_array", true);
+     print_r($imgArray);
       foreach($imgArray as $key => $img) {
         if ($key == 0) {
         $imageSrc = wp_get_attachment_url($imgArray[$key]);
@@ -1600,7 +1600,7 @@ function resetDataTarget(dataName, className) {
 function removeCard(eventObj) {
   var deleteButton = eventObj.target;
  
-   if (confirm('Are you sure you want to delete this existing instructor?')) {
+   if (confirm('Are you sure you want to delete this existing instructor? This action can not be cancelled.')) {
     deleteButton.parentNode.parentNode.parentNode.parentNode.removeChild(deleteButton.parentNode.parentNode.parentNode);
   plusClicked--;
   resetIds("instructors", cardArray);
@@ -1644,7 +1644,7 @@ function removeCard(eventObj) {
 
  instructEdit.addEventListener('click', function() {
 
-  copyVal('#instructorNameTemp0', '#instructorUp0');
+          copyVal('#instructorNameTemp0', '#instructorUp0');
           copyVal('#instructorNameTemp1', '#instructorUp1');
           copyVal('#instructorNameTemp2', '#instructorUp2');
           copyVal('#instructorNameTemp3', '#instructorUp3');
@@ -1663,7 +1663,7 @@ function removeCard(eventObj) {
           copySelect('#beltLevelTemp4', '#beltLevelUp4');
 
   for(let i = 0; i<deleteButtons.length; i++) {
-          deleteButtons[i].onclick = removeCard;
+          deleteButtons[i].addEventListener("click", removeCard);
         }
   
         $("#inup0").click(function(e) {
