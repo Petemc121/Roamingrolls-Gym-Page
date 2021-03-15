@@ -249,88 +249,109 @@ function addMeta($formPost, $metaKey, &$postVar) {
 
 if($_POST['instructorNameUp0'] !== '') {
 
+ if($_POST['instructorNameUp0'] !== 'deleted') {
+
 addMeta($_POST['instructorNameUp0'], 'instructorName0', $instructor0 );
 addMeta($_POST['beltLevelUp0'], 'beltLevel0', $beltLevelUp0 );
 addMeta($_POST['instructorDesUp0'], 'instructorDes0', $instructorDesUp1 );
   }
   
-  // else {
+  else {
 
-  //   $post_id = get_the_ID();
-  //   delete_post_meta($post_id, 'instructorName1'); 
-  //   delete_post_meta($post_id, 'instructorImg1'); 
-  //   delete_post_meta($post_id, 'instructorDes1'); 
-  //   delete_post_meta($post_id, 'beltLevel1'); 
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName0'); 
+    delete_post_meta($post_id, 'instructorImg0'); 
+    delete_post_meta($post_id, 'instructorDes0'); 
+    delete_post_meta($post_id, 'beltLevel0'); 
 
-  //   echo "<script>alert('deleted1!')</script>";
+    echo "<script>alert('deleted1!')</script>";
 
-  // }
+  }
+}
 
 
 
   if($_POST['instructorNameUp1'] !== '') {
 
+     if($_POST['instructorNameUp1'] !== 'deleted') {
+
 addMeta($_POST['instructorNameUp1'], 'instructorName1', $instructor1 );
 addMeta($_POST['beltLevelUp1'], 'beltLevel1', $beltLevelUp1 );
 addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp2 );
   } 
-  // else {
-  //   $post_id = get_the_ID();
-  //   delete_post_meta($post_id, 'instructorName2'); 
-  //   delete_post_meta($post_id, 'instructorImg2'); 
-  //   delete_post_meta($post_id, 'instructorDes2'); 
-  //   delete_post_meta($post_id, 'beltLevel2'); 
-  //   echo "<script>alert('deleted2!')</script>";
-  // }
+
+  else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName1'); 
+    delete_post_meta($post_id, 'instructorImg1'); 
+    delete_post_meta($post_id, 'instructorDes1'); 
+    delete_post_meta($post_id, 'beltLevel1'); 
+    echo "<script>alert('deleted2!')</script>";
+  }
+}
 
   if($_POST['instructorNameUp2'] !== '') {
+
+         if($_POST['instructorNameUp2'] !== 'deleted') {
+
 addMeta($_POST['instructorNameUp2'], 'instructorName2', $instructor2 );
 addMeta($_POST['beltLevelUp2'], 'beltLevel2', $beltLevelUp2 );
 addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
   }
-  //  else {
-  //   $post_id = get_the_ID();
-  //   delete_post_meta($post_id, 'instructorName3'); 
-  //   delete_post_meta($post_id, 'instructorImg3'); 
-  //   delete_post_meta($post_id, 'instructorDes3'); 
-  //   delete_post_meta($post_id, 'beltLevel3');
 
-  //   echo "<script>alert('deleted3!')</script>";
-  // }
+   else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName2'); 
+    delete_post_meta($post_id, 'instructorImg2'); 
+    delete_post_meta($post_id, 'instructorDes2'); 
+    delete_post_meta($post_id, 'beltLevel2');
+
+    echo "<script>alert('deleted3!')</script>";
+  }
+}
 
   if($_POST['instructorNameUp3'] !== '') {
+
+         if($_POST['instructorNameUp3'] !== 'deleted') {
+
 
 addMeta($_POST['instructorNameUp3'], 'instructorName3', $instructor3 );
 addMeta($_POST['beltLevelUp3'], 'beltLevel3', $beltLevelUp3 );
 addMeta($_POST['instructorDesUp3'], 'instructorDes3', $instructorDesUp4 );
   }
-  // else {
-  //   $post_id = get_the_ID();
-  //   delete_post_meta($post_id, 'instructorName4'); 
-  //   delete_post_meta($post_id, 'instructorImg4'); 
-  //   delete_post_meta($post_id, 'instructorDes4'); 
-  //   delete_post_meta($post_id, 'beltLevel4');
 
-  //   echo "<script>alert('deleted4!')</script>";
-  // }
+ else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName3'); 
+    delete_post_meta($post_id, 'instructorImg3'); 
+    delete_post_meta($post_id, 'instructorDes3'); 
+    delete_post_meta($post_id, 'beltLevel3');
+
+    echo "<script>alert('deleted3!')</script>";
+  }
+}
+ 
 
   if($_POST['instructorNameUp4'] !== '') {
+
+         if($_POST['instructorNameUp4'] !== 'deleted') {
+
 
 addMeta($_POST['instructorNameUp4'], 'instructorName4', $instructor4 );
 addMeta($_POST['beltLevelUp4'], 'beltLevel4', $beltLevelUp4 );
 addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
- } 
-//  else {
-  //   $post_id = get_the_ID();
-  //   delete_post_meta($post_id, 'instructorName5'); 
-  //   delete_post_meta($post_id, 'instructorImg5'); 
-  //   delete_post_meta($post_id, 'instructorDes5'); 
-  //   delete_post_meta($post_id, 'beltLevel5');
+ 
+} 
+ else {
+    $post_id = get_the_ID();
+    delete_post_meta($post_id, 'instructorName4'); 
+    delete_post_meta($post_id, 'instructorImg4'); 
+    delete_post_meta($post_id, 'instructorDes4'); 
+    delete_post_meta($post_id, 'beltLevel4');
 
-  //   echo "<script>alert('deleted5!')</script>";
-  // }
-
-
+    echo "<script>alert('deleted4!')</script>";
+  }
+}
 
 
 
@@ -360,9 +381,8 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
 
 // }
 
-  }
 }
-  
+}
 
 
 ?>
@@ -567,6 +587,7 @@ Map
 <div class="center">
 <div id="inpm">
 <button type="button" id="plusInstructor" class="plusevent"><i class="fas fa-plus-circle fa-lg"></i></button>
+<button type="button" id="minusInstructor" class="plusevent"><i class="fas fa-minus-circle fa-lg"></i></button>
 
 </div>
 </div>
@@ -652,7 +673,7 @@ Map
  
       if ($nameArray[$i] != "") {
 
-    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="minusInstructor" id="minusInstructor'.$i.'"><i class="fas fa-minus-circle fa-lg"></i></button><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
       }
     } 
   
@@ -981,867 +1002,7 @@ Map
 <script>
 
 
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-
-
-  var editDes = document.getElementById("editDes");
-  var desIn = document.getElementById("gymDesIn");
-  var desOut =document.getElementById("gymDesout");
-  var desSub = document.getElementById("gymDesSub");
-  var cancel1 = document.getElementById("cancel1");
-
-      editDes.addEventListener("click", function() {
-        desIn.style.display = "block";
-        desOut.style.display = "none";
-        desSub.style.display = "block";
-        cancel1.style.display = "block";
-
-      });
-
-      cancel1.addEventListener("click", function() {
-
-        cancel1.style.display = "none";
-        desIn.style.display = "none";
-        desSub.style.display = "none";
-        desOut.style.display = "block";
-        desOut.style.margin = "0 auto";
-      })
-
-    //   let map;
-
-    //   function initMap() {
-    //     map = new google.maps.Map(document.getElementById("map"), {
-    //       zoom: 2,
-    //       center: new google.maps.LatLng(2.8, -187.3),
-    //       mapTypeId: "terrain",
-    //     });
-    //     // Create a <script> tag and set the USGS URL as the source.
-    //     const script = document.createElement("script");
-    //     // This example uses a local copy of the GeoJSON stored at
-    //     // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-    //     script.src =
-    //       "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
-    //     document.getElementsByTagName("head")[0].appendChild(script);
-    //   }
-
-    //   // Loop through the results array and place a marker for each
-    //   // set of coordinates.
-    //   const eqfeed_callback = function (results) {
-    //     for (let i = 0; i < results.features.length; i++) {
-    //       const coords = results.features[i].geometry.coordinates;
-    //       const latLng = new google.maps.LatLng(coords[1], coords[0]);
-    //       new google.maps.Marker({
-    //         position: latLng,
-    //         map: map,
-    //       });
-    //     }
-    //   };
-    // </script>
-
-    <script>
-
-// var yesCheck = document.getElementById("exampleCheck1")
-//       var nocheck = document.getElementById("exampleCheck2")
-//       var giPrice = document.getElementById("giPrice")
-//       var giPriceIn = document.getElementById("giPriceIn")
- 
-       
-//       nocheck.addEventListener("change", function() {
-
-//         if (this.checked) {
-        
-//         giPrice.style.display = "none";
-//         giPriceIn.style.display = "none";
-//         yesCheck.checked = false;
-
-//         } else {
-
-//           giPrice.style.display = "block";
-//           giPriceIn.style.display = "block";
-      
-//         }
-
-//       });
-
-  
-
-
-      
-//       yesCheck.addEventListener("change", function() {
-
-
-//         if (this.checked) {
-
-//       giPrice.style.display = "block";
-//       giPriceIn.style.display = "block";
-//       nocheck.checked = false;
-
-//         }
-
-        
-
-//         });
-
-
-window.onload = function() {
-// $('#_uploadImages').click(function () {
-//     $('#_imagesInput').click();
-
-//     setTimeout(activeness(), 5000)
-// });
-const imgUp = document.getElementById("uploadImages");
-const imgRules = document.getElementById("imgRules");
-
-
-imgUp.addEventListener('mouseover', function() {
-  imgRules.style.opacity = "100";
-})
-imgUp.addEventListener('mouseout', function() {
-  imgRules.style.opacity = "0";
-})
-
-
-$('#_imagesInput').on('change', function () {
-
-  var output = document.getElementById("carousel-inner");
-
-    output.innerHTML = "";
-    handleFileSelect();
-});
-}
-
-
-
-
-
-let imageArray = []
-
-
-function handleFileSelect() {
-    //Check File API support
-    if (window.File && window.FileList && window.FileReader) {
-
-        var files = event.target.files; //FileList object
-        var output = document.getElementById("carousel-inner");
-        var arrFilesCount = [];
-        var start = $(output).find('li').length;
-        var display =  document.getElementById("displayImg");
-        var end = start + files.length;
-        var nonImgCount = 0;
-      
-        for (var i = start; i < end; i++) {
-            arrFilesCount.push(i); // push to array
-        }
-        
-        if(start !== 0){
-            $(output).find('li > nav > a.prev').first().attr('href','#slide-' + (end-1));
-            $(output).find('li > nav > a.next').last().attr('href','#slide-'+start);
-
-            
-        }
-
-        
-        
-        for (var i = 0; i < files.length; i++) {
-
-
-            var file = files[i];
-            var readFile = URL.createObjectURL(files[i]);
-
-            
-            //Only pics
-            if (!file.type.match('image')) {nonImgCount++; continue;}
-
-            var picReader = new FileReader();
-            picReader.addEventListener("load", function (event) {
-              var picFile = event.target;
-
-                current_i = arrFilesCount.shift();
-                if (current_i === 0) {
-                    prev_i = files.length - 1; //This is for the first element. The previous slide will be the last image. (i=length-1)
-                } else {
-                    prev_i = current_i - 1;
-                }
-                if (arrFilesCount.length - nonImgCount === 0) {
-                    next_i = 0;
-                } else {
-                    next_i = current_i + 1; //This is for the last element. The next slide will be the first image (i=0)
-                }
-
-
-
-          if(current_i == 0) {
-
-                output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item active" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; 
-                
-                } else {
-
-                  output.innerHTML = output.innerHTML + '<li id="slide-' + current_i + '" class="carousel-item" name = "slide-' + current_i + '">' + "<img class='d-block w-100' src='" + picFile.result + "'" + "title=''/>" + '</li>'; 
-
-                  }
-                
-
-             
-                
-
-                var save = document.getElementById('savePics');
-                var cancel = document.getElementById('cancelPics');
-                var upload = document.getElementById('uploadImages')
-
-                save.style.display = "block";
-                cancel.style.display = "block";
-                upload.style.display = "none";
-                
-             if (current_i == 0) {
-                display.src = picFile.result;
-             }
-               
-            });
-            //Read the image
-            picReader.readAsDataURL(file);
-           
-        }
-       
-      
-    } else {
-        console.log("Your browser does not support File API");
-    }
-}
-
-
-
- 
-
-
-
-
-var slideContain = document.getElementById('slideshow-container');
-var displayImg = document.getElementById("displayImg")
-
-// var showmap = document.getElementById("mapContain")
-var title = document.getElementById("gymTitle")
-var gymDes = document.getElementById("gymDesout")
-var editDes = document.getElementById("editDes")
-var desTitle = document.getElementById("desTitle")
-var more =  document.getElementById("more")
-var readMore = document.getElementById("readMore")
-var readLess =  document.getElementById("readLess")
-var instructCon = document.getElementById("instructcon");
-var prices =  document.getElementById("prices")
-var fullPrice = document.getElementById("fullPrice")
-var pagesecmenu = document.getElementById("pageSecContain")
-var visitT = document.getElementById("visitt")
-var plink = document.getElementById("plink")
-var schedulet = document.getElementById("schedulet")
-var slink = document.getElementById("slink")
-var bigCon = document.getElementById("BigContain")
-var update1 = document.getElementById("update1")
-var update2 = document.getElementById("update2")
-var scheduleP = document.getElementById("scheduleP")
-var checkB = document.getElementById("checkB")
-
-
-
-
-
-
-
-
-
-
-function showslide() {
-    slideContain.style.display = "block";
-    displayImg.style.display ="none";
-    title.style.marginTop = "80px";
-    gymDes.style.display = "none";
-    desTitle.style.display = "none";
-    instructCon.style.display = "none";
-    prices.style.display = "none";
-    pagesecmenu.style.display = "none";
-    visitT.style.display = "none";
-    plink.style.display = "none";
-    slink.style.display = "none";
-    schedulet.style.display = "none";
-    bigCon.style.display = "none";
-    editDes.style.display = "none";
-    fullPrice.style.display = "none";
-    update1.style.display = "none";
-    update2.style.display = "none";
-    checkB.style.display = "none";
-    scheduleP.style.display = "none";
-     
-     }
-
-   
-  
-
-          
- 
-
-
-
-
-
-function hideslide() {
-  slideContain.style.display = "none"
-  displayImg.style.display ="block";
-  title.style.marginTop = "0px";
-  gymDes.style.display = "block";
-    desTitle.style.display = "block";
-    instructCon.style.display = "block";
-    prices.style.display = "block";
-    pagesecmenu.style.display = "block";
-    visitT.style.display = "block";
-    plink.style.display = "block";
-    slink.style.display = "block";
-    schedulet.style.display = "block";
-    bigCon.style.display = "block";
-    editDes.style.display = "block";
-    fullPrice.style.display = "block";
-    update1.style.display = "block";
-    update2.style.display = "block";
-    checkB.style.display = "block";
-    scheduleP.style.display = "block";
-
     
-    // if ($("#carousel-inner").find('li')) {
-         
-
-    //   $("#carousel-inner").find(".carousel-item").removeClass("active");
-         
-
-         
-    //        }
-    
-
-}
-
-// function showMap() {
-//     showmap.style.display = "block";
-//     displayImg.style.display ="none";
-//     title.style.marginTop = "80px";
-//   description.style.display = "block";
-//     gymDes.style.display = "none";
-//     instructCon.style.display = "none";
-//     desTitle.style.display = "none";
-//     prices.style.display = "none";
-//     pagesecmenu.style.display = "none";
-//     visitT.style.display = "none";
-//     plink.style.display = "none";
-//     slink.style.display = "none";
-//     schedulet.style.display = "none";
-//     bigCon.style.display = "none";
-//     editDes.style.display = "none";
-//     fullPrice.style.display = "none";
-//     update1.style.display = "none";
-//     update2.style.display = "none";
-//     checkB.style.display = "none";
-//     scheduleP.style.display = "none";
-
-    
-    
-// }
-
-// function hideMap() {
-
-//  showmap.style.display = "none"
-//   displayImg.style.display ="block";
-//   title.style.marginTop = "0px";
-//   description.style.display = "block";
-//   gymDes.style.display = "block";
-//     desTitle.style.display = "block";
-//     instructCon.style.display = "block";
-//     prices.style.display = "block";
-//     pagesecmenu.style.display = "block";
-//     visitT.style.display = "block";
-//     plink.style.display = "block";
-//     slink.style.display = "block";
-//     schedulet.style.display = "block";
-//     bigCon.style.display = "block";
-//     editDes.style.display = "block";
-//     fullPrice.style.display = "block";
-//     update1.style.display = "block";
-//     update2.style.display = "block";
-//     checkB.style.display = "block";
-//     scheduleP.style.display = "block";
-
-
-    
-
-// }
-
-function showMore() {
-
- 
-  readMore.style.display= "none";
-  readLess.style.display = "inline-block";
-  gymDes.style.maxHeight = "400px";
-}
-
-function showLess() {
-
-  
-  readMore.style.display= "inline-block";
-  readLess.style.display = "none";
-  gymDes.style.maxHeight = "100px";
-
-
-
-  
-
-}
-
-
- var other = document.getElementById("other")
- var otherCheck = document.getElementById("otherCheck")
-
-  otherCheck.addEventListener("change", function() {
-
-    if (this.checked) {
-      
-      other.style.display = "block";
-
-  } else  {
-    other.style.display = "none";
-  }
-})
-      
-let beltOut = document.getElementsByClassName('beltLevelOut');
-let beltIn = document.getElementsByClassName('beltLevelIn');
-let nameOut = document.getElementsByClassName('titOut');
-var imgup = document.getElementsByClassName('inup')
-let deleteButtons = document.getElementsByClassName('minusInstructor');
-let nameIn = document.getElementsByClassName('titIn');
-
-   
-     var plusInstructor = document.getElementById("plusInstructor")
-
-     var i = 0;
-
-     var plusClicked = 0
-
-
-     plusInstructor.addEventListener("click", function() {
-
-
-   
-
-       plusClicked++
-       let cardLength = document.getElementsByClassName('inAccord').length
-      
-
-       i = cardLength -1;
-
-       i++
-
-      let instructorForm =  document.getElementById('instructorForm');
-
-      let appendedCard = '<div class="inAccord" id="instructors'+i+'"><div id = "inCard'+i+'" = class="inCard"><button type="button" class="minusInstructor"><i class="fas fa-minus-circle fa-lg"></i></button><div class="instruct-card" id="inPic'+i+'" data-toggle="collapse" data-target="#inCollapse'+i+'" aria-expanded="true" aria-controls="collapse'+i+'"><img id = "InImage'+i+'" class="InImage w-100" src="https://www.roamingrolls.com/wp-content/uploads/2020/11/avatar.gif"><button type= "button" class="inup" id ="inup'+i+'"><i class="fas fa-file-upload"></i></button><div class="candTContainer"><input name="instructorName'+i+'" id="instructorNameTemp'+i+'" class="titIn" placeholder="Instructor Name"></input><div style="display:none;" class="titOut"></div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut" style="display:none;"></div><select  id="beltLevelTemp'+i+'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'+i+'" class="collapse hide" aria-labelledby="inPic'+i+'" data-parent="#inCard'+i+'"><div class="card-body"><div class="desOut" style="display:none;" id ="instructorDesOut'+i+'"></div><textarea class="desIn" name="instructorDes'+i+'" id="instructorDesTemp'+i+'" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
-
-  
-    
-
-      appendedHTML = [];
-
-      appendedHTML.push(appendedCard);
-
-      if (cardLength < 5) {
-        instructorForm.innerHTML = instructorForm.innerHTML  + appendedCard;
-
-          copyVal('#instructorNameTemp0', '#instructorUp0');
-          copyVal('#instructorNameTemp1', '#instructorUp1');
-          copyVal('#instructorNameTemp2', '#instructorUp2');
-          copyVal('#instructorNameTemp3', '#instructorUp3');
-          copyVal('#instructorNameTemp4', '#instructorUp4');
-
-          copyVal('#instructorDesTemp0', '#instructorDesUp0');
-          copyVal('#instructorDesTemp1', '#instructorDesUp1');
-          copyVal('#instructorDesTemp2', '#instructorDesUp2');
-          copyVal('#instructorDesTemp3', '#instructorDesUp3');
-          copyVal('#instructorDesTemp4', '#instructorDesUp4');
-
-          copySelect('#beltLevelTemp0', '#beltLevelUp0');
-          copySelect('#beltLevelTemp1', '#beltLevelUp1');
-          copySelect('#beltLevelTemp2', '#beltLevelUp2');
-          copySelect('#beltLevelTemp3', '#beltLevelUp3');
-          copySelect('#beltLevelTemp4', '#beltLevelUp4');
-      }else {
-        alert("You've reached your maximum number of instructors!")
-        plusClicked--;
-      }
-
-
-for(let i = 0; i<deleteButtons.length; i++) {
-          deleteButtons[i].onclick = removeCard;
-        }
-
-     elementDisBlock(beltIn[i]);
-     elementDisBlock(nameIn[i]);
-
-    
-      for(i=0;i<deleteButtons.length;i++) {
-     elementDisBlock(deleteButtons[i]);
-     elementDisBlock(imgup[i]);
-   }
-
-        $("#inup0").click(function(e) {
-          $("#imageUpload0").click();
-          });
-
-        $("#inup1").click(function(e) {
-          $("#imageUpload1").click();
-          });
-
-          $("#inup2").click(function(e) {
-          $("#imageUpload2").click();
-          });
-
-          $("#inup3").click(function(e) {
-          $("#imageUpload3").click();
-          });
-
-          $("#inup4").click(function(e) {
-          $("#imageUpload4").click();
-          });
-
-          function copyVal(source, output) {
-          $(source).on('keyup', function(){
-            var val = $(this).val();
-            $(output).val(val);
-          });
-          }
-
-        
-         
-          function copySelect(source, output) {
-          $(source).on('change', function(){
-            var val = $(this).val();
-            $(output).val(val);
-          })
-          }
-
-          
-          
-    $("#imageUpload0").change(function(){
-    fasterPreview( this, "#InImage0" );
-    });
-
-    $("#imageUpload1").change(function(){
-    fasterPreview( this, "#InImage1" );
-    });
-
-    $("#imageUpload2").change(function(){
-    fasterPreview( this, "#InImage2" );
-    });
-
-    $("#imageUpload3").change(function(){
-    fasterPreview( this, "#InImage3" );
-    });
-
-
-    $("#imageUpload4").change(function(){
-    fasterPreview( this,"#InImage4" );
-    });
-     });
-
-
-
-     
-
-  
-
-  function fasterPreview( uploader, image ) {
-    if ( uploader.files && uploader.files[0] ){
-          $(image).attr('src', 
-             window.URL.createObjectURL(uploader.files[0]) );
-    }
-  }
-
-    //  var minusInstructor = document.getElementById("minusInstructor")
-    //  var inCard = document.getElementsByClassName("inAccord")
-            
-        
-    //      minusInstructor.addEventListener("click", function() {
-
-    //     inCard[inCard.length-1].remove();               
-
-    //     });
-
-var instructEdit = document.getElementById('editInstruct');
-let inCard = document.getElementsByClassName('inCard');
-let instructCard = document.getElementsByClassName('instruct-card');
-var inPlus = document.getElementById('plusInstructor');
-var inMinus = document.getElementById('minusInstructor');
-var InImage = document.getElementsByClassName('InImage');
-var collapse = document.getElementsByClassName('collapse');
-var inSub = document.getElementById('instructSub');
-var inCan = document.getElementById('instructCan');
-let cardArray = document.getElementsByClassName('inAccord');
-let inDesOut = document.getElementsByClassName('desOut');
-let inDesIn = document.getElementsByClassName('desIn');
-
-
-
-function resetIds(idName, className) {
-  for(i=0;i<className.length;i++) {
- className[i].id = idName + i;
-  }
-}
-
-function resetDataTarget(dataName, className) {
-  for(i=0;i<className.length;i++) {
- className[i].dataset.target = dataName + i;
- className[i].dataset.parent = dataName + i;
-  }
-}
-
-function removeCard(eventObj) {
-  var deleteButton = eventObj.target;
- 
-   if (confirm('Are you sure you want to delete this existing instructor? This action can not be cancelled.')) {
-    deleteButton.parentNode.parentNode.parentNode.parentNode.removeChild(deleteButton.parentNode.parentNode.parentNode);
-  plusClicked--;
-  resetIds("instructors", cardArray);
-  resetIds("inup", imgup);
-  resetIds("instructorDesTemp", inDesIn);
-  resetIds("instructorDesOut", inDesOut);
-  resetIds("beltLevelTemp", beltIn);
-  resetIds("inCard", inCard);
-  resetIds("inPic", instructCard);
-  resetIds("minusInstructor", deleteButtons);
-  // resetIds("InImage", InImage);
-  resetIds("instructorNameTemp", nameIn);
-  resetIds("inCollapse", collapse);
-  resetDataTarget("#inCard", collapse);
-  
-  // let idNum = this.id.charAt(15)
-
-  //   $('#instructorUp' + idNum).val('deletedCard');
-
-          copyVal('#instructorNameTemp0', '#instructorUp0');
-          copyVal('#instructorNameTemp1', '#instructorUp1');
-          copyVal('#instructorNameTemp2', '#instructorUp2');
-          copyVal('#instructorNameTemp3', '#instructorUp3');
-          copyVal('#instructorNameTemp4', '#instructorUp4');
-
-          copyVal('#instructorDesTemp0', '#instructorDesUp0');
-          copyVal('#instructorDesTemp1', '#instructorDesUp1');
-          copyVal('#instructorDesTemp2', '#instructorDesUp2');
-          copyVal('#instructorDesTemp3', '#instructorDesUp3');
-          copyVal('#instructorDesTemp4', '#instructorDesUp4');
-
-          copySelect('#beltLevelTemp0', '#beltLevelUp0');
-          copySelect('#beltLevelTemp1', '#beltLevelUp1');
-          copySelect('#beltLevelTemp2', '#beltLevelUp2');
-          copySelect('#beltLevelTemp3', '#beltLevelUp3');
-          copySelect('#beltLevelTemp4', '#beltLevelUp4');
-} 
-
-}
-
-
- instructEdit.addEventListener('click', function() {
-
-          copyVal('#instructorNameTemp0', '#instructorUp0');
-          copyVal('#instructorNameTemp1', '#instructorUp1');
-          copyVal('#instructorNameTemp2', '#instructorUp2');
-          copyVal('#instructorNameTemp3', '#instructorUp3');
-          copyVal('#instructorNameTemp4', '#instructorUp4');
-
-          copyVal('#instructorDesTemp0', '#instructorDesUp0');
-          copyVal('#instructorDesTemp1', '#instructorDesUp1');
-          copyVal('#instructorDesTemp2', '#instructorDesUp2');
-          copyVal('#instructorDesTemp3', '#instructorDesUp3');
-          copyVal('#instructorDesTemp4', '#instructorDesUp4');
-
-          copySelect('#beltLevelTemp0', '#beltLevelUp0');
-          copySelect('#beltLevelTemp1', '#beltLevelUp1');
-          copySelect('#beltLevelTemp2', '#beltLevelUp2');
-          copySelect('#beltLevelTemp3', '#beltLevelUp3');
-          copySelect('#beltLevelTemp4', '#beltLevelUp4');
-
-  for(let i = 0; i<deleteButtons.length; i++) {
-          deleteButtons[i].addEventListener("click", removeCard);
-        }
-  
-        $("#inup0").click(function(e) {
-          $("#imageUpload0").click();
-          });
-
-        $("#inup1").click(function(e) {
-          $("#imageUpload1").click();
-          });
-
-          $("#inup2").click(function(e) {
-          $("#imageUpload2").click();
-          });
-
-          $("#inup3").click(function(e) {
-          $("#imageUpload3").click();
-          });
-
-          $("#inup4").click(function(e) {
-          $("#imageUpload4").click();
-          });
-
-          beltTemp = document.getElementsByClassName('beltLevelUp');
-        
-          for(i=0;i<beltIn.length;i++) {
-   
-            if (beltOut[i].innerHTML != "") {
-
-                 beltIn[i].value = beltOut[i].innerHTML;
-                 beltTemp[i].value = beltOut[i].innerHTML; 
-               }
-          }
-
-          
-        
- 
-        
- 
-
-
-   plusClicked = 0;
-  //  elementDisBlock(inMinus);
-   elementDisBlock(inPlus);
-   elementDisBlock(inSub);
-   elementDisBlock(inCan);
-
-
-   for(i=0;i<deleteButtons.length;i++) {
-     elementDisBlock(deleteButtons[i]);
-     elementDisBlock(imgup[i]);
-     elementDisBlock(inDesIn[i]);
-     elementDisNone(inDesOut[i]);
-     elementDisBlock(beltIn[i]);
-     elementDisNone(beltOut[i]);
-     elementDisBlock(nameIn[i]);
-     elementDisNone(nameOut[i]);
-
-
- 
-      
-     
-   }
-
-
- })
-
- inCan.addEventListener('click', function() {
-
-
-  window.location.reload();
-
-  // // elementDisNone(inMinus);
-  // elementDisNone(inPlus);
-  // elementDisNone(inSub);
-  // elementDisNone(inCan);
-
-  
-  // for(i=0;i<deleteButtons.length;i++) {
-  //    elementDisNone(deleteButtons[i]);
-  //    elementDisNone(imgup[i]);
-  //    elementDisBlock(inDesOut[i]);
-  //    elementDisNone(inDesIn[i]);
-  //    elementDisNone(beltIn[i]);
-  //    elementDisBlock(beltOut[i]);
-  //    elementDisNone(nameIn[i]);
-  //    elementDisBlock(nameOut[i]);
-  //  }
-
-  //  cardLength = cardArray.length;
-
-  //  if (plusClicked > 0) {
-  //    for (i=cardLength -1;i>cardLength - (plusClicked + 1);i--) {
-  //      cardArray[i].parentNode.removeChild(cardArray[i])
-  //    }
-  //  }
-
- });
-
-
- function elementDisNone(element) {
-   element.style.display ="none";
- }
-
- function elementDisBlock(element) {
-   element.style.display ="block";
- }
-
-
-
- var expanded = false;
-
-function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes1");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-
-function showCheckboxes2() {
-  var checkboxes = document.getElementById("checkboxes2");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-
-function showCheckboxes3() {
-  var checkboxes = document.getElementById("checkboxes3");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-function showCheckboxes4() {
-  var checkboxes = document.getElementById("checkboxes4");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-function showCheckboxes5() {
-  var checkboxes = document.getElementById("checkboxes5");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-
-function copyVal(source, output) {
-$(source).on('keyup', function(){
-    var val = $(this).val();
-    $(output).val(val);
-  })
-}
-
-
-function copySelect(source, output) {
-$(source).on('change', function(){
-    var val = $(this).val();
-    $(output).val(val);
-  })
-}
 
 </script>
 
@@ -1858,6 +1019,8 @@ get_footer();
 ?>
 
 </div>
+
+
 
 
 
