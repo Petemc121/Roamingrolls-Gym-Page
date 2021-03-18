@@ -52,6 +52,128 @@ if(isset($_POST['ncskfnalvkbahlds'])) {
 }
 }
 
+function addMeta($formPost, $metaKey, &$postVar) {
+  $post_id = get_the_ID();
+
+
+  if (isset($formPost)) {
+    $postVar = sanitize_text_field($formPost);
+    
+    if ($postVar !== '') {
+      update_post_meta($post_id, $metaKey, $postVar);
+    
+      }
+    }
+
+}
+
+function is_valid_domain_name($domain_name)
+{
+    return (preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $domain_name) //valid chars check
+            && preg_match("/^.{1,253}$/", $domain_name) //overall length check
+            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $domain_name)   ); //length of each label
+}
+
+
+if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
+
+  if(wp_verify_nonce($_POST['sbhkdvhjsbhkvbhkvb'], 'price_update' )) {
+      if(is_user_logged_in()) {
+
+        if (isset($_POST['classPrice'])) {
+
+          if($_POST['classPrice'] != "") {
+
+
+          $classPrice = sanitize_text_field($_POST['classPrice']);
+
+          if(is_numeric($classPrice)) {
+                update_post_meta($post_id, 'classPrice', $classPrice);
+                  echo "<script>alert('successp1!')</script>";
+
+          } else {
+                  echo "<style>#priceAlert{display:block !important;}</style>";
+
+          }
+        }
+
+        }
+
+         if (isset($_POST['dayPrice'])) {
+
+          if($_POST['dayPrice'] != "") {
+
+
+          $dayPrice = sanitize_text_field($_POST['dayPrice']);
+
+          if(is_numeric($dayPrice)) {
+                update_post_meta($post_id, 'dayPrice', $dayPrice);
+                  echo "<script>alert('successp2!')</script>";
+
+          } else {
+
+                  echo "<style>#priceAlert{display:block !important;}</style>";
+
+          }
+        }
+
+        }
+
+         if (isset($_POST['weekPrice'])) {
+
+          if($_POST['weekPrice'] != "") {
+
+          $weekPrice = sanitize_text_field($_POST['weekPrice']);
+
+          if(is_numeric($weekPrice)) {
+                update_post_meta($post_id, 'weekPrice', $weekPrice);
+                  echo "<script>alert('successp3!')</script>";
+
+          } else {
+                  echo "<style>#priceAlert{display:block !important;}</style>";
+
+          }
+
+          }
+
+        }
+
+        if($_POST['classDes'] != "") {
+          addMeta($_POST['classDes'], 'classDes', $classDes );
+                  echo "<script>alert('successd1!')</script>";
+
+        }
+
+          if($_POST['dayDes'] != "") {
+          addMeta($_POST['dayDes'], 'dayDes', $dayDes );
+                  echo "<script>alert('successd2!')</script>";
+
+          
+        }
+
+          if($_POST['weekDes'] != "") {
+          addMeta($_POST['weekDes'], 'weekDes', $weekDes );
+                  echo "<script>alert('successd3!')</script>";
+
+        }
+
+         if($_POST['priceLink'] != "") {
+
+          
+           if(is_valid_domain_name($_POST['priceLink']) === true) {
+
+          addMeta($_POST['priceLink'], 'priceLink', $priceLink );
+                  echo "<script>alert('successpr3!')</script>";
+
+        } else {
+                  echo "<script>alert('Please enter a valid URL')</script>";
+                  echo "<script>alert('".$_POST['priceLink']."')</script>";
+        }
+
+      }
+}
+}
+}
 
 
 if (isset($_POST['njvkdsnvklsvlnvdf'])) {
@@ -180,8 +302,6 @@ function uploadInstructFile($file, $meta_key,$fileIn) {
       return false;
     } else {
 
-       
-
 
       $attach_id = insert_attachment($fileIn, $post_id);
       update_post_meta($post_id, $meta_key, $attach_id);
@@ -199,51 +319,36 @@ if (isset($_POST['njvkddsbhjdsbvhsdb'])) {
 if (!empty($_FILES['imageUpload0']['name'])) {
 
   $img1 = $_FILES['imageUpload0'];
-  echo "<script>alert('".$img1."')</script>";
 
-  uploadInstructFile($img1, 'instructorImg1', 'imageUpload0');
+  uploadInstructFile($img1, 'instructorImg0', 'imageUpload0');
 
 }
 
 if (!empty($_FILES['imageUpload1']['name'])) {
   $img2 = $_FILES['imageUpload1'];
-  uploadInstructFile($img2, 'instructorImg2', 'imageUpload1');
+  uploadInstructFile($img2, 'instructorImg1', 'imageUpload1');
 }
 
   if (!empty($_FILES['imageUpload2']['name'])) {
     $img3 = $_FILES['imageUpload2'];
-    uploadInstructFile($img3, 'instructorImg3', 'imageUpload2');
+    uploadInstructFile($img3, 'instructorImg2', 'imageUpload2');
   }
   
     if (!empty($_FILES['imageUpload3']['name'])) {
       $img4 = $_FILES['imageUpload3'];
-      uploadInstructFile($img4, 'instructorImg4', 'imageUpload3');
+      uploadInstructFile($img4, 'instructorImg3', 'imageUpload3');
     }
     
 
       if (!empty($_FILES['imageUpload4']['name'])) {
         $img5 = $_FILES['imageUpload4'];
-        uploadInstructFile($img5, 'instructorImg5', 'imageUpload4');
+        uploadInstructFile($img5, 'instructorImg4', 'imageUpload4');
       }
     
 
 
 
 
-function addMeta($formPost, $metaKey, &$postVar) {
-  $post_id = get_the_ID();
-
-
-  if (isset($formPost)) {
-    $postVar = sanitize_text_field($formPost);
-    
-    if ($postVar !== '') {
-      update_post_meta($post_id, $metaKey, $postVar);
-    
-      }
-    }
-
-}
 
 
 
@@ -264,7 +369,7 @@ addMeta($_POST['instructorDesUp0'], 'instructorDes0', $instructorDesUp1 );
     delete_post_meta($post_id, 'instructorDes0'); 
     delete_post_meta($post_id, 'beltLevel0'); 
 
-    echo "<script>alert('deleted1!')</script>";
+    echo "<script>alert('deleted0!')</script>";
 
   }
 }
@@ -286,7 +391,7 @@ addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp2 );
     delete_post_meta($post_id, 'instructorImg1'); 
     delete_post_meta($post_id, 'instructorDes1'); 
     delete_post_meta($post_id, 'beltLevel1'); 
-    echo "<script>alert('deleted2!')</script>";
+    echo "<script>alert('deleted1!')</script>";
   }
 }
 
@@ -306,7 +411,7 @@ addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
     delete_post_meta($post_id, 'instructorDes2'); 
     delete_post_meta($post_id, 'beltLevel2');
 
-    echo "<script>alert('deleted3!')</script>";
+    echo "<script>alert('deleted2!')</script>";
   }
 }
 
@@ -656,9 +761,6 @@ Map
     }
   }
 
-  print_r($nameArray);
-  print_r($beltArray);
-  print_r($instructorDesArray);
 
   for($i=0;$i < sizeof($nameArray); $i++) {
 
@@ -759,22 +861,123 @@ Map
 </div>
 </div>
 
+<button class="plusPic" id="editPricing"><i class="fas fa-edit"></i></button>
+
+<form method="post">
+
+<?php wp_nonce_field( 'price_update', 'sbhkdvhjsbhkvbhkvb' ); ?>
+
+<div class="center">
+    <div id="priceAlert" class="alert alert-danger" role="alert">
+  Make sure your price fields are numeric.
+</div>
+  </div>
+
 <div class="form-group" id="prices">
 <div id="PriceCardCon">
   <div class="input-group-prepend">
-    <div class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Class</h6><input class="titleinputs" type="text" placeholder="Price ($)"></input></div></div><input class="adultin" placeholder="Include a short description" contenteditable></input>
+    <div id="class" class="adultcard " aria-label="With textarea">
+      <div class="adults">
+        <div class="adultcontain">
+        <h6 class="titleinputs Options">1 Class</h6>
+    <input class="priceIn" type="text" name="classPrice" placeholder="Price ($)">
+    <div class="priceOut">
+    <?php
+     $classPriceOut = get_post_meta($id,'classPrice',true);
+    echo "$".$classPriceOut;
+    ?>
+    </div>
+  
+  </div>
+<div>
+</div>
+</div>
+<input class="PriceDesIn" name="classDes"  placeholder="Include a short description" contenteditable>
+  <div class="priceDesOut">
+
+<?php
+     $classDesOut = get_post_meta($id,'classDes',true);
+    echo $classDesOut;
+    ?>
+  </div>
   </div>
 </div>
 <div class="input-group-prepend">
-    <div class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Day</h6><input class="titleinputs" type="text" placeholder="Price ($)"></input></div></div><input class="adultin" placeholder="Include a short description" contenteditable></input>
+    <div id="day" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Day</h6>
+    
+    <input class="priceIn"  name="dayPrice"  type="text" placeholder="Price ($)">
+
+    <div class="priceOut">
+
+   <?php
+     $dayPriceOut = get_post_meta($id,'dayPrice',true);
+    echo "$".$dayPriceOut;
+    ?>
+    </div>
+  
+</div></div><input class="PriceDesIn" name="dayDes" placeholder="Include a short description" contenteditable>
+  <div class="priceDesOut">
+
+<?php
+     $dayDesOut = get_post_meta($id,'dayDes',true);
+    echo $dayDesOut;
+    ?>
+    </div>
+    
   </div>
 </div>
 <div class="input-group-prepend">
-    <div class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Week</h6><input class="titleinputs" type="text" placeholder="Price ($)"></input></div></div><input class="adultin" placeholder="Include a short description" contenteditable></input>
+    <div id="week" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Week</h6>
+    <input class="priceIn"  name="weekPrice"  type="text" placeholder="Price ($)">
+    <div class="priceOut">
+  <?php
+     $weekPriceOut = get_post_meta($id,'weekPrice',true);
+    echo "$".$weekPriceOut;
+    ?>
+    </div>
+  </div></div><input class="PriceDesIn" name="weekDes" placeholder="Include a short description" contenteditable>
+  <div class="priceDesOut">
+  <?php
+     $weekDesOut = get_post_meta($id,'weekDes',true);
+    echo $weekDesOut;
+    ?>
+  </div>
+   
   </div>
 </div>
 </div>
 </div>
+
+<?php
+
+if ($classPriceOut != "") {
+  echo "<style>#class{display:block !important}</style>";
+} else {
+  echo "<style>#class{display:none !important}</style>";
+
+}
+
+if ($dayPriceOut != "") {
+  echo "<style>#day{display:block !important}</style>";
+}else {
+  echo "<style>#class{display:none !important}</style>";
+
+}
+
+if ($weekPriceOut != "") {
+  echo "<style>#week{display:block !important}</style>";
+}else {
+  echo "<style>#class{display:none !important}</style>";
+
+}
+
+?>
+
+<div id="priceRules">
+  <p>Add visitor prices</p>
+  <p>(1 class, 1 day, 1 week)</p>
+<p>(Boxes without prices wont be displayed, type "FREE" in the price section if you don't charge for that time period)</p></div>
+
 
 
  <!-- <div id="gi" class="center">
@@ -814,12 +1017,25 @@ Map
 
 <div class="center">
 <div id="plink">
-  <input id="priceLink"></input>
+  <span>Full pricing page: </span> 
+  <input id="priceLink" name="priceLink"></input>
+  
+ <div id="priceLinkOut">  
+  <?php
+$priceLink = get_post_meta($id,'priceLink',true);
+    echo $priceLink;
+?>
+ </div>
 </div>
 </div>
 
+
 <div class="center">
-  <button id="update1">Update</button>
+   <button type="submit" class="gymSubs" id="priceSub">Submit</button>
+
+  </form>
+
+ <button class="cancels" type="button" id="priceCan">Cancel</button>
 </div>
 
 
@@ -851,7 +1067,7 @@ Map
 
 <div class="center">
 <div id="slink">
-  <input type="text" id="Schedulelink"> 
+  <input type="text" name="scheduleLink"  id="Schedulelink"> 
 </input>
 </div>
 </div>
@@ -1019,8 +1235,6 @@ get_footer();
 ?>
 
 </div>
-
-
 
 
 
