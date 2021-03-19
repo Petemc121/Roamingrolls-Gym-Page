@@ -880,7 +880,11 @@ Map
       <div class="adults">
         <div class="adultcontain">
         <h6 class="titleinputs Options">1 Class</h6>
-    <input class="priceIn" type="text" name="classPrice" placeholder="Price ($)">
+    <input class="priceIn" type="text" name="classPrice" placeholder="Price ($)"><?php
+     $classPriceOut = get_post_meta($id,'classPrice',true);
+    echo "$".$classPriceOut;
+    ?>
+    </input>
     <div class="priceOut">
     <?php
      $classPriceOut = get_post_meta($id,'classPrice',true);
@@ -893,6 +897,11 @@ Map
 </div>
 </div>
 <input class="PriceDesIn" name="classDes"  placeholder="Include a short description" contenteditable>
+<?php
+     $classDesOut = get_post_meta($id,'classDes',true);
+    echo $classDesOut;
+    ?>
+ </input>
   <div class="priceDesOut">
 
 <?php
@@ -905,7 +914,12 @@ Map
 <div class="input-group-prepend">
     <div id="day" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Day</h6>
     
-    <input class="priceIn"  name="dayPrice"  type="text" placeholder="Price ($)">
+    <input class="priceIn"  name="dayPrice"  type="text" placeholder="Price ($)"> 
+    <?php
+     $dayPriceOut = get_post_meta($id,'dayPrice',true);
+    echo "$".$dayPriceOut;
+    ?>
+    </input>
 
     <div class="priceOut">
 
@@ -916,7 +930,11 @@ Map
     </div>
   
 </div></div><input class="PriceDesIn" name="dayDes" placeholder="Include a short description" contenteditable>
-  <div class="priceDesOut">
+  <div class="priceDesOut"><?php
+     $dayDesOut = get_post_meta($id,'dayDes',true);
+    echo $dayDesOut;
+    ?>
+    </input>
 
 <?php
      $dayDesOut = get_post_meta($id,'dayDes',true);
@@ -928,14 +946,22 @@ Map
 </div>
 <div class="input-group-prepend">
     <div id="week" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Week</h6>
-    <input class="priceIn"  name="weekPrice"  type="text" placeholder="Price ($)">
+    <input class="priceIn"  name="weekPrice"  type="text" placeholder="Price ($)"><?php
+     $weekPriceOut = get_post_meta($id,'weekPrice',true);
+    echo "$".$weekPriceOut;
+    ?></input>
     <div class="priceOut">
   <?php
      $weekPriceOut = get_post_meta($id,'weekPrice',true);
     echo "$".$weekPriceOut;
     ?>
     </div>
-  </div></div><input class="PriceDesIn" name="weekDes" placeholder="Include a short description" contenteditable>
+  </div></div>
+  <input class="PriceDesIn" name="weekDes" placeholder="Include a short description" contenteditable> <?php
+     $weekDesOut = get_post_meta($id,'weekDes',true);
+    echo $weekDesOut;
+    ?>
+  </input>
   <div class="priceDesOut">
   <?php
      $weekDesOut = get_post_meta($id,'weekDes',true);
@@ -1018,7 +1044,12 @@ if ($weekPriceOut != "") {
 <div class="center">
 <div id="plink">
   <span>Full pricing page: </span> 
-  <input id="priceLink" name="priceLink"></input>
+  <input id="priceLink" name="priceLink">
+   <?php
+$priceLink = get_post_meta($id,'priceLink',true);
+    echo $priceLink;
+   ?>
+</input>
   
  <div id="priceLinkOut">  
   <?php
