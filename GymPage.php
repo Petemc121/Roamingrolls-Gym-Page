@@ -89,7 +89,6 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
           if(is_numeric($classPrice)) {
                 update_post_meta($post_id, 'classPrice', $classPrice);
-                  echo "<script>alert('successp1!')</script>";
 
           } else {
                   echo "<style>#priceAlert{display:block !important;}</style>";
@@ -108,7 +107,6 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
           if(is_numeric($dayPrice)) {
                 update_post_meta($post_id, 'dayPrice', $dayPrice);
-                  echo "<script>alert('successp2!')</script>";
 
           } else {
 
@@ -127,7 +125,6 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
           if(is_numeric($weekPrice)) {
                 update_post_meta($post_id, 'weekPrice', $weekPrice);
-                  echo "<script>alert('successp3!')</script>";
 
           } else {
                   echo "<style>#priceAlert{display:block !important;}</style>";
@@ -140,20 +137,17 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
         if($_POST['classDes'] != "") {
           addMeta($_POST['classDes'], 'classDes', $classDes );
-                  echo "<script>alert('successd1!')</script>";
 
         }
 
           if($_POST['dayDes'] != "") {
           addMeta($_POST['dayDes'], 'dayDes', $dayDes );
-                  echo "<script>alert('successd2!')</script>";
 
           
         }
 
           if($_POST['weekDes'] != "") {
           addMeta($_POST['weekDes'], 'weekDes', $weekDes );
-                  echo "<script>alert('successd3!')</script>";
 
         }
 
@@ -861,6 +855,12 @@ Map
 </div>
 </div>
 
+<div id="priceRules">
+Add visitor prices - 
+  (1 class, 1 day, 1 week)
+(Boxes without prices wont be displayed, type "FREE" in the price section if you don't charge for that time period)</div>
+
+
 <button class="plusPic" id="editPricing"><i class="fas fa-edit"></i></button>
 
 <form method="post">
@@ -880,11 +880,11 @@ Map
       <div class="adults">
         <div class="adultcontain">
         <h6 class="titleinputs Options">1 Class</h6>
-    <input class="priceIn" type="text" name="classPrice" placeholder="Price ($)"><?php
+    <input class="priceIn" type="text" name="classPrice" placeholder="Price ($)" value="<?php
      $classPriceOut = get_post_meta($id,'classPrice',true);
-    echo "$".$classPriceOut;
+    echo $classPriceOut;
     ?>
-    </input>
+   ">
     <div class="priceOut">
     <?php
      $classPriceOut = get_post_meta($id,'classPrice',true);
@@ -896,12 +896,10 @@ Map
 <div>
 </div>
 </div>
-<input class="PriceDesIn" name="classDes"  placeholder="Include a short description" contenteditable>
-<?php
+<input class="PriceDesIn" name="classDes"  placeholder="Include a short description" value="<?php
      $classDesOut = get_post_meta($id,'classDes',true);
     echo $classDesOut;
-    ?>
- </input>
+    ?>">
   <div class="priceDesOut">
 
 <?php
@@ -914,12 +912,10 @@ Map
 <div class="input-group-prepend">
     <div id="day" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Day</h6>
     
-    <input class="priceIn"  name="dayPrice"  type="text" placeholder="Price ($)"> 
-    <?php
+    <input class="priceIn"  name="dayPrice"  type="text" placeholder="Price ($)" value="<?php
      $dayPriceOut = get_post_meta($id,'dayPrice',true);
-    echo "$".$dayPriceOut;
-    ?>
-    </input>
+    echo $dayPriceOut;
+    ?>"> 
 
     <div class="priceOut">
 
@@ -929,12 +925,11 @@ Map
     ?>
     </div>
   
-</div></div><input class="PriceDesIn" name="dayDes" placeholder="Include a short description" contenteditable>
-  <div class="priceDesOut"><?php
+</div></div><input class="PriceDesIn" name="dayDes" placeholder="Include a short description" value="<?php
      $dayDesOut = get_post_meta($id,'dayDes',true);
     echo $dayDesOut;
-    ?>
-    </input>
+    ?>">
+  <div class="priceDesOut">
 
 <?php
      $dayDesOut = get_post_meta($id,'dayDes',true);
@@ -946,10 +941,11 @@ Map
 </div>
 <div class="input-group-prepend">
     <div id="week" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Week</h6>
-    <input class="priceIn"  name="weekPrice"  type="text" placeholder="Price ($)"><?php
+    <input class="priceIn"  name="weekPrice"  type="text" placeholder="Price ($)" value="<?php
      $weekPriceOut = get_post_meta($id,'weekPrice',true);
-    echo "$".$weekPriceOut;
-    ?></input>
+    echo $weekPriceOut;
+    ?>">
+  
     <div class="priceOut">
   <?php
      $weekPriceOut = get_post_meta($id,'weekPrice',true);
@@ -957,11 +953,12 @@ Map
     ?>
     </div>
   </div></div>
-  <input class="PriceDesIn" name="weekDes" placeholder="Include a short description" contenteditable> <?php
+  <input class="PriceDesIn" name="weekDes" placeholder="Include a short description" value="
+  <?php
      $weekDesOut = get_post_meta($id,'weekDes',true);
     echo $weekDesOut;
     ?>
-  </input>
+    ">
   <div class="priceDesOut">
   <?php
      $weekDesOut = get_post_meta($id,'weekDes',true);
@@ -998,11 +995,6 @@ if ($weekPriceOut != "") {
 }
 
 ?>
-
-<div id="priceRules">
-  <p>Add visitor prices</p>
-  <p>(1 class, 1 day, 1 week)</p>
-<p>(Boxes without prices wont be displayed, type "FREE" in the price section if you don't charge for that time period)</p></div>
 
 
 
@@ -1043,20 +1035,16 @@ if ($weekPriceOut != "") {
 
 <div class="center">
 <div id="plink">
-  <span>Full pricing page: </span> 
-  <input id="priceLink" name="priceLink">
-   <?php
+
+  <button id="priceLinkOut" class="gymSubs" ><a href="<?php
 $priceLink = get_post_meta($id,'priceLink',true);
     echo $priceLink;
-   ?>
-</input>
-  
- <div id="priceLinkOut">  
-  <?php
+   ?>">Full pricing page</a></button> 
+  <input id="priceLink" name="priceLink" value="<?php
 $priceLink = get_post_meta($id,'priceLink',true);
     echo $priceLink;
-?>
- </div>
+   ?>">
+
 </div>
 </div>
 
@@ -1076,6 +1064,14 @@ $priceLink = get_post_meta($id,'priceLink',true);
 </div>
 </div>
 
+  <button class="plusPic" id="editschedule"><i class="fas fa-edit"></i></button>
+
+<form method="post">
+
+<?php wp_nonce_field( 'schedule_update', 'dsssssssachadhkbhjl' ); ?>
+
+
+
 <!-- <div id="schedule-container">
 <div id="schedulein">
 <h3>Weekly Schedule</h3>
@@ -1088,24 +1084,35 @@ $priceLink = get_post_meta($id,'priceLink',true);
 </div>
 </div> -->
 
-<div> 
-  <img>
-</div>
+
 
       <div class="center">
-  <h6 id="scheduleP">Add a link to your schedule page below</h6>
+  <h6 class="scheduleEdit" id="scheduleP">Add a link to your schedule page below</h6>
     </div>
+
+  
 
 <div class="center">
 <div id="slink">
-  <input type="text" name="scheduleLink"  id="Schedulelink"> 
+  <input class="scheduleEdit" type="text" name="scheduleLink"  id="Schedulelink"> 
 </input>
 </div>
 </div>
 
+  <button id="scheduleLinkOut" class="scheduleOutput gymSubs" ><a href="<?php
+$priceLink = get_post_meta($id,'priceLink',true);
+    echo $priceLink;
+   ?>">Full pricing page</a>
+  </button> 
+
 <div class="center">
-  <button id="update2">Update</button>
+   <button type="submit" class="gymSubs scheduleEdit" id="scheduleSub">Submit</button>
+
+  </form>
+
+ <button class="cancels scheduleEdit" type="button" id="scheduleCan">Cancel</button>
 </div>
+
 
 
 <div id="fac">
