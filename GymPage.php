@@ -1099,11 +1099,15 @@ $priceLink = get_post_meta($id,'priceLink',true);
 </div>
 </div>
 
-  <button id="scheduleLinkOut" class="scheduleOutput gymSubs" ><a href="<?php
-$priceLink = get_post_meta($id,'priceLink',true);
+<div class="center">
+  <button id="scheduleLinkOut" class="scheduleOutput gymSubs" >
+  <a href="<?php
+    $priceLink = get_post_meta($id,'priceLink',true);
     echo $priceLink;
-   ?>">Full pricing page</a>
+    ?>">Full pricing page
+   </a>
   </button> 
+</div>
 
 <div class="center">
    <button type="submit" class="gymSubs scheduleEdit" id="scheduleSub">Submit</button>
