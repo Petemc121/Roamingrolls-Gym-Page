@@ -68,7 +68,7 @@ function addMeta($formPost, $metaKey, &$postVar) {
 }
 
 function is_valid_domain_name($domain_name){
-  if (preg_match("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$", $domain_name)){ 
+  if (preg_match("#^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$#", $domain_name)){ 
     return true;
 } else {
   return false;
@@ -162,7 +162,7 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
         } else {
                   echo "<script>alert('Please enter a valid URL')</script>";
-                  echo "<script>alert('".$_POST['priceLink']."')</script>";
+                  
         }
 
       }
@@ -184,7 +184,7 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
         } else {
                   echo "<script>alert('Please enter a valid URL')</script>";
-                  echo "<script>alert('".$_POST['scheduleLink']."')</script>";
+                
         }
 
       }
@@ -1156,6 +1156,8 @@ $priceLink = get_post_meta($id,'priceLink',true);
 </div>
 </div>
 </div>
+
+  <button class="plusPic" id="editChecks"><i class="fas fa-edit"></i></button>
 
 
 <div id="checkB" class="right">
