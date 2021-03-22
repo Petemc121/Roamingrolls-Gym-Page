@@ -67,11 +67,12 @@ function addMeta($formPost, $metaKey, &$postVar) {
 
 }
 
-function is_valid_domain_name($domain_name)
-{
-    return (preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $domain_name) //valid chars check
-            && preg_match("/^.{1,253}$/", $domain_name) //overall length check
-            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $domain_name)   ); //length of each label
+function is_valid_domain_name($domain_name){
+  if (preg_match("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$", $domain_name)){ 
+    return true;
+} else {
+  return false;
+}
 }
 
 
@@ -168,6 +169,31 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 }
 }
 }
+
+
+ if (isset($_POST['dsssssssachadhkbhjl'])) {
+  if(wp_verify_nonce($_POST['dsssssssachadhkbhjl'], 'schedule_update' )) {
+     
+    if($_POST['scheduleLink'] != "") {
+
+          
+           if(is_valid_domain_name($_POST['scheduleLink']) === true) {
+
+          addMeta($_POST['scheduleLink'], 'scheduleLink', $scheduleLink );
+                  echo "<script>alert('successsch3!')</script>";
+
+        } else {
+                  echo "<script>alert('Please enter a valid URL')</script>";
+                  echo "<script>alert('".$_POST['scheduleLink']."')</script>";
+        }
+
+      }
+  }
+
+ }
+
+
+
 
 
 if (isset($_POST['njvkdsnvklsvlnvdf'])) {
@@ -1064,7 +1090,7 @@ $priceLink = get_post_meta($id,'priceLink',true);
 </div>
 </div>
 
-  <button class="plusPic" id="editschedule"><i class="fas fa-edit"></i></button>
+  <button class="plusPic" id="editSchedule"><i class="fas fa-edit"></i></button>
 
 <form method="post">
 
@@ -1087,14 +1113,17 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
 
       <div class="center">
-  <h6 class="scheduleEdit" id="scheduleP">Add a link to your schedule page below</h6>
+  <h6 class="scheduleIn" id="scheduleP">Add a link to your schedule page below</h6>
     </div>
 
   
 
 <div class="center">
 <div id="slink">
-  <input class="scheduleEdit" type="text" name="scheduleLink"  id="Schedulelink"> 
+  <input class="scheduleIn" value="<?php
+    $scheduleLink = get_post_meta($id,'scheduleLink',true);
+    echo $scheduleLink;
+    ?>" type="text" name="scheduleLink"  id="scheduleLinkIn"> 
 </input>
 </div>
 </div>
@@ -1102,19 +1131,19 @@ $priceLink = get_post_meta($id,'priceLink',true);
 <div class="center">
   <button id="scheduleLinkOut" class="scheduleOutput gymSubs" >
   <a href="<?php
-    $priceLink = get_post_meta($id,'priceLink',true);
-    echo $priceLink;
-    ?>">Full pricing page
+    $scheduleLink = get_post_meta($id,'scheduleLink',true);
+    echo $scheduleLink;
+    ?>">Full Schedule page
    </a>
   </button> 
 </div>
 
 <div class="center">
-   <button type="submit" class="gymSubs scheduleEdit" id="scheduleSub">Submit</button>
+   <button type="submit" class="gymSubs scheduleIn" id="scheduleSub">Submit</button>
 
   </form>
 
- <button class="cancels scheduleEdit" type="button" id="scheduleCan">Cancel</button>
+ <button class="cancels scheduleIn" type="button" id="scheduleCan">Cancel</button>
 </div>
 
 
