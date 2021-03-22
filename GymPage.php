@@ -1173,11 +1173,25 @@ $priceLink = get_post_meta($id,'priceLink',true);
 </div>
 </div>
 
+<div class="spaceEven">
+ 
+  <img style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">
+  <i class="fas fa-shower fa-2x"></i>
+  <i class="fas fa-dumbbell fa-2x"></i>
+  <i class="fas fa-tint fa-2x"></i>
+  <img style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">
+  <i class="fas fa-pizza-slice fa-2x"></i>
+  <i class="fas fa-wifi fa-2x"></i>
+
+
+</div>
+
 <div class="center">
 <textarea id="other">
 
 </textarea>
 </div>
+
 
 
 
@@ -1308,6 +1322,7 @@ get_footer();
 ?>
 
 </div>
+
 
 
 
