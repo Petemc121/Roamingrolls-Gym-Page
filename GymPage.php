@@ -193,6 +193,16 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
  }
 
 
+if (isset($_POST["dwcbehwjkrewwbhjds"])) {
+  if(wp_verify_nonce($_POST['dwcbehwjkrewwbhjds'], 'icon_update' )) {
+     
+    if (isset($_POST['locker']) && $_POST['locker'] == 'yes')
+    {
+
+    }
+}
+
+
 
 
 
@@ -1159,31 +1169,74 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
   <button class="plusPic" id="editChecks"><i class="fas fa-edit"></i></button>
 
+  <form method="post">
+
+<?php wp_nonce_field( 'icon_update', 'dwcbehwjkrewwbhjds' ); ?>
+
 
 <div id="checkB" class="right">
 <div  class="checkbox-grid">
-  <div><input type="checkbox" name="text1" value="value1" /><label for="text1">Locker Room</label></div>
-  <div><input type="checkbox" name="text2" value="value2" /><label for="text2">Showers</label></div>
-  <div><input type="checkbox" name="text3" value="value3" /><label for="text3">Weight room</label></div>
-  <div><input type="checkbox" name="text4" value="value4" /><label for="text4">Water dispenser</label></div>
-  <div><input type="checkbox" name="text5" value="value5" /><label for="text5">Gi rental</label></div>
-  <div><input type="checkbox" name="text6" value="value6" /><label for="text6">Food and drinks</label></div>
-  <div><input type="checkbox" name="text7" value="value7" /><label for="text7">Free Wifi</label></div>
-  <div><input id="otherCheck" type="checkbox" name="text8" value="value8" /><label for="text8">Other (specify)</label></div>
+  <div>
+    <input name="locker" type="hidden" name="text1" value="yes" />
+    <input name="locker" type="checkbox" name="text1" value="yes" /><label for="text1">Locker Room</label>
+  </div>
+  <div>
+    <input name="shower" type="hidden" name="text1" value="yes" />
+    <input name="shower" type="checkbox" name="text2" value="yes" /><label for="text2">Showers</label>
+  </div>
+  <div>
+    <input name="weight" type="hidden" name="text1" value="yes" />
+    <input name="weight" type="checkbox" name="text3" value="yes" /><label for="text3">Weight room</label>
+  </div>
+  <div>
+    <input name="water" type="hidden" name="text1" value="yes" />
+    <input name="water" type="checkbox" name="text4" value="yes" /><label for="text4">Water dispenser</label>
+</div>
+  <div>
+    <input name="giRent" type="hidden" name="text1" value="yes" />
+    <input name="giRent" type="checkbox" name="text5" value="yes" /><label for="text5">Gi rental</label>
+  </div>
+  <div>
+    <input name="food" type="hidden" name="text1" value="yes" />
+    <input name="food" type="checkbox" name="text6" value="yes" /><label for="text6">Food and drinks</label>
+  </div>
+  <div>
+    <input name="wifi" type="hidden" name="text1" value="yes" />
+    <input name="wifi" type="checkbox" name="text7" value="yes" /><label for="text7">Free Wifi</label>
+  </div>
+  <div>
+    <input name="other" id="otherCheck" type="checkbox" name="text8" value="yes" /><label for="text8">Other (specify)</label>
+  </div>
 </div>
 </div>
 
+<div class="center">
+  <button type="submit" class="gymSubs checksIn" id="checksSub">
+      Submit
+  </button>
+
+</form>
+
+  <button class="cancels checksIn" type="button" id="checksCan">
+    Cancel
+  </button>
+
+</div>
+
+
+<div class="center">
 <div class="spaceEven">
  
-  <img style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">
-  <i class="fas fa-shower fa-2x"></i>
-  <i class="fas fa-dumbbell fa-2x"></i>
-  <i class="fas fa-tint fa-2x"></i>
-  <img style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">
-  <i class="fas fa-pizza-slice fa-2x"></i>
-  <i class="fas fa-wifi fa-2x"></i>
+  <imgw class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">
+  <i class="fas icons fa-shower fa-2x"></i>
+  <i class="fas icons fa-dumbbell fa-2x"></i>
+  <i class="fas icons fa-tint fa-2x"></i>
+  <img class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">
+  <i class="fas icons fa-pizza-slice fa-2x"></i>
+  <i class="fas icons fa-wifi fa-2x"></i>
 
 
+</div>
 </div>
 
 <div class="center">
