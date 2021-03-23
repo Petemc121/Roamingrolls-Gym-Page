@@ -195,10 +195,28 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
 if (isset($_POST["dwcbehwjkrewwbhjds"])) {
   if(wp_verify_nonce($_POST['dwcbehwjkrewwbhjds'], 'icon_update' )) {
-     
-    if (isset($_POST['locker']) && $_POST['locker'] == 'yes')
-    {
 
+    $checkboxes = 
+array(
+   'locker',
+   'shower',
+   'weight',
+   'water',
+   'giRent',
+   'food',
+   'wifi'
+);
+
+     foreach( $checkboxes as $name)
+    {
+        if( isset( $_POST[$name] ) && $_POST[$name] == 1)
+        {
+            echo $checkbox[ 'label' ] . ' is checked, so we use value: ' . $checkbox[ 'checked' ] . '<br>';
+        }
+        else
+        {
+            echo $checkbox[ 'label' ] . ' is not checked, so we use value: ' . $checkbox[ 'unchecked' ] . '<br>';
+        }
     }
 }
 
@@ -1177,35 +1195,36 @@ $priceLink = get_post_meta($id,'priceLink',true);
 <div id="checkB" class="right">
 <div  class="checkbox-grid">
   <div>
-    <input name="locker" type="hidden" name="text1" value="yes" />
-    <input name="locker" type="checkbox" name="text1" value="yes" /><label for="text1">Locker Room</label>
+    <input name="locker" type="hidden" name="text1" value="0" />
+    <input name="locker" type="checkbox" name="text1" value="1" /><label for="text1">Locker Room</label>
   </div>
   <div>
-    <input name="shower" type="hidden" name="text1" value="yes" />
-    <input name="shower" type="checkbox" name="text2" value="yes" /><label for="text2">Showers</label>
+    <input name="shower" type="hidden" name="text1" value="0" />
+    <input name="shower" type="checkbox" name="text2" value="1" /><label for="text2">Showers</label>
   </div>
   <div>
-    <input name="weight" type="hidden" name="text1" value="yes" />
-    <input name="weight" type="checkbox" name="text3" value="yes" /><label for="text3">Weight room</label>
+    <input name="weight" type="hidden" name="text1" value="0" />
+    <input name="weight" type="checkbox" name="text3" value="1" /><label for="text3">Weight room</label>
   </div>
   <div>
-    <input name="water" type="hidden" name="text1" value="yes" />
-    <input name="water" type="checkbox" name="text4" value="yes" /><label for="text4">Water dispenser</label>
+    <input name="water" type="hidden" name="text1" value="0" />
+    <input name="water" type="checkbox" name="text4" value="1" /><label for="text4">Water dispenser</label>
 </div>
   <div>
-    <input name="giRent" type="hidden" name="text1" value="yes" />
-    <input name="giRent" type="checkbox" name="text5" value="yes" /><label for="text5">Gi rental</label>
+    <input name="giRent" type="hidden" name="text1" value="0" />
+    <input name="giRent" type="checkbox" name="text5" value="1" /><label for="text5">Gi rental</label>
   </div>
   <div>
-    <input name="food" type="hidden" name="text1" value="yes" />
-    <input name="food" type="checkbox" name="text6" value="yes" /><label for="text6">Food and drinks</label>
+    <input name="food" type="hidden" name="text1" value="0" />
+    <input name="food" type="checkbox" name="text6" value="1" /><label for="text6">Food and drinks</label>
   </div>
   <div>
-    <input name="wifi" type="hidden" name="text1" value="yes" />
-    <input name="wifi" type="checkbox" name="text7" value="yes" /><label for="text7">Free Wifi</label>
+    <input name="wifi" type="hidden" name="text1" value="0" />
+    <input name="wifi" type="checkbox" name="text7" value="1" /><label for="text7">Free Wifi</label>
   </div>
   <div>
-    <input name="other" id="otherCheck" type="checkbox" name="text8" value="yes" /><label for="text8">Other (specify)</label>
+    <input name="other" type="hidden" name="text1" value="0" />
+    <input name="other" id="otherCheck" type="checkbox" value="1" /><label for="text8">Other (specify)</label>
   </div>
 </div>
 </div>
