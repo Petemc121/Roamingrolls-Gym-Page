@@ -211,13 +211,15 @@ array(
     {
         if( isset( $_POST[$name] ) && $_POST[$name] == 1)
         {
-            echo $checkbox[ 'label' ] . ' is checked, so we use value: ' . $checkbox[ 'checked' ] . '<br>';
+           update_post_meta($post_id, $name, "true" );
         }
         else
         {
-            echo $checkbox[ 'label' ] . ' is not checked, so we use value: ' . $checkbox[ 'unchecked' ] . '<br>';
+           update_post_meta($post_id, $name, "false" );
+            
         }
     }
+}
 }
 
 
@@ -1195,36 +1197,36 @@ $priceLink = get_post_meta($id,'priceLink',true);
 <div id="checkB" class="right">
 <div  class="checkbox-grid">
   <div>
-    <input name="locker" type="hidden" name="text1" value="0" />
-    <input name="locker" type="checkbox" name="text1" value="1" /><label for="text1">Locker Room</label>
+    <input class="facilityCheck" name="locker" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="locker" type="checkbox" value="1" /><label for="text1">Locker Room</label>
   </div>
   <div>
-    <input name="shower" type="hidden" name="text1" value="0" />
-    <input name="shower" type="checkbox" name="text2" value="1" /><label for="text2">Showers</label>
+    <input class="facilityCheck" name="shower" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="shower" type="checkbox" value="1" /><label for="text2">Showers</label>
   </div>
   <div>
-    <input name="weight" type="hidden" name="text1" value="0" />
-    <input name="weight" type="checkbox" name="text3" value="1" /><label for="text3">Weight room</label>
+    <input class="facilityCheck" name="weight" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="weight" type="checkbox" value="1" /><label for="text3">Weight room</label>
   </div>
   <div>
-    <input name="water" type="hidden" name="text1" value="0" />
-    <input name="water" type="checkbox" name="text4" value="1" /><label for="text4">Water dispenser</label>
+    <input class="facilityCheck" name="water" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="water" type="checkbox"  value="1" /><label for="text4">Water dispenser</label>
 </div>
   <div>
-    <input name="giRent" type="hidden" name="text1" value="0" />
-    <input name="giRent" type="checkbox" name="text5" value="1" /><label for="text5">Gi rental</label>
+    <input class="facilityCheck" name="giRent" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="giRent" type="checkbox" value="1" /><label for="text5">Gi rental</label>
   </div>
   <div>
-    <input name="food" type="hidden" name="text1" value="0" />
-    <input name="food" type="checkbox" name="text6" value="1" /><label for="text6">Food and drinks</label>
+    <input class="facilityCheck" name="food" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="food" type="checkbox" value="1" /><label for="text6">Food and drinks</label>
   </div>
   <div>
-    <input name="wifi" type="hidden" name="text1" value="0" />
-    <input name="wifi" type="checkbox" name="text7" value="1" /><label for="text7">Free Wifi</label>
+    <input class="facilityCheck" name="wifi" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="wifi" type="checkbox" value="1" /><label for="text7">Free Wifi</label>
   </div>
   <div>
-    <input name="other" type="hidden" name="text1" value="0" />
-    <input name="other" id="otherCheck" type="checkbox" value="1" /><label for="text8">Other (specify)</label>
+    <input class="facilityCheck" name="other" type="hidden" value="0" checked/>
+    <input class="facilityCheck" name="other" id="otherCheck" type="checkbox" value="1" /><label for="text8">Other (specify)</label>
   </div>
 </div>
 </div>
@@ -1246,13 +1248,50 @@ $priceLink = get_post_meta($id,'priceLink',true);
 <div class="center">
 <div class="spaceEven">
  
-  <imgw class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">
-  <i class="fas icons fa-shower fa-2x"></i>
-  <i class="fas icons fa-dumbbell fa-2x"></i>
-  <i class="fas icons fa-tint fa-2x"></i>
-  <img class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">
-  <i class="fas icons fa-pizza-slice fa-2x"></i>
-  <i class="fas icons fa-wifi fa-2x"></i>
+
+  <?php
+  
+  $locker = get_post_meta($post_id, 'locker', true);
+  $shower = get_post_meta($post_id, 'shower', true);
+  $weight = get_post_meta($post_id, 'weight', true);
+  $water = get_post_meta($post_id, 'water', true);
+  $giRent = get_post_meta($post_id, 'giRent', true);
+  $food = get_post_meta($post_id, 'food', true);
+  $wifi = get_post_meta($post_id, 'wifi', true);
+
+  if ($locker === "true") {
+    echo '<img title="Lockers" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">';
+  }
+
+  
+  if ($shower === "true") {
+    echo '<i title="Shower" class="fas icons fa-shower fa-2x"></i>';
+  }
+
+  
+  if ($weight === "true") {
+    echo '<i title="Water dispenser" class="fas icons fa-dumbbell fa-2x"></i>';
+  }
+
+  
+  if ($water === "true") {
+    echo '<i title="Water dispenser" class="fas icons fa-tint fa-2x"></i>';
+  }
+
+  
+  if ($giRent === "true") {
+    echo '<img title="Gi rental" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">';
+  }
+  
+  if ($food === "true") {
+    echo '<i title="Snack Bar" class="fas icons fa-pizza-slice fa-2x"></i>';
+  }
+  
+  if ($wifi === "true") {
+    echo '<i title="Free Wifi" class="fas icons fa-wifi fa-2x"></i>';
+  }
+  
+  ?>
 
 
 </div>
