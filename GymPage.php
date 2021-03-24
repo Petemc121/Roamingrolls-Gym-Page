@@ -219,6 +219,15 @@ array(
             
         }
     }
+
+    if(isset($_POST['otherText'])) {
+      if ($_POST['otherText'] !== "") {
+
+       $otherText = $_POST['otherText'];
+
+        update_post_meta( $post_id, 'otherText', $otherText );
+      }
+    } 
 }
 }
 
@@ -1198,37 +1207,52 @@ $priceLink = get_post_meta($id,'priceLink',true);
 <div  class="checkbox-grid">
   <div>
     <input class="facilityCheck" name="locker" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="locker" type="checkbox" value="1" /><label for="text1">Locker Room</label>
+    <input class="facilityCheck" name="locker" type="checkbox" value="1" /><label class="facilityCheck" for="text1">Locker Room</label>
   </div>
   <div>
     <input class="facilityCheck" name="shower" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="shower" type="checkbox" value="1" /><label for="text2">Showers</label>
+    <input class="facilityCheck" name="shower" type="checkbox" value="1" /><label class="facilityCheck" for="text2">Showers</label>
   </div>
   <div>
     <input class="facilityCheck" name="weight" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="weight" type="checkbox" value="1" /><label for="text3">Weight room</label>
+    <input class="facilityCheck" name="weight" type="checkbox" value="1" /><label class="facilityCheck" for="text3">Weight room</label>
   </div>
   <div>
     <input class="facilityCheck" name="water" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="water" type="checkbox"  value="1" /><label for="text4">Water dispenser</label>
+    <input class="facilityCheck" name="water" type="checkbox"  value="1" /><label class="facilityCheck" for="text4">Water dispenser</label>
 </div>
   <div>
     <input class="facilityCheck" name="giRent" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="giRent" type="checkbox" value="1" /><label for="text5">Gi rental</label>
+    <input class="facilityCheck" name="giRent" type="checkbox" value="1" /><label class="facilityCheck" for="text5">Gi rental</label>
   </div>
   <div>
     <input class="facilityCheck" name="food" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="food" type="checkbox" value="1" /><label for="text6">Food and drinks</label>
+    <input class="facilityCheck" name="food" type="checkbox" value="1" /><label class="facilityCheck" for="text6">Food and drinks</label>
   </div>
   <div>
     <input class="facilityCheck" name="wifi" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="wifi" type="checkbox" value="1" /><label for="text7">Free Wifi</label>
+    <input class="facilityCheck" name="wifi" type="checkbox" value="1" /><label class="facilityCheck" for="text7">Free Wifi</label>
   </div>
   <div>
-    <input class="facilityCheck" name="other" type="hidden" value="0" checked/>
-    <input class="facilityCheck" name="other" id="otherCheck" type="checkbox" value="1" /><label for="text8">Other (specify)</label>
+    <input class="facilityCheck" type="hidden" value="0" checked/>
+    <input class="facilityCheck"  id="otherCheck" type="checkbox" value="1" /><label class="facilityCheck" for="text8">Other (specify)</label>
   </div>
 </div>
+</div>
+
+<div class="center">
+<textarea name="otherText" id="other">
+
+<?php 
+
+  $otherOut = get_post_meta($post_id, 'otherText', true);
+
+    echo $otherOut;
+  
+
+?>
+
+</textarea>
 </div>
 
 <div class="center">
@@ -1243,6 +1267,7 @@ $priceLink = get_post_meta($id,'priceLink',true);
   </button>
 
 </div>
+
 
 
 <div class="center">
@@ -1270,7 +1295,7 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
   
   if ($weight === "true") {
-    echo '<i title="Water dispenser" class="fas icons fa-dumbbell fa-2x"></i>';
+    echo '<i title="Gym" class="fas icons fa-dumbbell fa-2x"></i>';
   }
 
   
@@ -1293,14 +1318,19 @@ $priceLink = get_post_meta($id,'priceLink',true);
   
   ?>
 
-
 </div>
 </div>
 
 <div class="center">
-<textarea id="other">
+<div id="otherOut">
+  <?php
+  
+    $otherOut = get_post_meta($post_id, 'otherText', true);
 
-</textarea>
+    echo $otherOut;
+  
+  ?>
+</div>
 </div>
 
 
