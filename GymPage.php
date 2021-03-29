@@ -130,6 +130,8 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
           } else {
                   echo "<style>#priceAlert{display:block !important;}</style>";
 
+          } else {
+            delete_post_meta($post_id,'weekPrice');
           }
 
           }
@@ -548,7 +550,6 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
 }
 }
 
-
 ?>
 <style type="text/css">
 
@@ -601,8 +602,8 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
   <div class="flex-container">
 
   <div class="flex-item1">
-  <h1 class="disappear" id="gymTitle"><?php the_title()?></h1>
-  <div class="disappear" id="gymLocation">
+  <h1 id="gymTitle"><?php the_title()?></h1>
+  <div id="gymLocation">
   <i class="fas fa-map-marker-alt"></i> 
   <h6 id="street"><?php 
   $address = get_post_meta($post_id,'address_1',true);
@@ -636,23 +637,23 @@ if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
 </div>
 </div>
 
-<div class="disappear" id="picPlusCon">
-<div class="disappear" id="picSlidePlus">
-<button  type="button" onclick="$('#_imagesInput').click()" id="uploadImages" class="disappear plusPic"><i class="fas fa-edit"></i></button>
+<div id="picPlusCon">
+<div id="picSlidePlus">
+<button  type="button" onclick="$('#_imagesInput').click()" id="uploadImages" class="plusPic"><i class="fas fa-edit"></i></button>
 </div>
     </div>
 
-<div class=" disappear flex-item2">
+<div class=" flex-item2">
   <h1>Icons</h1>
 </div>
 
 </div>
-<div class="disappear" id="imgRules"><p>Select your photo real </p>
+<div id="imgRules"><p>Select your photo real </p>
         <p>(the first image selected will be displayed at the top of your page)</p></div>
  
 
-<div class="disappear" id="pageSecContain">
-<div class="disappear" id="pageSectionMenu">
+<div id="pageSecContain">
+<div id="pageSectionMenu">
   <div class="menuContainer">
   <a class ="pageSecLinks" href = "#gymDescription">
   <button id="pageTab1" class="pageSecTab">
@@ -685,16 +686,16 @@ Map
 
 
   <div class="center">
-<div  class="disappear menuContainer">
+<div  class="menuContainer">
   <h2 id = "gymDes">Gym Description</h2>
  <button class="plusPic" id="editDes"><i class="fas fa-edit"></i></button>
 </div>
 </div>
 
-<div class="disappear" class="center">
+<div class="center">
 <form method="post">
 <?php wp_nonce_field( 'create_gym_des', 'ncskfnalvkbahlds' ); ?>
-<textarea class="disappear" name="gymDesIn" id="gymDesIn">
+<textarea name="gymDesIn" id="gymDesIn">
   <?php
     $gymDesOut = get_post_meta($id,'gymDes',true);
     echo $gymDesOut;
@@ -702,12 +703,12 @@ Map
     </textarea>
     </div>
 
-    <div class="disappear" id="desAlert" class="alert alert-danger" role="alert">
+    <div id="desAlert" class="alert alert-danger" role="alert">
   Don't leave your gym description empty please.
 </div>
 
     <div class="center">
-<button  class="disappear" type="submit" class="gymSubs" id="gymDesSub">submit</button>
+<button  type="submit" class="gymSubs" id="gymDesSub">submit</button>
 </form>
 <button class="cancels" id="cancel1">cancel</button>
     </div>
@@ -718,7 +719,7 @@ Map
 
 <div class="container">
 <div class="center">
-<div id="descriptionContain" class="disappear menuContainer">
+<div id="descriptionContain" class="menuContainer">
   <div id="gymDesout">
   <?php 
     $gymDesOut = get_post_meta($id,'gymDes',true);
@@ -733,15 +734,15 @@ Map
   
 </div>
 
-<button class="disappear readButtons" id="readMore" onclick="showMore()">Read more</button>
-<button class="disappear readButtons" id="readLess" onclick="showLess()">Read less</button>
+<button class="readButtons" id="readMore" onclick="showMore()">Read more</button>
+<button class="readButtons" id="readLess" onclick="showLess()">Read less</button>
 </div>
   
-    <div class=" disappear bodyPerim">
-<div class="disappear bodyContain">
+    <div class=" bodyPerim">
+<div class="bodyContain">
     
-<div class="disappear" id="BigContain">
-  <div class="disappear"  id ="instructcon">
+<div id="BigContain">
+  <div  id ="instructcon">
 <div class="center">
 <div class="menuContainer">
   <h2>Instructors</h2>
@@ -763,7 +764,7 @@ Map
 
 
 <div class="center">
-<div id="instructorCards" class="disappear center">
+<div id="instructorCards" class="center">
 <form id="instructorForm" enctype="multipart/form-data" method="post">
 <?php wp_nonce_field( 'instructor_upload', 'njvkddsbhjdsbvhsdb' ); ?>
   <?php 
@@ -915,12 +916,12 @@ Map
     </div>
 
 <div class="menuContainer">
-<div class="disappear"  id="visitt">
+<div  id="visitt">
   <h2>Visitor Pricing</h2>
 </div>
 </div>
 
-<div class="disappear"  id="priceRules">
+<div  id="priceRules">
 Add visitor prices - 
   (1 class, 1 day, 1 week)
 (Boxes without prices wont be displayed, type "FREE" in the price section if you don't charge for that time period)</div>
@@ -932,14 +933,14 @@ Add visitor prices -
 
 <?php wp_nonce_field( 'price_update', 'sbhkdvhjsbhkvbhkvb' ); ?>
 
-<div  class="disappear center">
-    <div id="priceAlert" class="disappear alert alert-danger" role="alert">
+<div  class="center">
+    <div id="priceAlert" class="alert alert-danger" role="alert">
   Make sure your price fields are numeric.
 </div>
   </div>
 
-<div  class="disappear form-group" id="prices">
-<div class="disappear" id="PriceCardCon">
+<div  class="form-group" id="prices">
+<div id="PriceCardCon">
   <div class="input-group-prepend">
     <div id="class" class="adultcard " aria-label="With textarea">
       <div class="adults">
@@ -950,7 +951,7 @@ Add visitor prices -
     echo $classPriceOut;
     ?>
    ">
-    <div class="disappear priceOut">
+    <div class=" priceOut">
     <?php
      $classPriceOut = get_post_meta($id,'classPrice',true);
     echo "$".$classPriceOut;
@@ -974,7 +975,7 @@ Add visitor prices -
   </div>
   </div>
 </div>
-<div class="disappear input-group-prepend">
+<div class="input-group-prepend">
     <div id="day" class="adultcard " aria-label="With textarea"><div class="adults"><div class="adultcontain"><h6 class="titleinputs Options">1 Day</h6>
     
     <input class="priceIn"  name="dayPrice"  type="text" placeholder="Price ($)" value="<?php
@@ -1039,23 +1040,23 @@ Add visitor prices -
 <?php
 
 if ($classPriceOut != "") {
-  echo "<style>#class{display:block !important}</style>";
+  echo "<style>#class{display:block}</style>";
 } else {
-  echo "<style>#class{display:none !important}</style>";
+  echo "<style>#class{display:none}</style>";
 
 }
 
 if ($dayPriceOut != "") {
-  echo "<style>#day{display:block !important}</style>";
+  echo "<style>#day{display:block}</style>";
 }else {
-  echo "<style>#class{display:none !important}</style>";
+  echo "<style>#day{display:none}</style>";
 
 }
 
 if ($weekPriceOut != "") {
-  echo "<style>#week{display:block !important}</style>";
+  echo "<style>#week{display:block}</style>";
 }else {
-  echo "<style>#class{display:none !important}</style>";
+  echo "<style>#week{display:none}</style>";
 
 }
 
@@ -1393,7 +1394,7 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
     <input id="_imagesInput" name="SlideImageInput[]" type="file" style="display:none" multiple>
     <button id="savePics" class="plusPic" type="submit">Save</button>
-
+<div class="center">
 <div id="slideshow-container">
 <div onclick="hideslide()" id = "block2" class = "blocker"></div>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -1407,10 +1408,10 @@ $priceLink = get_post_meta($id,'priceLink',true);
       foreach($imgArray as $key => $img) {
         if ($key == 0) {
         $imageSrc = wp_get_attachment_url($imgArray[$key]);
-  echo "<li id='Pslide-".$key."' class='carousel-item active' name = 'Pslide-".$key."'><img class='d-block w-100' src='".$imageSrc."'> </li>";
+  echo "<li id='Pslide-".$key."' class='carousel-item active' name = 'Pslide-".$key."'><img class='slideImg w-100' src='".$imageSrc."'> </li>";
     } else {
       $imageSrc = wp_get_attachment_url($imgArray[$key]);
-      echo "<li id='Pslide-".$key."' class='carousel-item' name = 'Pslide-".$key."'><img class='d-block w-100' src='".$imageSrc."'> </li>";
+      echo "<li id='Pslide-".$key."' class='carousel-item' name = 'Pslide-".$key."'><img class='slideImg w-100' src='".$imageSrc."'> </li>";
     }
   }
  ?>
@@ -1425,24 +1426,30 @@ $priceLink = get_post_meta($id,'priceLink',true);
   </a>
 </div>
 </div>
+</div>
   </form>
     
 
 
-<div id="mapContain">
-<div onclick="hideMap()" id = "block3" class = "blocker"></div>
-<input
-      id="pac-input"
-      class="controls"
-      type="text"
-      placeholder="Search Box"
-    />
-<div id="map">
-    </div>
-    </div>
 
-   
-    
+<div id="embeddedMapContain">
+<div onclick="hideMap()" id = "block3" class = "blocker"></div>
+  <div class="mapcenter">
+<iframe
+id="embeddedMap"
+  width="450"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBljiMHni9ncYIaTHDA7W78ocNtCbCP6EQ&q=place_id:<?php
+
+   $mapID = get_post_meta($post_id, 'mapID', true);
+   echo $mapID;
+
+  ?>" allowfullscreen>
+  </div>
+</iframe>
+    </div> 
+
 
 <br>
 
