@@ -95,7 +95,9 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
                   echo "<style>#priceAlert{display:block !important;}</style>";
 
           }
-        }
+        }else {
+            delete_post_meta($post_id,'classPrice');
+          }
 
         }
 
@@ -114,7 +116,9 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
                   echo "<style>#priceAlert{display:block !important;}</style>";
 
           }
-        }
+        }else {
+            delete_post_meta($post_id,'dayPrice');
+          }
 
         }
 
@@ -130,10 +134,10 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
           } else {
                   echo "<style>#priceAlert{display:block !important;}</style>";
 
-          } else {
-            delete_post_meta($post_id,'weekPrice');
           }
 
+          }else {
+            delete_post_meta($post_id,'weekPrice');
           }
 
         }
@@ -287,25 +291,34 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
             
       
           // Add into MySQL database
-          echo "<script>alert('".$file."')</script>";
             
             $attach_id = insert_attachment($file, $post_id);
-            
+
+        //    $fileLength =  sizeof($files);
+        //  echo "<script>console.log('".$fileLength."')</script>";
+
+        //     echo "<script>alert('not end: ".$id."')</script>";
+
+             if ($id == sizeof($files) - 3 ) {
+              set_post_thumbnail($post_id, $attach_id);
+              echo "<script>alert('".$id."')</script>";
+            } else {
+              echo "<script>alert('not end: ".$id."')</script>";
+            }
+          
 
 
               if($attach_id) {
                 array_push($attachIdArray, $attach_id);
-                  echo "<script>alert('success!')</script>";
               } else {
                   echo "<script>alert('Oh No!')</script>";
-                  
                   
               }
           }
           
       }
       
-
+ 
 
       
 
@@ -313,6 +326,8 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
       echo "<script>alert('Error!')</script>";
       
   }
+
+  
 } 
 
 update_post_meta($post_id, 'slide_img_array', $attachIdArray);
