@@ -626,7 +626,7 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
   <?php
   $taxonomy = wp_get_object_terms($post_id, 'country_state_city');
   $value = ""; 
-  if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
+  if (sizeof($taxonomy) !== 0){
   
       $value = $taxonomy[0]->name; 
       print_r($value);
@@ -635,7 +635,7 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
   , <?php
   $taxonomy = wp_get_object_terms($post_id, 'country_state_city');
   $value = ""; 
-  if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
+  if (sizeof($taxonomy) !== 0) {
   
       $value = $taxonomy[1]->name; 
       print_r($value);
@@ -643,7 +643,7 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
 }?>, <?php
 $taxonomy = wp_get_object_terms($post_id, 'country_state_city');
 $value = ""; 
-if (sizeof($taxonomy) == 0) {echo "<script>alert('failed')</script>";}else {
+if (sizeof($taxonomy) !== 0) {
 
     $value = $taxonomy[2]->name; 
     print_r($value);
