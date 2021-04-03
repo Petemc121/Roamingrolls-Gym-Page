@@ -658,8 +658,40 @@ if (sizeof($taxonomy) !== 0) {
 </div>
     </div>
 
-<div class=" flex-item2">
-  <h1>Icons</h1>
+<div class="center">
+  <?php
+   $locker = get_post_meta($post_id, 'locker', true);
+  $shower = get_post_meta($post_id, 'shower', true);
+  $weight = get_post_meta($post_id, 'weight', true);
+  $water = get_post_meta($post_id, 'water', true);
+  $giRent = get_post_meta($post_id, 'giRent', true);
+  $food = get_post_meta($post_id, 'food', true);
+  $wifi = get_post_meta($post_id, 'wifi', true);
+
+  
+  if ($locker === "true") {
+    echo '<img title="Lockers" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">';
+  }
+
+  
+  if ($shower === "true") {
+    echo '<i title="Shower" class="fas icons fa-shower fa-2x"></i>';
+  }
+
+  
+  if ($weight === "true") {
+    echo '<i title="Gym" class="fas icons fa-dumbbell fa-2x"></i>';
+  }
+
+  
+  if ($water === "true") {
+    echo '<i title="Water dispenser" class="fas icons fa-tint fa-2x"></i>';
+  }
+
+  if ($giRent === "true") {
+    echo '<img title="Gi rental" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">';
+  }
+  ?>
 </div>
 
 </div>
@@ -1292,13 +1324,7 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
   <?php
   
-  $locker = get_post_meta($post_id, 'locker', true);
-  $shower = get_post_meta($post_id, 'shower', true);
-  $weight = get_post_meta($post_id, 'weight', true);
-  $water = get_post_meta($post_id, 'water', true);
-  $giRent = get_post_meta($post_id, 'giRent', true);
-  $food = get_post_meta($post_id, 'food', true);
-  $wifi = get_post_meta($post_id, 'wifi', true);
+ 
 
   if ($locker === "true") {
     echo '<img title="Lockers" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">';
