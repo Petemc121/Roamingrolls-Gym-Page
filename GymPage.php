@@ -229,7 +229,7 @@ array(
     if(isset($_POST['otherText'])) {
       if ($_POST['otherText'] !== "") {
 
-       $otherText = $_POST['otherText'];
+       $otherText = sanatize_text_field($_POST['otherText']);
 
         update_post_meta( $post_id, 'otherText', $otherText );
       }
@@ -242,6 +242,7 @@ array(
 
 
 if (isset($_POST['njvkdsnvklsvlnvdf'])) {
+ if(wp_verify_nonce($_POST['njvkdsnvklsvlnvdf'], 'gym_pic_upload' )) {
 
         
   $uploadsDir = wp_upload_dir();
@@ -334,7 +335,7 @@ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
 
 }
 }
-
+}
 
 
 function uploadInstructFile($file, $meta_key,$fileIn) {
@@ -345,13 +346,11 @@ function uploadInstructFile($file, $meta_key,$fileIn) {
   $filename = $file['name'];
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-  echo "<script>alert('".$filename."')</script>";
-  echo "<script>alert('".$imageFileType."')</script>";
+
 
 
       $check = getimagesize($file["tmp_name"]);
       if($check !== false) {
-        echo "<script>alert('success!')</script>";
         $uploadOk = 1;
       } else {
         echo "<script>alert('invalid file!')</script>";
@@ -361,7 +360,6 @@ function uploadInstructFile($file, $meta_key,$fileIn) {
     
 
     if(in_array($imageFileType, $allowedFileType)) {
-      echo "<script>alert('correct file type!')</script>";
       $uploadOk = 1;
     } else {
       echo "<script>alert('incorrect file type!')</script>";
@@ -381,7 +379,6 @@ function uploadInstructFile($file, $meta_key,$fileIn) {
 
       $attach_id = insert_attachment($fileIn, $post_id);
       update_post_meta($post_id, $meta_key, $attach_id);
-      echo "<script>alert('success!')</script>";
       
     }
   
@@ -445,7 +442,6 @@ addMeta($_POST['instructorDesUp0'], 'instructorDes0', $instructorDesUp1 );
     delete_post_meta($post_id, 'instructorDes0'); 
     delete_post_meta($post_id, 'beltLevel0'); 
 
-    echo "<script>alert('deleted0!')</script>";
 
   }
 }
@@ -467,7 +463,6 @@ addMeta($_POST['instructorDesUp1'], 'instructorDes1', $instructorDesUp2 );
     delete_post_meta($post_id, 'instructorImg1'); 
     delete_post_meta($post_id, 'instructorDes1'); 
     delete_post_meta($post_id, 'beltLevel1'); 
-    echo "<script>alert('deleted1!')</script>";
   }
 }
 
@@ -487,7 +482,6 @@ addMeta($_POST['instructorDesUp2'], 'instructorDes2', $instructorDesUp2 );
     delete_post_meta($post_id, 'instructorDes2'); 
     delete_post_meta($post_id, 'beltLevel2');
 
-    echo "<script>alert('deleted2!')</script>";
   }
 }
 
@@ -508,7 +502,6 @@ addMeta($_POST['instructorDesUp3'], 'instructorDes3', $instructorDesUp4 );
     delete_post_meta($post_id, 'instructorDes3'); 
     delete_post_meta($post_id, 'beltLevel3');
 
-    echo "<script>alert('deleted3!')</script>";
   }
 }
  
@@ -530,7 +523,6 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
     delete_post_meta($post_id, 'instructorDes4'); 
     delete_post_meta($post_id, 'beltLevel4');
 
-    echo "<script>alert('deleted4!')</script>";
   }
 }
 
@@ -1410,20 +1402,6 @@ $priceLink = get_post_meta($id,'priceLink',true);
     </div>
   </div>
 </div>-->
-    
-    
-  
-    <?php 
-  
-  // if (isset($_POST['njvkdsnvklsvlnvdf']) || wp_verify_nonce($_POST['njvkdsnvklsvlnvdf'], 'gym_pic_upload' )) {
-
-
-
-  // }
-
-  
-  
-  ?>   
 
 
 
