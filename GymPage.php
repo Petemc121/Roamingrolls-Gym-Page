@@ -229,7 +229,7 @@ array(
     if(isset($_POST['otherText'])) {
       if ($_POST['otherText'] !== "") {
 
-       $otherText = sanatize_text_field($_POST['otherText']);
+       $otherText = sanitize_text_field($_POST['otherText']);
 
         update_post_meta( $post_id, 'otherText', $otherText );
       }
@@ -645,12 +645,11 @@ if (sizeof($taxonomy) !== 0) {
 </div>
 
 <div id="picPlusCon">
-<div id="picSlidePlus">
+
 <button  type="button" onclick="$('#_imagesInput').click()" id="uploadImages" class="plusPic"><i class="fas fa-edit"></i></button>
-</div>
     </div>
 
-<div class="center">
+<div class="linkFBCon">
   <?php
    $locker = get_post_meta($post_id, 'locker', true);
   $shower = get_post_meta($post_id, 'shower', true);
@@ -659,36 +658,31 @@ if (sizeof($taxonomy) !== 0) {
   $giRent = get_post_meta($post_id, 'giRent', true);
   $food = get_post_meta($post_id, 'food', true);
   $wifi = get_post_meta($post_id, 'wifi', true);
+  $facebook = get_post_meta($post_id, 'facebook', true);
+  $website = get_post_meta($post_id, 'website', true);
 
   
-  if ($locker === "true") {
-    echo '<img title="Lockers" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/lockers.png">';
+  if ($website !== "") {
+    echo '<a href="https://'.$website.'"><i id="websiteIcon" title="Website" class="fas fa-link fa-2x topIcon"></i></a>';
   }
 
-  
-  if ($shower === "true") {
-    echo '<i title="Shower" class="fas icons fa-shower fa-2x"></i>';
-  }
-
-  
-  if ($weight === "true") {
-    echo '<i title="Gym" class="fas icons fa-dumbbell fa-2x"></i>';
+   if ($facebook !== "") {
+    echo '<a href="https://'.$facebook.'"><i id="facebookIcon" title="Facebook page" class="fab fa-facebook-square fa-2x topIcon"></i></a>';
+    
   }
 
   
-  if ($water === "true") {
-    echo '<i title="Water dispenser" class="fas icons fa-tint fa-2x"></i>';
-  }
-
-  if ($giRent === "true") {
-    echo '<img title="Gi rental" class="icons" style="height:40px; width:auto;" src="http://www.roamingrolls.com/wp-content/uploads/2021/03/kimono-for-men.png">';
-  }
   ?>
 </div>
 
 </div>
-<div id="imgRules"><p>Select your photo real </p>
-        <p>(the first image selected will be displayed at the top of your page)</p></div>
+
+<div id="imgRules">
+  <p><p>Select your photo real </p>
+        <p>(the first image selected will be displayed at the top of your page)</p>
+         <div class="rulesTriangle"></div>
+      
+      </div>
  
 
 <div id="pageSecContain">
