@@ -685,37 +685,44 @@ if (sizeof($taxonomy) !== 0) {
       </div>
  
 
-<div id="pageSecContain">
+
 <div id="pageSectionMenu">
   <div class="menuContainer">
   <a class ="pageSecLinks" href = "#gymDescription">
   <button id="pageTab1" class="pageSecTab">
     Instructors
+    <div class="bottomLine"></div>
 </button>
     </a>
   <a class ="pageSecLinks" href = "#visitt">
   <button id="pageTab2" class="pageSecTab">
     Prices
+    <div class="bottomLine"></div>
 </button>
     </a>
 <a class ="pageSecLinks" href = "#plink">
 <button id="pageTab3" class="pageSecTab">
 Schedule
+
+    <div class="bottomLine"></div>
+
 </button>
     </a>
 <a class ="pageSecLinks" href = "#slink">
 <button id="pageTab4" class="pageSecTab">
 Facilities
+<div class="bottomLine"></div>
 </button>
 </a>
 <div class="pageSecLinks">
 <button id="pageTab5" onclick="showMap()" class="pageSecTab">
 Map
+<div class="bottomLine"></div>
 </button>
     </div>
 </div>
 </div>
-</div>
+
 
 
   <div class="center">
