@@ -678,7 +678,7 @@ if (sizeof($taxonomy) !== 0) {
 </div>
 
 <div id="imgRules">
-  <p><p>Select your photo real </p>
+  <p><p>Select your photo reel. </p>
         <p>(the first image selected will be displayed at the top of your page)</p>
          <div class="rulesTriangle"></div>
       
@@ -693,6 +693,7 @@ if (sizeof($taxonomy) !== 0) {
     Instructors
     <div class="bottomLine"></div>
 </button>
+
     </a>
   <a class ="pageSecLinks" href = "#visitt">
   <button id="pageTab2" class="pageSecTab">
@@ -744,7 +745,7 @@ Map
     </div>
 
     <div id="desAlert" class="alert alert-danger" role="alert">
-  Don't leave your gym description empty please.
+  Your gym description can't be empty!
 </div>
 
     <div class="center">
@@ -961,10 +962,12 @@ Map
 </div>
 </div>
 
-<div  id="priceRules">
-Add visitor prices - 
-  (1 class, 1 day, 1 week)
-(Boxes without prices wont be displayed, type "FREE" in the price section if you don't charge for that time period)</div>
+<div id="priceRules">
+  <p><p>Select your photo reel. </p>
+        <p>(the first image selected will be displayed at the top of your page)</p>
+         <div class="priceRulesTriangle"></div>
+      
+      </div>
 
 
 <button class="plusPic" id="editPricing"><i class="fas fa-edit"></i></button>
