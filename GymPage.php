@@ -1,4 +1,12 @@
 <?php
+ if (isset($_POST['cdbshfcshfrneklffnlrkjfnkek']))
+  {
+if ( wp_verify_nonce($_POST['cdbshfcshfrneklffnlrkjfnkek'], 'delete_user' )) {
+  $id = $current_user->ID;
+      wp_delete_user($id);
+      wp_logout();
+}
+  }
 global $wpdb;
 global $current_user;
 wp_get_current_user();
@@ -105,7 +113,6 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
 
           if($_POST['dayPrice'] != "") {
 
-
           $dayPrice = sanitize_text_field($_POST['dayPrice']);
 
           if(is_numeric($dayPrice)) {
@@ -114,8 +121,8 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
           } else {
 
                   echo "<style>#priceAlert{display:block !important;}</style>";
-
           }
+
         }else {
             delete_post_meta($post_id,'dayPrice');
           }
@@ -164,7 +171,7 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
            if(is_valid_domain_name($_POST['priceLink']) === true) {
 
           addMeta($_POST['priceLink'], 'priceLink', $priceLink );
-                  echo "<script>alert('successpr3!')</script>";
+                
 
         } else {
                   echo "<script>alert('Please enter a valid URL')</script>";
@@ -186,7 +193,7 @@ if (isset($_POST['sbhkdvhjsbhkvbhkvb'])) {
            if(is_valid_domain_name($_POST['scheduleLink']) === true) {
 
           addMeta($_POST['scheduleLink'], 'scheduleLink', $scheduleLink );
-                  echo "<script>alert('successsch3!')</script>";
+                 
 
         } else {
                   echo "<script>alert('Please enter a valid URL')</script>";
@@ -294,18 +301,6 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
           // Add into MySQL database
             
             $attach_id = insert_attachment($file, $post_id);
-
-        //    $fileLength =  sizeof($files);
-        //  echo "<script>console.log('".$fileLength."')</script>";
-
-        //     echo "<script>alert('not end: ".$id."')</script>";
-
-             if ($id == sizeof($files) - 3 ) {
-              set_post_thumbnail($post_id, $attach_id);
-              echo "<script>alert('".$id."')</script>";
-            } else {
-              echo "<script>alert('not end: ".$id."')</script>";
-            }
           
 
 
@@ -331,14 +326,16 @@ if (isset($_POST['njvkdsnvklsvlnvdf'])) {
   
 } 
 
-update_post_meta($post_id, 'slide_img_array', $attachIdArray);
+ update_post_meta($post_id, 'slide_img_array', $attachIdArray);
+
+
 
 }
 }
 }
 
 
-function uploadInstructFile($file, $meta_key,$fileIn) {
+function uploadInstructFile($file, $meta_key, $fileIn) {
 
   $post_id = get_the_ID();
   $uploadsDir = wp_upload_dir();
@@ -569,25 +566,11 @@ addMeta($_POST['instructorDesUp4'], 'instructorDes4', $instructorDesUp5 );
         height: 50%;
         width:50%;
       }
-/* 
-      body {
-        max-width:80%;
-        margin:auto;
-      }
-
-      @media only screen and (max-width: 700px) {
-      body {
-        max-width:90%;
-        margin:auto;
-      } 
-    } */
-
+   
+   
     
-     
-     
-</style>
+  </style>   
 
-<body>
   
 <div class="headContain">
 
@@ -651,35 +634,63 @@ if (sizeof($taxonomy) !== 0) {
 
 <div class="linkFBCon">
   <?php
-   $locker = get_post_meta($post_id, 'locker', true);
-  $shower = get_post_meta($post_id, 'shower', true);
   $weight = get_post_meta($post_id, 'weight', true);
-  $water = get_post_meta($post_id, 'water', true);
   $giRent = get_post_meta($post_id, 'giRent', true);
-  $food = get_post_meta($post_id, 'food', true);
+  $email = get_post_meta($post_id, 'email', true);
+  $phone = get_post_meta($post_id, 'phone', true);
+  $locker = get_post_meta($post_id, 'locker', true);
+  $water = get_post_meta($post_id, 'water', true);
   $wifi = get_post_meta($post_id, 'wifi', true);
+  $food = get_post_meta($post_id, 'food', true);
+  $shower = get_post_meta($post_id, 'shower', true);
   $facebook = get_post_meta($post_id, 'facebook', true);
+  $callCode = get_post_meta($post_id, 'call_code', true);
   $website = get_post_meta($post_id, 'website', true);
 
   
-  if ($website !== "") {
-    echo '<a href="https://'.$website.'"><i id="websiteIcon" title="Website" class="fas fa-link fa-2x topIcon"></i></a>';
-  }
-
-   if ($facebook !== "") {
-    echo '<a href="https://'.$facebook.'"><i id="facebookIcon" title="Facebook page" class="fab fa-facebook-square fa-2x topIcon"></i></a>';
+ if ($phone != "") {
+    echo '
+    <i id="phoneIcon" title="+'.$callCode.$phone.'" class="fas fa-phone fa-2x"></i>
+    <div class="tooltiptext" id="phoneTip">Copy +'.$callCode.$phone.' to clipboard<div id="phoneTriangle" class="toolTriangle"></div></div>';
     
   }
 
   
+
+     if ($email != "") {
+    echo '<i id="emailIcon" title="Email" class="far fa-envelope fa-2x"></i>
+    <div class="tooltiptext" id="emailTip">Copy '.$email.' to clipboard<div id="emailTriangle" class="toolTriangle"></div></div>';
+
+  }
+
+
+  if ($website != "") {
+    echo '<a href="https://'.$website.'"><i id="websiteIcon" title="Website" class="fas fa-link fa-2x topIcon"></i></a>';
+  }
+
+   if ($facebook != "") {
+    echo '<a href="https://'.$facebook.'"><i id="facebookIcon" title="Facebook page" class="fab fa-facebook-square fa-2x topIcon"></i></a>';
+    
+  }
+
+
+
+
+
+  
   ?>
+
+  <input value="+<?php echo $callCode.$phone ?>" id="phoneInput"></input>
+
+  <input value="<?php echo $email ?>" id="emailInput"></input>
 </div>
 
 </div>
 
 <div id="imgRules">
-  <p><p>Select your photo reel. </p>
-        <p>(the first image selected will be displayed at the top of your page)</p>
+  <p><p>Select multiple photos for your cover photo reel. </p>
+        <p>(Please use jpeg/png files under 1mb in size. 1024 x 600 is recommended.)</p>
+        <p>(Select photos from left to right)</p>
          <div class="rulesTriangle"></div>
       
       </div>
@@ -798,6 +809,18 @@ Map
 </div>
 </div>
 
+<div id="instructorRuleMinus" class="instructorRules">
+        <p>This will delete the last instructor on your list.</p>
+        
+      
+      </div>
+
+      
+<div id="instructorRulePlus" class="instructorRules">
+        <p>This will add to the end of your instructor list.</p>
+        
+ </div>
+
 <button class="plusPic" id="editInstruct"><i class="fas fa-edit"></i></button>
 
 
@@ -876,7 +899,7 @@ Map
  
       if ($nameArray[$i] != "") {
 
-    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Instructor Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
+    echo '<div class="inAccord" id="instructors'.$i.'"><div id = "inCard'.$i.'" class="inCard"><button type="button" class="inup" id ="inup'.$i.'"><i class="fas fa-file-upload"></i></button><div class="instruct-card" class="inPic" data-toggle="collapse" data-target="#inCollapse'.$i.'" aria-expanded="true" aria-controls="collapseOne"><img id = "InImage'.$i.'" class="InImage w-100" src="'.$imgSrc.'"><div class="candTContainer"><input name="instructorName'.$i.'" id="instructorNameTemp'.$i.'" class="titIn" placeholder="Name"></input><div class="titOut">'.$nameArray[$i].'</div><div class=tAndDropCon"><div class="drop"><label class="beltLabel" for="belts">Belt:</label><div class="beltLevelOut">'.$beltArray[$i].'</div><select  id="beltLevelTemp'.$i.'" class="beltLevelIn" name="belts"><option value="Black">Black</option><option value="Brown">Brown</option><option value="Purple">Purple</option><option value="Blue">Blue</option></select></div></div></div></div><div id="inCollapse'.$i.'" class="collapse hide" aria-labelledby="inPic3" data-parent="#inCard'.$i.'"><div class="card-body"><div class="desOut" id ="instructorDesOut'.$i.'">'.$instructorDesArray[$i].'</div><textarea class="desIn" id="instructorDesTemp'.$i.'" name="instructorDes3" placeholder="Describe your instructor here."></textarea></div></div></div></div>';
       }
     } 
   
@@ -963,8 +986,8 @@ Map
 </div>
 
 <div id="priceRules">
-  <p><p>Select your photo reel. </p>
-        <p>(the first image selected will be displayed at the top of your page)</p>
+  <p><p>Add visitor pricing. </p>
+        <p>(Per class, day and week. Want to display more? Add your full pricing page link below!)</p>
          <div class="priceRulesTriangle"></div>
       
       </div>
@@ -1005,10 +1028,10 @@ Map
 <div>
 </div>
 </div>
-<input class="PriceDesIn" name="classDes"  placeholder="Include a short description" value="<?php
+<textarea class="PriceDesIn" name="classDes"  placeholder="Include a short description (5 lines maximum)" value="<?php
      $classDesOut = get_post_meta($id,'classDes',true);
     echo $classDesOut;
-    ?>">
+    ?>"></textarea>
   <div class="priceDesOut">
 
 <?php
@@ -1034,10 +1057,10 @@ Map
     ?>
     </div>
   
-</div></div><input class="PriceDesIn" name="dayDes" placeholder="Include a short description" value="<?php
+</div></div><textarea class="PriceDesIn" name="dayDes" placeholder="Include a short description (5 lines maximum)"  value="<?php
      $dayDesOut = get_post_meta($id,'dayDes',true);
     echo $dayDesOut;
-    ?>">
+    ?>"></textarea>
   <div class="priceDesOut">
 
 <?php
@@ -1062,12 +1085,12 @@ Map
     ?>
     </div>
   </div></div>
-  <input class="PriceDesIn" name="weekDes" placeholder="Include a short description" value="
+  <textarea class="PriceDesIn" name="weekDes" placeholder="Include a short description (5 lines maximum)"  value="
   <?php
      $weekDesOut = get_post_meta($id,'weekDes',true);
     echo $weekDesOut;
     ?>
-    ">
+    "></textarea>
   <div class="priceDesOut">
   <?php
      $weekDesOut = get_post_meta($id,'weekDes',true);
@@ -1373,6 +1396,15 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
 
 
+<div class="center">
+  <button id="gymDelete" class="scheduleOutput gymSubs" >
+  Delete Gym
+  </button> 
+</div>
+
+
+<button id="hiddenDeleteButton2" type="submit" >Delete account</button>
+
 
 
 
@@ -1430,6 +1462,7 @@ $priceLink = get_post_meta($id,'priceLink',true);
      print_r($imgArray);
       foreach($imgArray as $key => $img) {
         if ($key == 0) {
+              set_post_thumbnail($post_id, $imgArray[$key]);
         $imageSrc = wp_get_attachment_url($imgArray[$key]);
   echo "<li id='Pslide-".$key."' class='carousel-item active' name = 'Pslide-".$key."'><img class='slideImg w-100' src='".$imageSrc."'> </li>";
     } else {
@@ -1474,6 +1507,8 @@ id="embeddedMap"
     </div> 
 
 
+
+
 <br>
 
     </div>
@@ -1488,17 +1523,6 @@ id="embeddedMap"
 
 
 
-</body>
-
-<div>
-
-<?php
-
-get_footer();
-
-?>
-
-</div>
 
 
 
