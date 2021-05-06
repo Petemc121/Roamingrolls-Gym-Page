@@ -26,37 +26,20 @@ $kv_author =get_the_author_meta('ID');
 
 $post_id = get_the_ID();
 
-function GymDesSub() {
-if (isset($_POST['ncskfnalvkbahlds']) || wp_verify_nonce($_POST['ncskfnalvkbahlds'], 'create_gym_des' )) {
 
+if (isset($_POST['ncskfnalvkbahlds']))
+{
+  if (wp_verify_nonce($_POST['ncskfnalvkbahlds'], 'create_gym_des' ))
+   {
   $gymDes = sanitize_text_field($_POST['gymDesIn']);
 
-  $uploaded = 0;
+    if($gymDes != "") {
 
-  if ($gymDes =='') {
-      echo "<style>#desAlert{display:block !important;}</style>";
-      return false;
-  }else {
-    return true;
-  }
-
-
-}else {
-  return false;
-}
-}
-
-if(isset($_POST['ncskfnalvkbahlds'])) {
-  if(is_user_logged_in()) {
-    if(GymDesSub()) {
-     if (metadata_exists('post',$post_id,'gymDes')) {
-      $gymDes = sanitize_text_field($_POST['gymDesIn']);
         update_post_meta($post_id, 'gymDes', $gymDes);
-     } else {
-      add_post_meta($post_id, 'gymDes', $gymDes);
+    } else
+    {
+          echo "<style>#desAlert{display:block !important;}</style>";
     }
-
-  }
 }
 }
 
@@ -651,7 +634,7 @@ if (sizeof($taxonomy) !== 0) {
  if ($phone != "") {
     echo '
     <i id="phoneIcon" title="+'.$callCode.$phone.'" class="fas fa-phone fa-2x"></i>
-    <div class="tooltiptext" id="phoneTip">Copy +'.$callCode.$phone.' to clipboard<div id="phoneTriangle" class="toolTriangle"></div></div>';
+    <div class="tooltiptext" id="phoneTip">Copy +'.$callCode.$phone.' to clipboard</div>';
     
   }
 
@@ -659,7 +642,7 @@ if (sizeof($taxonomy) !== 0) {
 
      if ($email != "") {
     echo '<i id="emailIcon" title="Email" class="far fa-envelope fa-2x"></i>
-    <div class="tooltiptext" id="emailTip">Copy '.$email.' to clipboard<div id="emailTriangle" class="toolTriangle"></div></div>';
+    <div class="tooltiptext" id="emailTip">Copy '.$email.' to clipboard</div>';
 
   }
 
@@ -1459,7 +1442,6 @@ $priceLink = get_post_meta($id,'priceLink',true);
   <?php
 
       $imgArray = get_post_meta($post_id, "slide_img_array", true);
-     print_r($imgArray);
       foreach($imgArray as $key => $img) {
         if ($key == 0) {
               set_post_thumbnail($post_id, $imgArray[$key]);
