@@ -22,6 +22,12 @@ $kv_author =get_the_author_meta('ID');
     echo "<style>.inup{display:none !important;}</style>";
     echo "<style>#imgRules{display:none !important;}</style>";
     echo "<style>#editInstruct{display:none !important;}</style>";
+
+    echo "<style>#editPricing{display:none !important;}</style>";
+
+    echo "<style>#editSchedule{display:none !important;}</style>";
+
+    echo "<style>#editChecks{display:none !important;}</style>";
  } 
 
 $post_id = get_the_ID();
