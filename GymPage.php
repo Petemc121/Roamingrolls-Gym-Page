@@ -28,6 +28,9 @@ $kv_author =get_the_author_meta('ID');
     echo "<style>#editSchedule{display:none !important;}</style>";
 
     echo "<style>#editChecks{display:none !important;}</style>";
+
+    
+    echo "<style>#gymDelete{display:none !important;}</style>";
  } 
 
 $post_id = get_the_ID();
@@ -621,19 +624,34 @@ if (sizeof($taxonomy) !== 0) {
 <button  type="button" onclick="$('#_imagesInput').click()" id="uploadImages" class="plusPic"><i class="fas fa-edit"></i></button>
     </div>
 
+    <?php
+
+    $email = get_post_meta($post_id, 'email', true);
+  $phone = get_post_meta($post_id, 'phone', true);
+  $callCode = get_post_meta($post_id, 'call_code', true);
+  
+ if ($phone != "") {
+    echo 
+    '<div class="tooltiptext" id="phoneTip">Copy +'.$callCode.$phone.' to clipboard</div>';
+    
+  }
+
+     if ($email != "") {
+    echo '<div class="tooltiptext" id="emailTip">Copy '.$email.' to clipboard</div>';
+
+  }
+  
+  ?>
 <div class="linkFBCon">
   <?php
   $weight = get_post_meta($post_id, 'weight', true);
   $giRent = get_post_meta($post_id, 'giRent', true);
-  $email = get_post_meta($post_id, 'email', true);
-  $phone = get_post_meta($post_id, 'phone', true);
   $locker = get_post_meta($post_id, 'locker', true);
   $water = get_post_meta($post_id, 'water', true);
   $wifi = get_post_meta($post_id, 'wifi', true);
   $food = get_post_meta($post_id, 'food', true);
   $shower = get_post_meta($post_id, 'shower', true);
   $facebook = get_post_meta($post_id, 'facebook', true);
-  $callCode = get_post_meta($post_id, 'call_code', true);
   $website = get_post_meta($post_id, 'website', true);
 
   
@@ -703,7 +721,7 @@ if (sizeof($taxonomy) !== 0) {
     </a>
 <a class ="pageSecLinks" href = "#plink">
 <button id="pageTab3" class="pageSecTab">
-Schedule
+Classes
 
     <div class="bottomLine"></div>
 
@@ -1181,11 +1199,47 @@ $priceLink = get_post_meta($id,'priceLink',true);
 
 <div class="center">
 <div  class="menuContainer">
-  <h2 id="schedulet" >Schedule</h2>
+  <h2 id="schedulet" >Classes</h2>
 </div>
 </div>
 
   <button class="plusPic" id="editSchedule"><i class="fas fa-edit"></i></button>
+
+  <div class="center">
+<div id="classesContain">
+<div id="kidsClass" class="classes">
+<div>Kids Classes</div>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-times-circle"></i>
+</div>
+<div id="WomansClass" class="classes">
+<div>Women Only Classes</div>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-times-circle"></i>
+</div>
+<div id="GiClass" class="classes">
+<div>Gi Classes</div>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-times-circle"></i>
+</div>
+<div id="NoGiClass" class="classes">
+<div>No-gi Classes</div>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-times-circle"></i>
+</div>
+<div id="MMAClass" class="classes">
+<div>MMA Classes</div>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-times-circle"></i>
+</div>
+<div id="WrestlingClass" class="classes">
+<div>Wrestling Classes</div>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-times-circle"></i>
+</div>
+</div>
+</div>
+
 
 <form method="post">
 
